@@ -34,7 +34,8 @@ class AnnouncesProfile extends React.Component {
             animalTypeChoice: "",
             serviceChoice: "",
             totalPrice: "00.00", // from children BookingCalendar,
-            currency: "EUR"
+            currency: "EUR",
+            childBookingBody: "" // bookingBody made in children calendar and retrieve here for the billing system
         };
 
         this.handleChangeAnimalTypeChoiceId = this.handleChangeAnimalTypeChoiceId.bind(this);
@@ -91,6 +92,11 @@ class AnnouncesProfile extends React.Component {
         console.log("b", this.state.animalTypeChoice)
     }
 
+    cbBookingBody = (bookingBody) => {
+        this.setState({
+            childBookingBody : bookingBody
+        })
+    };
 
     /**
      * Get all animalsType to generate list
@@ -277,7 +283,7 @@ class AnnouncesProfile extends React.Component {
                                             <p>Total prix : {this.state.totalPrice} {this.state.currency} </p>
 
                                             <StripeProvider apiKey={stripeConfig.PK}>
-                                                <StoreCheckout currentPrice={this.state.totalPrice} accessToken={localStorage.getItem('accessToken')}/>
+                                                <StoreCheckout currentPrice={this.state.totalPrice} accessToken={localStorage.getItem('accessToken')} bookingBody={this.state.childBookingBody}/>
                                             </StripeProvider>
 
                                         </div>
@@ -309,6 +315,7 @@ class AnnouncesProfile extends React.Component {
                                                                     animalTypeChoice={animalType}
                                                                     cbPrice={this.cbPrice}
                                                                     price={this.state.totalPrice}
+                                                                    cbBookingBody={this.cbBookingBody}
                                                                     serviceChoice={service}/>
                                                             </div>
                                                         </div>

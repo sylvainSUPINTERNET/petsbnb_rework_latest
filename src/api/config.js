@@ -25,6 +25,12 @@ export let apiConfiguration = {
 
     // User
     userPath: "/users",
+
+    // stripe
+    charge: "/payment/charge",
+
+    // booking
+    booking: "/bookings"
 };
 
 export const jwt = {
@@ -58,6 +64,15 @@ export let apiEndpoints = {
     // User
     userMe: `${apiConfiguration.apiUrl}${apiConfiguration.userPath}`,
     userMeProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.userPath}`,
+
+    // Stripe
+    charge: `${apiConfiguration.apiUrl}${apiConfiguration.charge}`,
+    chargeProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.charge}`,
+
+
+    // Bookings
+    bookings: `${apiConfiguration.apiUrl}${apiConfiguration.booking}`,
+    bookingsProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.booking}`,
 
 
 

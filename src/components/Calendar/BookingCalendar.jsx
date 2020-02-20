@@ -220,7 +220,7 @@ class BookingCalendar extends React.Component {
         Api
             .User
             .getMe()
-            .then((data) => {
+            .then(async (data) => {
                 console.log(data);
                 if (data.status === 200) {
                     console.log("announce", this.props.announce);
@@ -241,7 +241,7 @@ class BookingCalendar extends React.Component {
 
 
                     console.log("READY FOR POST : ", this.state.bookingBody);
-
+                    this.props.cbBookingBody(this.state.bookingBody); // send the bookingbody to the parent and the parent send to the children Stripe to be able to create the booking then the bill (require the booking id)
 
 
                 } else {

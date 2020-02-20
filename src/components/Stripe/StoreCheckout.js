@@ -8,7 +8,7 @@ class StoreCheckout extends React.Component {
         return (
             <div>
                 <Elements>
-                    <InjectedCheckoutForm currentPrice={this.props.currentPrice} accessToken={this.props.accessToken}/>
+                    <InjectedCheckoutForm currentPrice={this.props.currentPrice} accessToken={this.props.accessToken} bookingBody={this.props.bookingBody}/>
                 </Elements>
             </div>
         );

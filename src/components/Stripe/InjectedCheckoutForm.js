@@ -5,6 +5,8 @@ import {injectStripe} from 'react-stripe-elements';
 import CardSection from './CardSection';
 import * as axios from "axios";
 
+import {apiEndpoints} from "../../api/config";
+
 class CheckoutForm extends React.Component {
 
     constructor(props) {
@@ -97,25 +99,81 @@ class CheckoutForm extends React.Component {
 
         //console.log(tok);
 
+        console.log("BOOKING BODY IS HERE from children -> ", this.props.bookingBody);
         console.log("TKS", this.props.accessToken);
 
 
         this.props.stripe
             .createToken({name: this.state.cardHolder, email: this.state.cardHolderEmail})
-            .then((data) => {
-                axios
-                    .post(`http://localhost:4200/api/v1/payment/charge`,
-                        {
-                            amount: this.props.currentPrice * 100,
-                            token: data.token.id,
-                            email: data.token.email
-                        },
-                        {
+            .then(async (dataStripe) => {
+                try {
+                    const booking = await axios
+                        .post(`${apiEndpoints.bookingsProxy}`, {
+                        "bookingTotalPrice": parseFloat(this.props.bookingBody.bookingTotalPrice),
+                        "bookingStartAt": "2016-01-25T21:34:55",
+                        "bookingEndAt": "2016-01-26T21:34:55",
+                        "userId": this.props.bookingBody.userId,
+                        "announceId": this.props.bookingBody.announceId,
+                        "serviceId": this.props.bookingBody.serviceId,
+                        "animalsTypeId": this.props.bookingBody.animalsTypeId,
+                        "paid": 1,
+                        "confirmed": 0
+                        }, {
                             headers: {
                                 'Content-Type': 'application/json',
                                 'Authorization': 'Bearer ' + this.props.accessToken
                             }
-                        })
+                        });
+                    console.log(">>>> b-booking ", booking);
+                    console.log(booking.data.id);
+
+                    const {data} = await axios
+                        .post(`${apiEndpoints.chargeProxy}`,
+                            {
+                                amount: this.props.currentPrice * 100,
+                                token: dataStripe.token.id,
+                                email: dataStripe.token.email
+                            },
+                            {
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': 'Bearer ' + this.props.accessToken
+                                }
+                            });
+                    console.log("------>", data);
+                    console.log(">>>>>", dataStripe);
+                    const bills = await axios
+                        .post(`http://localhost:4200/api/v1/bills`,
+                            {
+                                "chargeId": dataStripe.token.id,
+                                "urlReceipt": "TODO",
+                                "amount": this.props.currentPrice * 100,
+                                "currency": "Eur",
+                                "created": dataStripe.token.created,
+                                "type": dataStripe.token.type,
+                                "expMonth": dataStripe.token.card.exp_month,
+                                "expYear": dataStripe.token.card.exp_year,
+                                "lastCardNumbers": dataStripe.token.card.last4,
+                                "network": dataStripe.token.card.brand,
+                                "paymentType": dataStripe.token.type,
+                                "country": dataStripe.token.card.country,
+                                "isPaid": 1,
+                                "userId": this.props.bookingBody.userId, // from props
+                                "bookingId": booking.data.id
+                            }, {
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': 'Bearer ' + this.props.accessToken
+                                }
+                            });
+                    console.log("t : >>>>>", bills);
+                } catch (e) {
+                    if (e) {
+                        // TODO
+                        console.log("ERROR stripe api : ", e);
+                    }
+                }
+
             })
             .catch(err => console.log("TOKEN é", err))
 
