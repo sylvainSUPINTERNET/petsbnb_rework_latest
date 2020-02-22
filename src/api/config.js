@@ -30,7 +30,10 @@ export let apiConfiguration = {
     charge: "/payment/charge",
 
     // booking
-    booking: "/bookings"
+    booking: "/bookings",
+
+    // Equipments
+    equipments: "/equipments"
 };
 
 export const jwt = {
@@ -73,6 +76,10 @@ export let apiEndpoints = {
     // Bookings
     bookings: `${apiConfiguration.apiUrl}${apiConfiguration.booking}`,
     bookingsProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.booking}`,
+
+    // Equipments
+    equipments: `${apiConfiguration.apiUrl}${apiConfiguration.equipments}`,
+    equipmentsProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.equipments}`,
 
 
 

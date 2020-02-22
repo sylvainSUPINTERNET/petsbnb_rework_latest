@@ -184,12 +184,26 @@ class CheckoutForm extends React.Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="email" name="cardHolderEmail" placeholder="Billing Email"
-                           onChange={this.cardHolderEmailChange}/>
-                    <input type="text" name="cardHolder" placeholder="Card holder" onChange={this.cardHolderChange}/>
-                    <CardSection/>
-                    <button className="btn btn-primary" disabled={this.props.currentPrice === "00.00"}>Confirm
-                        order {this.props.currentPrice}</button>
+                    <div className="row">
+                        <div className="col-md-6">
+                        </div>
+                        <div className="col-md-6">
+                            <div className="card container">
+                                <div className="card-block">
+                                    <div className="form-group">
+                                        <input type="email" name="cardHolderEmail" placeholder="Addresse mail de facturation" className="form-control mt-3"
+                                               onChange={this.cardHolderEmailChange} disabled={this.props.currentPrice === "00.00"}/>
+                                    </div>
+                                    <div className="form-group">
+                                        <input type="text" name="cardHolder" placeholder="Détenteur de la carte" onChange={this.cardHolderChange} className="form-control mt-2" disabled={this.props.currentPrice === "00.00"}/>
+                                    </div>
+
+                                    <CardSection  disabled={this.props.currentPrice === "00.00"}/>
+                                    <button className="btn btn-primary" disabled={this.props.currentPrice === "00.00"}>Payer {this.props.currentPrice}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         );

@@ -6,7 +6,7 @@ class CardSection extends React.Component {
     render() {
         return (
             <div>
-                <CardElement style={{base: {fontSize: '18px'}}} />
+                <CardElement disabled={this.props.disabled} style={{base: {fontSize: '18px'}}} />
             </div>
 
         );

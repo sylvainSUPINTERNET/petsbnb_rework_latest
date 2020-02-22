@@ -27,6 +27,7 @@ import Home from "./components/Home";
 import * as config from "./api/config";
 import AnnoncesList from "./components/Annonces/AnnoncesList";
 import AnnouncesProfile from "./components/Annonces/AnnouncesProfile";
+import AnnoncesCreate from "./components/Annonces/AnnoncesCreate";
 
 
 function isUserAuthenticated() {
@@ -69,6 +70,9 @@ function App() {
                                     <Link className="nav-link" to="/">Acceuil</Link>
                                 </li>
                                 <li className="nav-item">
+                                    <Link className="nav-link" to="/annonces/creation">Déposer une annonces</Link>
+                                </li>
+                                <li className="nav-item">
                                     <Link className="nav-link" to="/auth/login">Connexion</Link>
                                 </li>
                                 <li className="nav-item">
@@ -106,6 +110,7 @@ function App() {
                                        return <Redirect to='/auth/login'/>
                                    }
                            }}/>
+                    <Route exact path="/annonces/creation" component={() => <AnnoncesCreate/>}/>
                     <Route exact path="/auth/login" component={() => <LoginForm/>}/>
                     <Route exact path="/logout" component={() => <Logout/>}/>
                     <Route path="/annonces" component={() => <AnnoncesList/>}/>

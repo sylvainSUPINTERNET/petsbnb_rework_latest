@@ -14,8 +14,6 @@ import {StripeProvider, CardCVCElement} from "react-stripe-elements";
 import StoreCheckout from "../Stripe/StoreCheckout";
 
 
-
-
 class AnnouncesProfile extends React.Component {
     constructor(props) {
         super(props);
@@ -65,16 +63,16 @@ class AnnouncesProfile extends React.Component {
 
     handleChangeAnimalTypeChoiceId(event) {
         this.setState({
-            animalTypeChoice : event.target.value
+            animalTypeChoice: event.target.value
         }, async () => {
             this.bookingBtnEnabled();
         });
     }
 
     handleChangeServiceChoiceId(event) {
-        console.log('service changed' , event.target.value);
+        console.log('service changed', event.target.value);
         this.setState({
-            servicesChoice : event.target.value
+            servicesChoice: event.target.value
         }, async () => {
             this.bookingBtnEnabled();
         });
@@ -94,7 +92,7 @@ class AnnouncesProfile extends React.Component {
 
     cbBookingBody = (bookingBody) => {
         this.setState({
-            childBookingBody : bookingBody
+            childBookingBody: bookingBody
         })
     };
 
@@ -267,7 +265,9 @@ class AnnouncesProfile extends React.Component {
                                             {this.state.announce.equipments.name}
                                         </div>
 
-                                        <div className={this.state.bookingBtnDisabled ? "small red-text" : "small red-text invisible"} role="alert">
+                                        <div
+                                            className={this.state.bookingBtnDisabled ? "small red-text" : "small red-text invisible"}
+                                            role="alert">
                                             <p className="text-center">
                                                 Choisissez votre type d'animaux et votre service
                                             </p>
@@ -281,14 +281,7 @@ class AnnouncesProfile extends React.Component {
                                             </button>
                                             <hr/>
                                             <p>Total prix : {this.state.totalPrice} {this.state.currency} </p>
-
-                                            <StripeProvider apiKey={stripeConfig.PK}>
-                                                <StoreCheckout currentPrice={this.state.totalPrice} accessToken={localStorage.getItem('accessToken')} bookingBody={this.state.childBookingBody}/>
-                                            </StripeProvider>
-
                                         </div>
-
-
 
                                         <div className="modal fade" id="modalBooking" tabIndex="-1" role="dialog"
                                              aria-labelledby="modalBooking"
@@ -337,6 +330,13 @@ class AnnouncesProfile extends React.Component {
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <StripeProvider apiKey={stripeConfig.PK}>
+                                    <StoreCheckout currentPrice={this.state.totalPrice}
+                                                   accessToken={localStorage.getItem('accessToken')}
+                                                   bookingBody={this.state.childBookingBody}/>
+                                </StripeProvider>
 
                                 <a href="#" className="btn btn-primary">Retour</a>
                                 <a href="#" className="btn btn-primary">Suivante</a>

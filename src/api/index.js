@@ -5,6 +5,7 @@ import Services from './Services/Services';
 import Announces from './Announces/Announces';
 import User from './User/User';
 import Booking from './Booking/Booking';
+import Equipments from "./Equipments/Equipments";
 
 export default {
     authenticationLogin: login,
@@ -12,7 +13,8 @@ export default {
     Services: Services,
     Announces: Announces,
     User: User,
-    Bookings: Booking
+    Bookings: Booking,
+    Equipments: Equipments
 }
 
 
