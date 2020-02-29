@@ -7,6 +7,7 @@ import {withRouter} from "react-router-dom";
 import {getLoadingText} from '../LoaderSettings';
 import Checkbox from "rc-checkbox";
 import LoadingOverlay from 'react-loading-overlay';
+import { Redirect } from "react-router-dom";
 
 
 class AnnoncesCreate extends React.Component {
@@ -179,7 +180,9 @@ class AnnoncesCreate extends React.Component {
         })
     };
 
-    onSubmit = (ev) => {
+    onSubmit = async (ev) => {
+        ev.preventDefault();
+
         let body = this.state.body;
         body["equipmentsIds"] = this.state.selectedEquipments;
         body["servicesIds"] = this.state.selectedServices;
@@ -188,9 +191,20 @@ class AnnoncesCreate extends React.Component {
         this.setState({
             body: body
         });
-        ev.preventDefault();
+
         console.log("on submit");
         console.log(this.state.body);
+
+        const {data, status} = await Api.Announces.post(this.state.body);
+        if(status === 200) {
+            console.log("OK go redirect");
+            this.props.history.push(`/annonce/${data.uuid}`);
+        } else {
+            // TODO
+            // error
+            console.log(status);
+            console.log(data)
+        }
     };
 
     render() {
@@ -406,7 +420,7 @@ class AnnoncesCreate extends React.Component {
 
                                 <button
                                     className="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
-                                    type="submit">Sign in
+                                    type="submit">Ajouter
                                 </button>
 
 

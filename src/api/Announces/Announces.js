@@ -21,10 +21,17 @@ let get = async (uuid) => {
     })
 };
 
+let post = async (data) => {
+
+    return await axios.post(`${apiEndpoints.announceProfileProxy}`, data, {
+        headers: {'Authorization': 'Bearer ' + TokenService.getAccessToken()}
+    })
+};
 
 const Announces = {
     list: search,
-    getOne: get
+    getOne: get,
+    post: post
 };
 
 
