@@ -12,6 +12,7 @@ class AnnouncesCard extends React.Component {
         super(props)
 
         this.goToProfile = this.goToProfile.bind(this);
+        this.state = {}
     }
 
     goToProfile() {
@@ -24,12 +25,17 @@ class AnnouncesCard extends React.Component {
     render() {
         return (
             <div>
+                <div className="card card-cascade mb-2">
 
+                    <div className={this.props.modifPictureBtn === true ? "card card-cascade mb-2" : "d-none"}>
+                        <div className="form-group">
+                            <input type="file" className="form-control-file btn" id="exampleFormControlFile1"/>
+                        </div>
+                    </div>
 
-                <div className="card card-cascade">
                     <div className="view view-cascade overlay">
                         <img className="card-img-top"
-                             src="https://mdbootstrap.com/img/Photos/Others/men.jpg"
+                             src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png"
                              alt="Card image cap"/>
                         <a>
                             <div className="mask rgba-white-slight"></div>

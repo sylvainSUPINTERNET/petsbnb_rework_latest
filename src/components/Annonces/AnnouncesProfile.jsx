@@ -322,7 +322,7 @@ class AnnouncesProfile extends React.Component {
                                     <div className="col-md-6">
                                         <div className="view overlay">
                                             <img className="card-img-top"
-                                                 src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg"
+                                                 src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png"
                                                  alt="Card image cap"/>
                                             <a href="#!">
                                                 <div className="mask rgba-white-slight"></div>

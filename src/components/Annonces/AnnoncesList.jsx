@@ -378,7 +378,7 @@ class AnnoncesList extends React.Component {
                                         {this.state.announces.map((announce) =>
 
                                             <div className="col-md-3 p-1 mt-1">
-                                                <AnnouncesCard announce={announce}/>
+                                                <AnnouncesCard announce={announce} modifPictureBtn={false}/>
                                             </div>
                                         )}
 

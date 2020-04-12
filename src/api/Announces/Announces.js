@@ -28,10 +28,19 @@ let post = async (data) => {
     })
 };
 
+
+let getByUser = async () => {
+
+    return await axios.get(`${apiEndpoints.announceProfileProxy}/account`, {
+        headers: {'Authorization': 'Bearer ' + TokenService.getAccessToken()}
+    })
+};
+
 const Announces = {
     list: search,
     getOne: get,
-    post: post
+    post: post,
+    getByUser: getByUser
 };
 
 

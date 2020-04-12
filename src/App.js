@@ -28,6 +28,7 @@ import * as config from "./api/config";
 import AnnoncesList from "./components/Annonces/AnnoncesList";
 import AnnouncesProfile from "./components/Annonces/AnnouncesProfile";
 import AnnoncesCreate from "./components/Annonces/AnnoncesCreate";
+import Account from "./components/Account/Account";
 
 
 function isUserAuthenticated() {
@@ -79,6 +80,9 @@ function App() {
                                     <Link className="nav-link" to="/logout">Déconnexion</Link>
                                 </li>
                                 <li className="nav-item">
+                                    <Link className="nav-link" to="/compte">Compte</Link>
+                                </li>
+                                <li className="nav-item">
                                     <a className="nav-link" target="_blank" href="http://localhost:4999/join">Messagerie</a>
                                 </li>
                             </ul>
@@ -115,6 +119,7 @@ function App() {
                     <Route exact path="/logout" component={() => <Logout/>}/>
                     <Route path="/annonces" component={() => <AnnoncesList/>}/>
                     <Route exact path="/annonce/:uuid" component={ () => <AnnouncesProfile/>}/>
+                    <Route exact path="/compte" component={ () => <Account/>} />
                 </Switch>
             </div>
         </Router>
