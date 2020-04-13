@@ -1,6 +1,9 @@
 import React from 'react';
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 
+
+import Moment from 'react-moment';
+
 import Api from '../api/index';
 
 
@@ -24,7 +27,9 @@ class Home extends React.Component {
 
             searchBtnLoaderDisplay: false,
             searchBtnDisabled: false,
-            timerRedirectionSearchBtn: 800
+            timerRedirectionSearchBtn: 800,
+
+            latestAnnounces: []
 
         };
         // Open Map API
@@ -41,6 +46,8 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
+        this.getLatestAnnounces();
+
         Api
             .AnimalsType
             .list()
@@ -65,6 +72,26 @@ class Home extends React.Component {
             })
             .catch(err => console.log(err))
 
+    }
+
+
+    async getLatestAnnounces () {
+        try {
+            const res = await Api.Public.getLatestAnnounces();
+
+            if(res.status === 200) {
+                this.setState({
+                    latestAnnounces : res.data.body.data
+                });
+            }
+
+            return res
+
+        } catch( e ) {
+            console.log(e);
+            // TODO error display
+            return e
+        }
     }
 
     handleChangeAnimalsType(event) {
@@ -328,78 +355,30 @@ class Home extends React.Component {
 
                 </div>
 
-                <div className="mt-3 container">
+
+                <div className="container">
                     <div className="row">
-                        <div className="col ">
-                            <div className="card">
-                                <div className="card-body">
-                                    <p className="text-center">Dernières annonces</p>
+                        {
+                            this.state.latestAnnounces.map( announce => {
+                                return <div className="col mt-2">
+                                    <div className="card">
+                                        <div className="card-header">
+                                            <i className="fa fa-clock mr-1 text-danger"></i>
+                                            <Moment format="YYYY/MM/DD HH:mm" className="text-wrap">
+                                                {announce.createdAt}
+                                            </Moment>
+                                        </div>
+                                        <div className="card-body">
+                                        <p className="text-center">{announce.description}</p>
+                                            <a href={`/annonce/${announce.uuid}`}>Voir plus ...</a>
+                                    </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            })
+                        }
                     </div>
                 </div>
 
-                <div className="mt-3 container">
-                    <div className="row">
-                        <div className="col">
-                            <div className="card">
-                                <div className="card-body">
-                                    <p className="text-center">Dernières annonces</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div className="mt-3 container">
-                    <div className="row">
-                        <div className="col">
-                            <div className="card">
-                                <div className="card-body">
-                                    <p className="text-center">Dernières annonces</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="mt-3 container">
-                    <div className="row">
-                        <div className="col">
-                            <div className="card">
-                                <div className="card-body">
-                                    <p className="text-center">Dernières annonces</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="mt-3 container">
-                    <div className="row">
-                        <div className="col">
-                            <div className="card">
-                                <div className="card-body">
-                                    <p className="text-center">Dernières annonces</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="mt-3 container">
-                    <div className="row">
-                        <div className="col">
-                            <div className="card">
-                                <div className="card-body">
-                                    <p className="text-center">Dernières annonces</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <Footer></Footer>
 
             </div>

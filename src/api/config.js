@@ -33,7 +33,11 @@ export let apiConfiguration = {
     booking: "/bookings",
 
     // Equipments
-    equipments: "/equipments"
+    equipments: "/equipments",
+
+    // public annonces
+    publicAnnounces: "/public/latest"
+
 };
 
 export const jwt = {
@@ -81,6 +85,11 @@ export let apiEndpoints = {
     equipments: `${apiConfiguration.apiUrl}${apiConfiguration.equipments}`,
     equipmentsProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.equipments}`,
 
+
+    // Public
+    // latest announces
+    latestAnnounces: `${apiConfiguration.apiUrl}${apiConfiguration.publicAnnounces}`,
+    latestAnnouncesProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.publicAnnounces}`
 
 
 };
