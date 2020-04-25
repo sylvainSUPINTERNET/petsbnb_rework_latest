@@ -19,6 +19,9 @@ class AnnouncesCard extends React.Component {
         this.props.history.push(`/annonce/${this.props.announce.uuid}`);
     }
 
+    displayBase64(pictureBytesArray){
+        return `data:image/png;base64, ${pictureBytesArray}`
+    }
 
 
 
@@ -28,15 +31,17 @@ class AnnouncesCard extends React.Component {
                 <div className="card card-cascade mb-2">
 
                     <div className={this.props.modifPictureBtn === true ? "card card-cascade mb-2" : "d-none"}>
+                        <form onSubmit={ (el) => console.log("SUBMIT")}>
                         <div className="form-group">
-                            <input type="file" className="form-control-file btn" id="exampleFormControlFile1"/>
+                            <input type="file" className="form-control-file btn" id="exampleFormControlFile1" onChange={() => console.log("on change")}/>
                         </div>
+                        </form>
                     </div>
 
                     <div className="view view-cascade overlay">
-                        <img className="card-img-top"
-                             src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png"
-                             alt="Card image cap"/>
+                        <img src={this.displayBase64(this.props.announce.picture)} className={this.props.announce.picture !== null ? 'card-img-top': 'd-none'}/>
+                        <img src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png" alt="image annonce" className={this.props.announce.picture !== null ? 'd-none': 'card-img-top'}/>
+
                         <a>
                             <div className="mask rgba-white-slight"></div>
                         </a>

@@ -85,15 +85,14 @@ class Account extends React.Component {
                                 <p className="card-text">Salut</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div className="row m-3">
-                    <div className="col-md-12">
-                        <h4 className="card-header primary-color-dark white-text text-center">Performances</h4>
-                        <div className="card">
-                            <div className="card-body">
-                                <p className="card-text">Salut</p>
+                        <div className="row mt-2">
+                            <div className="col-md-12">
+                                <h4 className="card-header primary-color-dark white-text text-center">Performances</h4>
+                                <div className="card">
+                                    <div className="card-body">
+                                        <p className="card-text">Salut</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
