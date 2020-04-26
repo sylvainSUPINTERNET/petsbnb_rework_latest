@@ -24,7 +24,11 @@ class AnnouncesProfile extends React.Component {
                 city: "", // to avoid undefined when we using method for display
                 equipments: [],
                 services: [],
-                animalsType: []
+                animalsType: [],
+                user: {
+                    id: null
+                },
+                picture: null
             },
             bookingBtnDisabled: true,
             services: [],
@@ -33,7 +37,13 @@ class AnnouncesProfile extends React.Component {
             serviceChoice: "",
             totalPrice: "00.00", // from children BookingCalendar,
             currency: "EUR",
-            childBookingBody: "" // bookingBody made in children calendar and retrieve here for the billing system
+            childBookingBody: "", // bookingBody made in children calendar and retrieve here for the billing system
+
+            userId: null,
+
+            uploadLabel: "",
+            picturePreview : null,
+
         };
 
         this.handleChangeAnimalTypeChoiceId = this.handleChangeAnimalTypeChoiceId.bind(this);
@@ -43,10 +53,30 @@ class AnnouncesProfile extends React.Component {
 
 
     componentDidMount() {
+        let tk = localStorage.getItem("accessToken");
+        if(tk){
+            Api
+                .User
+                .getMe()
+                .then( res => {
+                    this.setState({
+                        userId: res.data.userId
+                    });
+                })
+                .catch(e => {
+                    alert(e)
+                })
+        } else {
+            this.setState({
+                isAdminAnnounce: false
+            })
+        }
+
         console.log("Stripe pK : ", stripeConfig.PK);
 
         // url
         const {uuid} = this.props.match.params;
+
 
         // call APIs
         setTimeout(() => {
@@ -55,6 +85,31 @@ class AnnouncesProfile extends React.Component {
             this.getAnimalsType();
         }, this.state.delay)
     }
+
+    displayBase64(pictureBytesArray){
+        return `data:image/png;base64, ${pictureBytesArray}`
+    }
+
+    displayUploadLabel(ev, announce){
+        let file = ev.target.files[0];
+        if(file.name.length > 10) {
+            this.setState({
+                uploadLabel: `${file.name.substring(0, file.name.indexOf(file.name[15]) - 1)}...`
+            });
+
+        } else {
+            this.setState({
+                uploadLabel: `${file.name}`
+            });
+        }
+
+        this.setPreview(file,announce)
+    }
+
+    setPreview(file,announce){
+        this.setState({
+            picturePreview:URL.createObjectURL(file),
+        });}
 
     // get price from children use as props
     cbPrice = (childDataPrice) => {
@@ -192,7 +247,6 @@ class AnnouncesProfile extends React.Component {
                     <div className="container white darken-4 rounded-1 p-4 mt-2">
 
                         <div className="card">
-
                             <div className="card-body">
                                 <h3 className="card-title">{this.state.announce.title}</h3>
                                 <h4 className=""><i
@@ -320,10 +374,23 @@ class AnnouncesProfile extends React.Component {
 
                                     </div>
                                     <div className="col-md-6">
+                                        <div className={this.state.announce.user.id === this.state.userId ? 'container':'d-none'}>
+                                            <form onSubmit={ (el) => console.log("SUBMIT")}>
+                                                <div className="form-group">
+                                                    <div className="custom-file mt-2">
+                                                        <input type="file" className="custom-file-input" id="validatedCustomFile" required onChange={(ev) =>  this.displayUploadLabel(ev, this.props.announce) }/>
+                                                        <label className="custom-file-label" htmlFor="validatedCustomFile">
+                                                            {this.state.uploadLabel}
+                                                        </label>
+                                                        <div className="invalid-feedback">Example invalid custom file feedback</div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
                                         <div className="view overlay">
-                                            <img className="card-img-top"
-                                                 src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png"
-                                                 alt="Card image cap"/>
+                                            <img src={this.state.picturePreview} className="card-img-top"/>
+                                            <img src={this.displayBase64(this.state.announce.picture)} className={this.state.announce.picture !== null && this.state.picturePreview === null ? 'card-img-top': 'd-none'}/>
+                                            <img src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png" alt="image annonce" className={this.state.announce.picture === null && this.state.picturePreview === null ? 'card-img-top': 'd-none'}/>
                                             <a href="#!">
                                                 <div className="mask rgba-white-slight"></div>
                                             </a>

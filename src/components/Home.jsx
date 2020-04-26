@@ -10,6 +10,7 @@ import Api from '../api/index';
 import Footer from '../components/Partials/Footer';
 
 import { withRouter } from "react-router-dom";
+import AnnouncesCard from "./Annonces/AnnouncesCard";
 
 
 class Home extends React.Component {
@@ -361,18 +362,7 @@ class Home extends React.Component {
                         {
                             this.state.latestAnnounces.map( announce => {
                                 return <div className="col mt-2">
-                                    <div className="card">
-                                        <div className="card-header">
-                                            <i className="fa fa-clock mr-1 text-danger"></i>
-                                            <Moment format="YYYY/MM/DD HH:mm" className="text-wrap">
-                                                {announce.createdAt}
-                                            </Moment>
-                                        </div>
-                                        <div className="card-body">
-                                        <p className="text-center">{announce.description}</p>
-                                            <a href={`/annonce/${announce.uuid}`}>Voir plus ...</a>
-                                    </div>
-                                    </div>
+                                    <AnnouncesCard announce={announce} modifPictureBtn={false}/>
                                 </div>
                             })
                         }

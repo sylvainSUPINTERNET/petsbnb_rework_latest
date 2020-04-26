@@ -1,6 +1,7 @@
 import React from "react";
 
 import {displayCurrency, displayDate, truncate} from "../Utils";
+import Truncate from 'react-truncate';
 
 import {withRouter} from "react-router-dom";
 
@@ -12,7 +13,7 @@ class AnnouncesCard extends React.Component {
         super(props)
 
         this.goToProfile = this.goToProfile.bind(this);
-        this.state = {}
+
     }
 
     goToProfile() {
@@ -29,18 +30,9 @@ class AnnouncesCard extends React.Component {
         return (
             <div>
                 <div className="card card-cascade mb-2">
-
-                    <div className={this.props.modifPictureBtn === true ? "card card-cascade mb-2" : "d-none"}>
-                        <form onSubmit={ (el) => console.log("SUBMIT")}>
-                        <div className="form-group">
-                            <input type="file" className="form-control-file btn" id="exampleFormControlFile1" onChange={() => console.log("on change")}/>
-                        </div>
-                        </form>
-                    </div>
-
                     <div className="view view-cascade overlay">
                         <img src={this.displayBase64(this.props.announce.picture)} className={this.props.announce.picture !== null ? 'card-img-top': 'd-none'}/>
-                        <img src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png" alt="image annonce" className={this.props.announce.picture !== null ? 'd-none': 'card-img-top'}/>
+                        <img src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png" alt="image annonce" className={this.props.announce.picture === null ? 'card-img-top': 'd-none'}/>
 
                         <a>
                             <div className="mask rgba-white-slight"></div>
@@ -66,7 +58,7 @@ class AnnouncesCard extends React.Component {
                         </div>
                     </div>
                     <div className="card-footer text-muted text-center">
-                        <button onClick={this.goToProfile} className="btn btn-md btn-indigo text-white">Voir l'annonce
+                        <button onClick={this.goToProfile} className="btn btn-md btn-indigo text-white"> Voir l'annonce
                         </button>
                     </div>
                 </div>
