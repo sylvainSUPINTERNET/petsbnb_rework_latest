@@ -36,7 +36,9 @@ export let apiConfiguration = {
     equipments: "/equipments",
 
     // public annonces
-    publicAnnounces: "/public/latest"
+    publicAnnounces: "/public/latest",
+
+    media: "/media/announce/picture"
 
 };
 
@@ -89,7 +91,12 @@ export let apiEndpoints = {
     // Public
     // latest announces
     latestAnnounces: `${apiConfiguration.apiUrl}${apiConfiguration.publicAnnounces}`,
-    latestAnnouncesProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.publicAnnounces}`
+    latestAnnouncesProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.publicAnnounces}`,
+
+
+    // Media
+    media: `${apiConfiguration.apiUrl}${apiConfiguration.media}`,
+    mediaProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.media}`
 
 
 };

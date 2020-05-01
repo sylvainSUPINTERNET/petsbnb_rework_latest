@@ -5,6 +5,8 @@ import {withRouter} from "react-router-dom";
 import {getLoadingText} from '../LoaderSettings';
 import LoadingOverlay from 'react-loading-overlay';
 import BookingCalendar from '../../components/Calendar/BookingCalendar';
+import Resizer from 'react-image-file-resizer';
+
 
 import {capitalize, displayCurrency} from "../Utils";
 
@@ -21,6 +23,7 @@ class AnnouncesProfile extends React.Component {
             isLoading: true,
             delay: 10,
             announce: {
+                id: "",
                 city: "", // to avoid undefined when we using method for display
                 equipments: [],
                 services: [],
@@ -43,12 +46,19 @@ class AnnouncesProfile extends React.Component {
 
             uploadLabel: "",
             picturePreview : null,
-
+            displayBtnSubmitPicture: false,
+            pictureData: {
+                file: null,
+            },
+            isUploading: false,
+            displayUploadErrorModal: false,
+            errorUploadModalMessage : ""
         };
 
         this.handleChangeAnimalTypeChoiceId = this.handleChangeAnimalTypeChoiceId.bind(this);
-        this.handleChangeServiceChoiceId = this.handleChangeServiceChoiceId.bind(this)
+        this.handleChangeServiceChoiceId = this.handleChangeServiceChoiceId.bind(this);
         this.bookingBtnEnabled = this.bookingBtnEnabled.bind(this);
+        this.submitPicture = this.submitPicture.bind(this);
     }
 
 
@@ -90,26 +100,130 @@ class AnnouncesProfile extends React.Component {
         return `data:image/png;base64, ${pictureBytesArray}`
     }
 
-    displayUploadLabel(ev, announce){
-        let file = ev.target.files[0];
-        if(file.name.length > 10) {
-            this.setState({
-                uploadLabel: `${file.name.substring(0, file.name.indexOf(file.name[15]) - 1)}...`
-            });
+    submitPicture(){
+        this.setState({
+            isUploading: true,
+            displayBtnSubmitPicture: false
+        });
 
-        } else {
-            this.setState({
-                uploadLabel: `${file.name}`
-            });
-        }
+        const formData = new FormData();
+        formData.append('picture',this.state.pictureData.file);
+        formData.append('announceId', this.state.announce.id);
 
-        this.setPreview(file,announce)
+
+        setTimeout(() => {
+            Api
+                .Media
+                .mediaAddPicture(formData)
+                .then(response =>
+                {
+                    if(response.status === 200) {
+                        this.setState({
+                            isUploading: false,
+                            displayBtnSubmitPicture: true,
+                            displayUploadErrorModal: false,
+                            errorUploadModalMessage : "",
+                            uploadLabel: ""
+                        });
+                    } else {
+                        this.setState({
+                            isUploading: false,
+                            displayBtnSubmitPicture: true,
+                            displayUploadErrorModal: true,
+                            errorUploadModalMessage : "Une erreur est survenue, veuillez réessayer plus tard.",
+                            uploadLabel:""
+                        });
+                    }
+                })
+                .catch(err => this.setState({
+                    isUploading: false,
+                    displayBtnSubmitPicture: true,
+                    displayUploadErrorModal: true,
+                    errorUploadModalMessage : "Une erreur est survenue, veuillez réessayer plus tard.",
+                    uploadLabel: ""
+                }))
+        }, 2000)
+
     }
 
-    setPreview(file,announce){
+    displayUploadLabel(ev){
+        this.setState(
+            {
+                errorUploadModalMessage : "",
+            }
+        );
+
+        let file = ev.target.files[0];
+        let passBlob;
+        const extension = file['type'];
+        const acceptedImageTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+        
+        if(!extension) {
+            alert("error display");
+            this.setState({
+                displayBtnSubmitPicture: false,
+                isUploading: false,
+                displayUploadErrorModal: true,
+                errorUploadModalMessage : "Image incorrect, le format autorisé est : jpg / png",
+            })
+        }  else {
+            if(!acceptedImageTypes.includes(extension)) {
+                this.setState({
+                    displayBtnSubmitPicture: false,
+                    isUploading: false,
+                    displayUploadErrorModal: true,
+                    errorUploadModalMessage : "Image incorrect, le format autorisé est : jpg / png",
+                })
+            } else {
+                Resizer.imageFileResizer(
+                    file,
+                    200,
+                    200,
+                    'JPEG',
+                    100,
+                    0,
+                    blob => {
+                        passBlob = blob;
+
+                        if(file.name.length > 10) {
+                            this.setState({
+                                uploadLabel: `${file.name.substring(0, file.name.indexOf(file.name[15]) - 1)}...`
+                            });
+
+                        } else {
+                            this.setState({
+                                uploadLabel: `${file.name}`
+                            });
+                        }
+
+                        let t = new File([passBlob], file.name);
+
+                        this.setPreview(t)
+                    },
+                    'blob'
+                );
+
+            }
+        }
+
+
+
+
+
+    }
+
+    setPreview(file){
         this.setState({
             picturePreview:URL.createObjectURL(file),
-        });}
+            displayBtnSubmitPicture: true,
+            pictureData: {
+                file: file
+            }
+        })
+
+
+
+        ;}
 
     // get price from children use as props
     cbPrice = (childDataPrice) => {
@@ -245,7 +359,6 @@ class AnnouncesProfile extends React.Component {
                     text={getLoadingText()}>
 
                     <div className="container white darken-4 rounded-1 p-4 mt-2">
-
                         <div className="card">
                             <div className="card-body">
                                 <h3 className="card-title">{this.state.announce.title}</h3>
@@ -378,14 +491,27 @@ class AnnouncesProfile extends React.Component {
                                             <form onSubmit={ (el) => console.log("SUBMIT")}>
                                                 <div className="form-group">
                                                     <div className="custom-file mt-2">
-                                                        <input type="file" className="custom-file-input" id="validatedCustomFile" required onChange={(ev) =>  this.displayUploadLabel(ev, this.props.announce) }/>
+                                                        <input type="file" className="custom-file-input" id="validatedCustomFile" required onChange={(ev) =>  this.displayUploadLabel(ev) }/>
                                                         <label className="custom-file-label" htmlFor="validatedCustomFile">
                                                             {this.state.uploadLabel}
                                                         </label>
                                                         <div className="invalid-feedback">Example invalid custom file feedback</div>
+                                                        <div
+                                                            className={this.state.displayUploadErrorModal ? "small red-text" : "small red-text invisible"}
+                                                            role="alert">
+                                                            <p className="text-center">
+                                                                {this.state.errorUploadModalMessage}
+                                                            </p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </form>
+
+                                            <button className="btn btn-md btn-success" disabled={!this.state.displayBtnSubmitPicture} onClick={this.submitPicture}>
+                                                Télécharger
+                                                <span className={this.state.isUploading ? "ml-2 spinner-border spinner-border-sm mr-2 inline-block" : 'd-none'} role="status">
+                                                </span>
+                                            </button>
                                         </div>
                                         <div className="view overlay">
                                             <img src={this.state.picturePreview} className="card-img-top"/>

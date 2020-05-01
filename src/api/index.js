@@ -7,6 +7,7 @@ import User from './User/User';
 import Booking from './Booking/Booking';
 import Equipments from "./Equipments/Equipments";
 import Public from "./Public/Publics";
+import Media from "./Media/Media";
 
 export default {
     authenticationLogin: login,
@@ -16,7 +17,8 @@ export default {
     User: User,
     Bookings: Booking,
     Equipments: Equipments,
-    Public: Public
+    Public: Public,
+    Media: Media
 }
 
 
