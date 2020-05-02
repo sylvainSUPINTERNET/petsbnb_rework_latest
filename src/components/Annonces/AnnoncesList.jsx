@@ -33,6 +33,12 @@ class AnnoncesList extends React.Component {
             // fields
             departmentChoiceName : "",
 
+            animalsType: [],
+            animalsTypeChoiceId: "",
+
+            services: [],
+            servicesChoiceId: "",
+
 
 
             // search button
@@ -47,6 +53,8 @@ class AnnoncesList extends React.Component {
         this.generateQueryParamsUrlForRedirection = this.generateQueryParamsUrlForRedirection.bind(this);
         this.handleChangeDepartment = this.handleChangeDepartment.bind(this);
         this.getAnnouncesList = this.getAnnouncesList.bind(this);
+        this.handleChangeAnimalsType = this.handleChangeAnimalsType.bind(this);
+        this.handleChangeServices = this.handleChangeServices.bind(this);
     }
 
 
@@ -58,6 +66,40 @@ class AnnoncesList extends React.Component {
         this.getAnnouncesList(objQueryParams, false, true);
 
         this.setDefaultValueForFields(objQueryParams);
+
+        Api
+            .AnimalsType
+            .list()
+            .then((res) => {
+
+                const {data, status} = res;
+
+                if (status === 200) {
+                    console.log(data);
+                    this.setAnimalsType(data)
+                }
+
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        Api
+            .Services
+            .list()
+            .then((res) => {
+                this.setServices(res.data);
+            })
+            .catch(err => console.log(err))
+    }
+
+
+    handleChangeAnimalsType(event) {
+        this.setState({animalsTypeChoiceId: event.target.value});
+    }
+
+    handleChangeServices(event) {
+        this.setState({servicesChoiceId: event.target.value});
     }
 
     async getAnnouncesList(objQueryParams, refresh, init){
@@ -108,6 +150,13 @@ class AnnoncesList extends React.Component {
         }
     }
 
+    setAnimalsType(data) {
+        this.setState({animalsType: data});
+    }
+
+    setServices(data) {
+        this.setState({services: data})
+    }
 
     setDefaultValueForFields = (objQueryParams) => {
         let department = objQueryParams["department"] ? objQueryParams["department"] : 'Départment' ;
@@ -203,6 +252,43 @@ class AnnoncesList extends React.Component {
         }, this.state.timerRedirectionSearchBtn);
     }
 
+    generateListAnimalsType() {
+        console.log(this.state.animalsType);
+        let animalsTypeChoices = this.state.animalsType.map((type) => {
+            return <option value={type.id}>{type.name}</option>
+        });
+
+        return <div className="input-group mb-3 col-md-4">
+            <select value={this.state.animalsTypeChoiceId} onChange={this.handleChangeAnimalsType}
+                    className="custom-select" id="inputGroupSelect02" defaultValue={"animalsType_none"}>
+                <option selected>Votre animal ...</option>
+                {animalsTypeChoices}
+            </select>
+            <div className="input-group-append">
+                <label className="input-group-text blue darken-4 text-white"
+                       htmlFor="inputGroupSelect02"><i className="fa fa-paw"></i></label>
+            </div>
+        </div>
+    }
+
+
+    generateListServices() {
+        let serviesChoice = this.state.services.map((type) => {
+            return <option value={type.id}>{type.name}</option>
+        });
+
+        return <div className="input-group mb-3 col-md-4">
+            <select value={this.state.servicesChoiceId} onChange={this.handleChangeServices}
+                    className="custom-select" id="inputGroupSelect03" defaultValue={"services_none"}>
+                <option selected>Votre service ...</option>
+                {serviesChoice}
+            </select>
+            <div className="input-group-append">
+                <label className="input-group-text blue darken-4 text-white"
+                       htmlFor="inputGroupSelect03"><i className="fa fa-ring"></i></label>
+            </div>
+        </div>
+    }
 
 
 
@@ -226,7 +312,7 @@ class AnnoncesList extends React.Component {
                                             <div className="card-body">
                                                 <Form>
                                                     <Row>
-                                                        <div className="input-group mb-3 col-md-12">
+                                                        <div className="input-group mb-3 col-md-4">
                                                             <select value={this.state.departmentChoiceName}
                                                                     onChange={this.handleChangeDepartment}
                                                                     defaultValue={"default_dept"}
@@ -343,10 +429,15 @@ class AnnoncesList extends React.Component {
                                                                     htmlFor="inputGroupSelect02"><i
                                                                     className="fa fa-map-pin"></i></label>
                                                             </div>
-                                                        </div>
 
+
+                                                        </div>
+                                                        {this.generateListAnimalsType()}
+                                                        {this.generateListServices()}
 
                                                     </Row>
+
+
                                                 </Form>
 
 
@@ -437,7 +528,7 @@ class AnnoncesList extends React.Component {
                                             <div className="card-body">
                                                 <Form>
                                                     <Row>
-                                                        <div className="input-group mb-3 col-md-12">
+                                                        <div className="input-group mb-3 col-md-4">
                                                             <select value={this.state.departmentChoiceName}
                                                                     onChange={this.handleChangeDepartment}
                                                                     defaultValue={"default_dept"}
@@ -556,8 +647,11 @@ class AnnoncesList extends React.Component {
                                                             </div>
                                                         </div>
 
+                                                        {this.generateListAnimalsType()}
+                                                        {this.generateListServices()}
 
                                                     </Row>
+
                                                 </Form>
 
 

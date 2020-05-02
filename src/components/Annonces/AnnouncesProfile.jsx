@@ -157,7 +157,7 @@ class AnnouncesProfile extends React.Component {
         let passBlob;
         const extension = file['type'];
         const acceptedImageTypes = ['image/jpg', 'image/jpeg', 'image/png'];
-        
+
         if(!extension) {
             alert("error display");
             this.setState({
