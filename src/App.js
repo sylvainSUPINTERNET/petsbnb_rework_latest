@@ -29,6 +29,7 @@ import AnnoncesList from "./components/Annonces/AnnoncesList";
 import AnnouncesProfile from "./components/Annonces/AnnouncesProfile";
 import AnnoncesCreate from "./components/Annonces/AnnoncesCreate";
 import Account from "./components/Account/Account";
+import Store from "./components/Store/Store";
 
 
 function isUserAuthenticated() {
@@ -85,6 +86,9 @@ function App() {
                                 <li className="nav-item">
                                     <a className="nav-link" target="_blank" href="http://localhost:4999/join">Messagerie</a>
                                 </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" target="_blank" href="/store">Store</a>
+                                </li>
                             </ul>
                             <ul className="navbar-nav nav-flex-icons">
                                 <li className="nav-item">
@@ -120,6 +124,7 @@ function App() {
                     <Route path="/annonces" component={() => <AnnoncesList/>}/>
                     <Route exact path="/annonce/:uuid" component={ () => <AnnouncesProfile/>}/>
                     <Route exact path="/compte" component={ () => <Account/>} />
+                    <Route exact path="/store" component={ () => <Store/>} />
                 </Switch>
             </div>
         </Router>

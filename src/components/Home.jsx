@@ -201,7 +201,6 @@ class Home extends React.Component {
                             </div>
                         </div>
 
-
                         <div className="card">
                             <div className="card-body">
                                 <p className="justify-content-center text-center m-3 p-3 font-weight-lighter">Découvrez
