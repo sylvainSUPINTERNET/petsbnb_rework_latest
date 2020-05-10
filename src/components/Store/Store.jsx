@@ -9,7 +9,7 @@ class Store extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            category: "Accessoire"
+            category: "accessoire"
         }
     }
 
@@ -27,9 +27,9 @@ class Store extends React.Component {
                                     onChange={(ev) => this.setState({category: ev.target.value})}
                                     defaultValue={"default_dept"} className="custom-select"
                                     id="inputGroupSelect01">
-                                <option value="Accessoire">Accessoires</option>
-                                <option value="Jouets">Jouets</option>
-                                <option value="Nourriture">Nourriture</option>
+                                <option value="accessoire">Accessoires</option>
+                                <option value="jouets">Jouets</option>
+                                <option value="nourriture">Nourriture</option>
                             </select>
                             <div className="input-group-append">
                                 <label className="input-group-text blue darken-4 text-white"
