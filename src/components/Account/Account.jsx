@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect }  from "react";
 
 import {displayCurrency, displayDate, truncate} from "../Utils";
 
@@ -13,7 +13,6 @@ import Announces from "../../api/Announces/Announces";
 import AnnouncesCard from "../Annonces/AnnouncesCard";
 
 class Account extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -24,6 +23,7 @@ class Account extends React.Component {
             userAnnounces: []
         };
     }
+
     componentDidMount() {
         this.getUserAnnounces();
     }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import AnnouncesCard from "../Annonces/AnnouncesCard";
 import StoreCard from "./StoreCard";
 
+
 class Store extends React.Component {
 
     constructor(props) {
