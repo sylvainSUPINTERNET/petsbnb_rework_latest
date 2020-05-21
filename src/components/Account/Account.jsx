@@ -11,6 +11,7 @@ import axios from 'axios';
 import * as d3 from 'd3';
 import Announces from "../../api/Announces/Announces";
 import AnnouncesCard from "../Annonces/AnnouncesCard";
+import AnnouncesCardAccount from "../Annonces/AnnouncesCardAccount";
 
 class Account extends React.Component {
     constructor(props) {
@@ -70,7 +71,7 @@ class Account extends React.Component {
                                 <div className={this.state.userAnnounces.length === 0 ? "d-none": ""}>
                                     {
                                         this.state.userAnnounces.map( announceUser => {
-                                            return <AnnouncesCard announce={announceUser} modifPictureBtn={true}></AnnouncesCard>
+                                            return <AnnouncesCardAccount announce={announceUser} modifPictureBtn={true}></AnnouncesCardAccount>
                                         })
                                     }
                                 </div>

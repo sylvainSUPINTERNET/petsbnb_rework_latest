@@ -197,7 +197,6 @@ class AnnoncesCreate extends React.Component {
 
         const {data, status} = await Api.Announces.post(this.state.body);
         if(status === 200) {
-            console.log("OK go redirect");
             this.props.history.push(`/annonce/${data.uuid}`);
         } else {
             // TODO
