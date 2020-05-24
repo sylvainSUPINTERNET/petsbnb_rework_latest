@@ -4,6 +4,8 @@ import {displayCurrency, displayDate, truncate} from "../Utils";
 
 import {withRouter} from "react-router-dom";
 
+
+
 import axios from 'axios';
 
 
@@ -17,7 +19,7 @@ class Account extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            announceTextCredit: "Vous pouvez avoir 1 offre actif par compte.",
+            announceTextCredit: "",
 
 
             // API
@@ -57,11 +59,20 @@ class Account extends React.Component {
                         <h4 className="card-header primary-color-dark white-text text-center">Mes annonces</h4>
                         <div className="card">
                             <div className="card-body">
-                                <p className="card-text text-center alert-warning">
-                                    <div className="alert alert-info" role="alert">
-                                        {this.state.announceTextCredit} <a href="">Achetez des crédits pour pouvoir poster 3 offres simultanéments !</a>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="alert alert-danger text-center" role="alert">
+                                            <i className="fa fa-eye-slash" aria-hidden="true"></i> Non visible pour les utilisateurs
+                                        </div>
                                     </div>
-                                </p>
+                                    <div className="col-md-6">
+                                        <div className="alert alert-success text-center" role="alert">
+                                            <i className="fa fa-eye" aria-hidden="true"></i> Visible par tous les utilisateurs
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div className={this.state.userAnnounces.length === 0 ? "": "d-none"}>
                                     <div className="alert alert-warning text-center" role="alert">
                                         Pas d'annonces pour le moment
@@ -70,8 +81,8 @@ class Account extends React.Component {
 
                                 <div className={this.state.userAnnounces.length === 0 ? "d-none": ""}>
                                     {
-                                        this.state.userAnnounces.map( announceUser => {
-                                            return <AnnouncesCardAccount announce={announceUser} modifPictureBtn={true}></AnnouncesCardAccount>
+                                        this.state.userAnnounces.map( announce => {
+                                            return <AnnouncesCardAccount userAnnounces={this.state.userAnnounces} announce={announce} modifPictureBtn={true}></AnnouncesCardAccount>
                                         })
                                     }
                                 </div>

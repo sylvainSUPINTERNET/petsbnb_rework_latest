@@ -2,17 +2,21 @@ import React from "react";
 
 import {displayCurrency, displayDate, truncate} from "../Utils";
 import Truncate from 'react-truncate';
+import Api from '../../api/index';
 
-import {withRouter} from "react-router-dom";
+import {Redirect, withRouter} from "react-router-dom";
+
 
 
 class AnnouncesCardAccount extends React.Component {
 
 
     constructor(props) {
-        super(props)
+        super(props);
 
         this.goToProfile = this.goToProfile.bind(this);
+        this.changeStatusAnnounce = this.changeStatusAnnounce.bind(this);
+
 
     }
 
@@ -25,12 +29,108 @@ class AnnouncesCardAccount extends React.Component {
     }
 
 
+    async changeStatusAnnounce(){
+        console.log("CHANGE STATUS");
+
+        console.log(this.props.announce);
+        console.log(this.props.userAnnounces);
+        // TODO : cases
+        // 2 announces active false / activemultiple false
+        // si je click -> active become true
+
+        // 1 announces active true / activemultiple false
+        // si je click il faut soit desactive rune announce soit payer
+        // payer => update active to true et activemultiple to true
+
+        if ( this.props.userAnnounces.length === 1 ) {
+            let statusToSet;
+
+            if(this.props.announce.active === true){
+                statusToSet = false
+            }  else {
+                statusToSet = true
+            }
+
+            try {
+                const resp = await Api.Announces.updateStatus({active: statusToSet},`${this.props.announce.uuid}`);
+                if(resp.status === 200 || resp.status === 204) {
+                   window.location.reload();
+                } else {
+                    console.log(resp);
+                    console.log("erreur resp")
+                }
+            } catch (e) {
+                console.log("error", e)
+            }
+            // TODO add servide to updat
+        } else {
+            let activeElements = this.props.userAnnounces.filter (el => el.active === true);
+
+
+            if(activeElements.length === 0) {
+                // simple update to active
+                try {
+                    const resp = await Api.Announces.updateStatus({active: true},`${this.props.announce.uuid}`);
+                    if(resp.status === 200 || resp.status === 204) {
+                        window.location.reload();
+                    } else {
+                        console.log(resp);
+                        console.log("erreur resp")
+                    }
+                } catch (e) {
+                    console.log("error", e)
+                }
+            }
+
+            if(this.props.announce.active === true) {
+                // simple update to no active
+                try {
+                    const resp = await Api.Announces.updateStatus({active: false},`${this.props.announce.uuid}`);
+                    if(resp.status === 200 || resp.status === 204) {
+                        window.location.reload();
+                    } else {
+                        console.log(resp);
+                        console.log("erreur resp")
+                    }
+                } catch (e) {
+                    console.log("error", e)
+                }
+            }
+
+            if(activeElements.length > 0 && this.props.announce.active === false && this.props.announce.activeMultiple === false) {
+                // une active / une no active qu'on veut passer en active -> 1 disable l'ancienne / 2 on paye pour en avoir 2
+                // TODO -> un bouton pour disable l'announce et revenir sur la liste
+                // TODO -> le form stripe pour ajouter un paiement
+                this.props.history.push(`/annonce/payment/${this.props.announce.uuid}`);
+            }
+
+            if(activeElements.length > 0 && this.props.announce.active === false && this.props.announce.activeMultiple === true) {
+                try {
+                    const resp = await Api.Announces.updateStatus({active: true},`${this.props.announce.uuid}`);
+                    if(resp.status === 200 || resp.status === 204) {
+                        window.location.reload();
+                    } else {
+                        console.log(resp);
+                        console.log("erreur resp")
+                    }
+                } catch (e) {
+                    console.log("error", e)
+                }
+            }
+        }
+
+
+
+    }
+
+
+
     render() {
         return (
             <div>
                 <div className="card card-cascade mb-2">
 
-                    <button
+                    <button onClick={ () => this.changeStatusAnnounce()}
                         className={this.props.announce.active === true ? "badge badge-success p-2" : "badge badge-danger p-2"}>{
                         this.props.announce.active === true ?
                             <div>
@@ -51,6 +151,10 @@ class AnnouncesCardAccount extends React.Component {
                         <a>
                             <div className="mask rgba-white-slight"></div>
                         </a>
+
+                        <div>
+                            {this.props.announce.activeMultiple === true ? <span className="badge badge-primary m-3">Premium</span> : ''}
+                        </div>
 
                         <div className="text-center mt-2">
                             <span className="badge badge-pill badge-info ml-2"><i

@@ -29,6 +29,9 @@ export let apiConfiguration = {
     // stripe
     charge: "/payment/charge",
 
+    // stripe - announce
+    chargeAnnounce: "/payment/charge/announce",
+
     // booking
     booking: "/bookings",
 
@@ -77,6 +80,11 @@ export let apiEndpoints = {
     // Stripe
     charge: `${apiConfiguration.apiUrl}${apiConfiguration.charge}`,
     chargeProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.charge}`,
+
+
+    chargeAnnounce: `${apiConfiguration.apiUrl}${apiConfiguration.chargeAnnounce}`,
+    chargeAnnounceProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.chargeAnnounce}`,
+
 
 
     // Bookings

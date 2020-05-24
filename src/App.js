@@ -30,6 +30,7 @@ import AnnouncesProfile from "./components/Annonces/AnnouncesProfile";
 import AnnoncesCreate from "./components/Annonces/AnnoncesCreate";
 import Account from "./components/Account/Account";
 import Store from "./components/Store/Store";
+import AnnouncePayment from "./components/Payment/AnnouncePayment";
 
 
 function isUserAuthenticated() {
@@ -125,6 +126,7 @@ function App() {
                     <Route exact path="/annonce/:uuid" component={ () => <AnnouncesProfile/>}/>
                     <Route exact path="/compte" component={ () => <Account/>} />
                     <Route exact path="/store" component={ () => <Store/>} />
+                        <Route exact path="/annonce/payment/:uuid" component={ () => <AnnouncePayment/>} />
                 </Switch>
             </div>
         </Router>

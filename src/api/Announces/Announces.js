@@ -29,6 +29,15 @@ let post = async (data) => {
 };
 
 
+let updateStatus = async (data, announceUuid) => {
+
+    return await axios.put(`${apiEndpoints.announceProfileProxy}/status/${announceUuid}`, data, {
+        headers: {'Authorization': 'Bearer ' + TokenService.getAccessToken()}
+    })
+
+};
+
+
 let getByUser = async () => {
 
     return await axios.get(`${apiEndpoints.announceProfileProxy}/account`, {
@@ -40,7 +49,8 @@ const Announces = {
     list: search,
     getOne: get,
     post: post,
-    getByUser: getByUser
+    getByUser: getByUser,
+    updateStatus: updateStatus
 };
 
 
