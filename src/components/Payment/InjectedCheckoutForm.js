@@ -13,7 +13,10 @@ class CheckoutForm extends React.Component {
         super(props);
         this.state = {
             cardHolder: "",
-            cardHolderEmail: ""
+            cardHolderEmail: "",
+
+            payBtnLoading: false,
+            payBtnDisabled: true
         };
 
         this.cardHolderChange = this.cardHolderChange.bind(this);
@@ -22,17 +25,37 @@ class CheckoutForm extends React.Component {
     }
 
     cardHolderChange = (ev) => {
-        this.setState({
-            cardHolder: ev.target.value
-        });
+        if (this.state.cardHolderEmail !== "") {
+            this.setState({
+                cardHolder: ev.target.value,
+                payBtnDisabled: false
+            });
+        } else {
+            this.setState({
+                cardHolder: ev.target.value
+            });
+        }
+
     };
     cardHolderEmailChange = (ev) => {
-        this.setState({
-            cardHolderEmail: ev.target.value
-        });
+        if (this.state.cardHolder !== "") {
+            this.setState({
+                cardHolderEmail: ev.target.value,
+                payBtnDisabled: false
+            });
+        } else {
+            this.setState({
+                cardHolderEmail: ev.target.value
+            });
+        }
     };
 
     handleSubmit = (ev) => {
+        this.setState({
+            payBtnLoading : true,
+            payBtnDisabled: true
+        });
+
         // We don't want to let default form submission happen here, which would refresh the page.
         ev.preventDefault();
 
@@ -60,18 +83,36 @@ class CheckoutForm extends React.Component {
                             }
                         });
 
-                    console.log(chargeAnnounceCreateResponse);
+                    if(chargeAnnounceCreateResponse.status === 200 || chargeAnnounceCreateResponse.status === 204) {
+                        window.location.href = "/compte"
+                    } else {
+                        // TODO
+                        alert("error", chargeAnnounceCreateResponse.status)
+                        this.setState({
+                            payBtnLoading : false,
+                            payBtnDisabled: false
+                        });
+                    }
 
                 } catch (e) {
                     if (e) {
                         // TODO
                         console.log("ERROR stripe api : ", e);
+                        this.setState({
+                            payBtnLoading : false,
+                            payBtnDisabled: false
+                        });
                     }
                 }
 
             })
-            .catch(err => console.log("TOKEN é", err))
-
+            .catch(err => {
+                console.log("TOKEN é", err)
+                this.setState({
+                    payBtnLoading : false,
+                    payBtnDisabled: false
+                });
+            })
 
 
     };
@@ -96,7 +137,15 @@ class CheckoutForm extends React.Component {
 
                                     <CardSection/>
                                     <div className="text-center">
-                                        <button className="btn btn-primary btn-lg mt-5 mb-3">Payer</button>
+                                        <button className="btn btn-primary btn-lg mt-5 mb-3"
+                                                disabled={this.state.payBtnDisabled}>Payer
+                                            <div
+                                                className={this.state.payBtnLoading === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
+                                                role="status">
+                                                <span className="sr-only">Loading...</span>
+                                            </div>
+                                        </button>
+
                                     </div>
                                 </div>
                             </div>

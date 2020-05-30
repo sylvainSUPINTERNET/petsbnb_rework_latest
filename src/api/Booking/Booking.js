@@ -10,9 +10,15 @@ let create = async (data) => {
     })
 };
 
+let getUserBookingsForAnnounce = async (announceUuid) => {
+    return await axios.get(`${apiEndpoints.bookingsProxy}/announce/${announceUuid}`, {
+        headers: {'Authorization': "Bearer " + TokenService.getAccessToken()}
+    })
+};
 
 const Bookings = {
-    save: create
+    save: create,
+    getUserBookingsForAnnounce: getUserBookingsForAnnounce
 };
 
 

@@ -231,8 +231,8 @@ class BookingCalendar extends React.Component {
 
 
 
-                    this.state.bookingBody.bookingStartAt = moment(this.state.bodyArrivalDate).format("YYYY-MM-DD HH:MM:SS");
-                    this.state.bookingBody.bookingEndAt = moment(this.state.bodyDepartureDate).format("YYYY-MM-DD HH:MM:SS");
+                    this.state.bookingBody.bookingStartAt = moment(this.state.bodyArrivalDate).format("YYYY-MM-DD HH:MM");
+                    this.state.bookingBody.bookingEndAt = moment(this.state.bodyDepartureDate).format("YYYY-MM-DD HH:MM");
                     this.state.bookingBody.announceId = id;
                     this.state.bookingBody.userId = userId;
                     this.state.bookingBody.animalsTypeId = this.props.animalTypeChoice;
@@ -287,7 +287,6 @@ class BookingCalendar extends React.Component {
         ) {
             return (
                 <div>
-                    <p>o</p>
                     <div className="row">
                         <div className="col-md-9">
                             <Calendar
@@ -298,18 +297,22 @@ class BookingCalendar extends React.Component {
 
                         </div>
                         <div className="col-md-3 text-center">
-                            <p>Heure arrivée</p>
-                            <input type="time" id="arrival" name="departureTime"
-                                   onChange={this.handleChangeDepartureTime}
-                                   min="00:00" max="23:00" required/>
-                            <p>Heure de départ</p>
-                            <input type="time" id="departure" name="arrivalTime" onChange={this.handleChangeArrivalTime}
-                                   min="00:00" max="23:00" required/>
+                            <div className="form-group">
+                                <label htmlFor="email">Arrivée</label>
+                                <input type="time" id="arrival" name="departureTime" className="form-control"
+                                       onChange={this.handleChangeDepartureTime}
+                                       min="00:00" max="23:00" required/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Départ</label>
+                                <input type="time" id="departure" name="arrivalTime" className="form-control" onChange={this.handleChangeArrivalTime}
+                                       min="00:00" max="23:00" required/>
+                            </div>
                         </div>
                     </div>
 
                     <div className="text-center mb-3">
-                        <button type="button" className="btn btn-success"
+                        <button type="button" className="btn btn-success  m-4" data-dismiss="modal" disabled={this.state.departureTime !== "" && this.state.arrivalTime !== ""? false : true}
                                 onClick={this.onConfirmBookingDate}>Confirmé
                         </button>
                     </div>
@@ -320,7 +323,6 @@ class BookingCalendar extends React.Component {
         } else {
             return (
                 <div>
-                    <p>o</p>
                     <div className="row">
                         <div className="col-md-9">
                             <Calendar
@@ -332,20 +334,25 @@ class BookingCalendar extends React.Component {
 
                         </div>
                         <div className="col-md-3 text-center">
-                            <p>Heure arrivée</p>
-                            <input type="time" id="arrival" name="departureTime"
-                                   onChange={this.handleChangeDepartureTime}
-                                   min="00:00" max="23:00" required/>
-                            <p>Heure de départ</p>
-                            <input type="time" id="departure" name="arrivalTime" onChange={this.handleChangeArrivalTime}
-                                   min="00:00" max="23:00" required/>
+                            <div className="form-group">
+                                <label htmlFor="email">Arrivée</label>
+                                <input type="time" id="arrival" name="departureTime" className="form-control"
+                                       onChange={this.handleChangeDepartureTime}
+                                       min="00:00" max="23:00" required/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="email">Départ</label>
+                                <input type="time" id="departure" name="arrivalTime" className="form-control" onChange={this.handleChangeArrivalTime}
+                                       min="00:00" max="23:00" required/>
+                            </div>
                         </div>
                     </div>
 
                     <div className="text-center mb-3">
-                        <button type="button" className="btn btn-success"
+                        <button type="button" className="btn btn-success m-4" data-dismiss="modal" disabled={this.state.departureTime !== "" && this.state.arrivalTime !== ""? false : true}
                                 onClick={this.onConfirmBookingDate}>Confirmé
                         </button>
+
                     </div>
 
                 </div>
