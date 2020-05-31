@@ -141,9 +141,9 @@ class Account extends React.Component {
                                     </div>
                                 </div>
 
-                                <div className={this.state.userBookings.filter(el => el.active === true ).length === 0 ? "d-none" : ""}>
+                                <div className={this.state.userBookings.length === 0 ? "d-none" : ""}>
                                     {
-                                        this.state.userBookings.filter(el => el.active === true ).map(booking => {
+                                        this.state.userBookings.map(booking => {
                                             return <div className="container mb-3">
 
                                                 <div className="card">
