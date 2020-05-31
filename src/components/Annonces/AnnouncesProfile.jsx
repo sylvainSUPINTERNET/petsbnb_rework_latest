@@ -441,7 +441,7 @@ class AnnouncesProfile extends React.Component {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="">
-                                            <span className="badge badge-info ml-2"><i
+                                            <span className="badge badge-info"><i
                                                 className="fas fa-clock"></i> {this.state.announce.farePerHour}{displayCurrency(this.state.announce.currency)}</span>
                                             <span className="badge badge-info ml-2"><i
                                                 className="fas fa-calendar-day"></i> {this.state.announce.farePerDay}{displayCurrency(this.state.announce.currency)}</span>

@@ -10,15 +10,30 @@ let create = async (data) => {
     })
 };
 
+let getBookingsForAnnounce = async (announceUuid) => {
+    return await axios.get(`${apiEndpoints.bookingsProxy}/${announceUuid}/demandes`, {
+        headers: {'Authorization': "Bearer " + TokenService.getAccessToken()}
+    })
+};
+
+// get bookings for announce by user logged
 let getUserBookingsForAnnounce = async (announceUuid) => {
     return await axios.get(`${apiEndpoints.bookingsProxy}/announce/${announceUuid}`, {
         headers: {'Authorization': "Bearer " + TokenService.getAccessToken()}
     })
 };
 
+let getUserBookings = async (userId) => {
+    return await axios.get(`${apiEndpoints.bookingsProxy}/user/${userId}`, {
+        headers: {'Authorization': "Bearer " + TokenService.getAccessToken()}
+    })
+};
+
 const Bookings = {
     save: create,
-    getUserBookingsForAnnounce: getUserBookingsForAnnounce
+    getUserBookingsForAnnounce: getUserBookingsForAnnounce,
+    getUserBookings:getUserBookings,
+    getBookingsForAnnounce:getBookingsForAnnounce
 };
 
 

@@ -15,6 +15,8 @@ class AnnouncesCardAccount extends React.Component {
         super(props);
 
         this.goToProfile = this.goToProfile.bind(this);
+        this.goToDemandes = this.goToDemandes.bind(this);
+
         this.changeStatusAnnounce = this.changeStatusAnnounce.bind(this);
 
 
@@ -22,6 +24,10 @@ class AnnouncesCardAccount extends React.Component {
 
     goToProfile() {
         this.props.history.push(`/annonce/${this.props.announce.uuid}`);
+    }
+    goToDemandes() {
+        console.log(this.props.announce)
+        this.props.history.push(`/compte/${this.props.announce.uuid}/demandes`);
     }
 
     displayBase64(pictureBytesArray) {
@@ -177,6 +183,8 @@ class AnnouncesCardAccount extends React.Component {
                     </div>
                     <div className="card-footer text-muted text-center">
                         <button onClick={this.goToProfile} className="btn btn-md btn-indigo text-white"> Voir l'annonce
+                        </button>
+                        <button onClick={this.goToDemandes} className="btn btn-md btn-indigo text-white"> Voir les demandes
                         </button>
                     </div>
                 </div>
