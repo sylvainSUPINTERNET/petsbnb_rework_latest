@@ -18,6 +18,7 @@ let getBookingsForAnnounce = async (announceUuid) => {
 
 // get bookings for announce by user logged
 let getUserBookingsForAnnounce = async (announceUuid) => {
+    console.log(`${apiEndpoints.bookingsProxy}/announce/${announceUuid}`)
     return await axios.get(`${apiEndpoints.bookingsProxy}/announce/${announceUuid}`, {
         headers: {'Authorization': "Bearer " + TokenService.getAccessToken()}
     })
@@ -29,11 +30,25 @@ let getUserBookings = async (userId) => {
     })
 };
 
+let reject = async (bookingUuid) => {
+    return await axios.put(`${apiEndpoints.bookingsProxy}/rejected/${bookingUuid}`, {},{
+        headers: {'Authorization': "Bearer " + TokenService.getAccessToken()}
+    })
+};
+
+let updateConfirm = async (bookingUuid) => {
+    return await axios.put(`${apiEndpoints.bookingsProxy}/confirm/${bookingUuid}`, {},{
+        headers: {'Authorization': "Bearer " + TokenService.getAccessToken()}
+    })
+};
+
 const Bookings = {
     save: create,
     getUserBookingsForAnnounce: getUserBookingsForAnnounce,
     getUserBookings:getUserBookings,
-    getBookingsForAnnounce:getBookingsForAnnounce
+    getBookingsForAnnounce:getBookingsForAnnounce,
+    reject: reject,
+    updateConfirm:updateConfirm
 };
 
 

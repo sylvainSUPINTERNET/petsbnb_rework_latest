@@ -151,8 +151,14 @@ class Account extends React.Component {
                                                         <p className={booking.confirmed === true ? '' : 'd-none'}>
                                                             <span className="badge badge-success">Confirmé</span>
                                                         </p>
-                                                        <p className={booking.confirmed === false ? '' : 'd-none'}>
+                                                        <p className={booking.confirmed === false && booking.active === true ? '' : 'd-none'}>
                                                             <span className="badge badge-warning">En cours</span>
+                                                        </p>
+                                                        <p className={booking.confirmed === true && booking.active === false ? '' : 'd-none'}>
+                                                            <span className="badge badge-success">Accepté</span>
+                                                        </p>
+                                                        <p className={booking.confirmed === false && booking.active === false ? '' : 'd-none'}>
+                                                            <span className="badge badge-danger">Refusé</span>
                                                         </p>
                                                         <p className="text-center mt-2">
                                                             <i className="fa fa-tag"></i> <span
@@ -163,7 +169,7 @@ class Account extends React.Component {
                                                         <p className="text-center mt-3">Fin
                                                             : {moment(booking.bookingEndAt).format("DD-MM-YYYY HH:MM")}</p>
 
-                                                        <p className={booking.confirmed === true ? '' : 'd-none'}>
+                                                        <p className={booking.confirmed === true && booking.active === false ? '' : 'd-none'}>
                                                             <div className="mt-2 text-center">
                                                                 <a className=""
                                                                    href={`mailto:${booking.announceContactEmail}`}><i
@@ -181,6 +187,9 @@ class Account extends React.Component {
                                                 </div>
 
                                             </div>
+
+
+
                                         })
                                     }
                                 </div>

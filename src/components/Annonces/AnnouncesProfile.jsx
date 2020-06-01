@@ -57,7 +57,12 @@ class AnnouncesProfile extends React.Component {
             errorUploadModalMessage: "",
 
             isLoadingDemande: false,
-            isDisabledBtnDemande: false
+            isDisabledBtnDemande: false,
+
+
+            // if already one demande from logged user on this announce
+            confirmed : null,
+            active: null
         };
 
         this.handleChangeAnimalTypeChoiceId = this.handleChangeAnimalTypeChoiceId.bind(this);
@@ -304,10 +309,14 @@ class AnnouncesProfile extends React.Component {
                 console.log(data.data);
                 if(data.data.length > 0) {
                     console.log("set is already demande")
+                    console.log(data.data);
                     this.setState({
-                        isAlreadyDemande: true
-                    })
-                    console.log("ALREADY DEMNADE : ", this.state.isAlreadyDemande)
+                        isAlreadyDemande: true,
+                        confirmed: data.data[0].confirmed,
+                        active:data.data[0].active
+                    });
+
+                    console.log("ALREADY DEMNADE : ", this.state.isAlreadyDemande === true)
                 }
 
             }
@@ -471,10 +480,12 @@ class AnnouncesProfile extends React.Component {
 
                                             <hr></hr>
 
-                                            <div className={this.state.isAlreadyDemande === true ? '' : 'd-none'}>
+                                            {/*
+                                            <div className={this.state.isAlreadyDemande === true && this.state.confirmed === true && this.state.active === true ? '' : 'd-none'}>
                                                 <p className="alert alert-success text-center">Déjà une demande en cours.<br/><a href="/compte"><span className="font-weight-bold">Voir mes réservations</span></a></p>
                                             </div>
-                                            <div className={this.state.isAlreadyDemande !== true ? '' : 'd-none'}>
+                                            */}
+                                            <div className="">
                                                 <div className="row m-3">
                                                     <div className="col-md-6">
                                                         <h5>Service</h5>
@@ -514,7 +525,7 @@ class AnnouncesProfile extends React.Component {
                                             </div>
 
 
-                                            <div className={this.state.isAlreadyDemande !== true ? '' : 'd-none'}>
+                                            <div className="">
                                                 <div
                                                     className={this.state.bookingBtnDisabled ? "small red-text" : "small red-text invisible"}
                                                     role="alert">
