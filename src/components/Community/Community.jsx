@@ -178,7 +178,7 @@ class Community extends React.Component {
                 <div className="row m-2">
                     <div className="col-md-6 mt-2">
                         <code>{JSON.stringify(this.state.testMapData)}</code>
-                        { Array.isArray(this.state.testMapData) ? <p>{this.state.testMapData.length} utilisateurs</p> : <p>1 utilisateur</p>}
+                        { Array.isArray(this.state.testMapData) && this.state.testMapData.length > 1 ? <p>{this.state.testMapData.length} utilisateurs</p> : <p>1 utilisateur</p>}
                         <ul className="nav nav-tabs" id="myTab" role="tablist">
                             <li className="nav-item">
                                 <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
