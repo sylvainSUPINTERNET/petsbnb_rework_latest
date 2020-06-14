@@ -124,5 +124,5 @@ export let jwtConfiguration = {
 };
 
 export let wsConfig  ={
-    URL : "ws://localhost:9999" // ws -> port from docker-compose   
+    URL : "ws://localhost:9999" // ws -> port from docker-compose
 };
