@@ -41,7 +41,10 @@ class Community extends React.Component {
                 username: null,
                 userId: null,
                 data: null
-            }
+            },
+
+            // Contains all map data
+            testMapData : []
         };
     }
 
@@ -114,10 +117,16 @@ class Community extends React.Component {
                 ws.onmessage = msg => {
                   console.log("RECEIVED MSG")
                   console.log(msg);
+                  let json = JSON.parse(msg.data);
+                  this.setState({
+                      testMapData: json
+                  })
                 };
 
                 // websocket onclose event listener
                 ws.onclose = e => {
+                    console.log("on close ws");
+                    /*
                     console.log(
                         `Socket is closed. Reconnect will be attempted in ${Math.min(
                             10000 / 1000,
@@ -128,6 +137,10 @@ class Community extends React.Component {
 
                     that.timeout = that.timeout + that.timeout; //increment retry interval
                     connectInterval = setTimeout(this.check, Math.min(10000, that.timeout)); //call check function after timeout
+
+                     */
+
+                    console.log("on close");
                 };
 
 
@@ -164,6 +177,8 @@ class Community extends React.Component {
             <div className="card">
                 <div className="row m-2">
                     <div className="col-md-6 mt-2">
+                        <code>{JSON.stringify(this.state.testMapData)}</code>
+                        { Array.isArray(this.state.testMapData) ? <p>{this.state.testMapData.length} utilisateurs</p> : <p>1 utilisateur</p>}
                         <ul className="nav nav-tabs" id="myTab" role="tablist">
                             <li className="nav-item">
                                 <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
