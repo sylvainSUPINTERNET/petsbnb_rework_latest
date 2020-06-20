@@ -9,6 +9,7 @@ import {Map, Marker, Popup, TileLayer} from "react-leaflet";
 import {
     mapStyle
 } from '../../style/map.style';
+import {preventDefault} from "leaflet/src/dom/DomEvent";
 
 
 class Community extends React.Component {
@@ -19,6 +20,8 @@ class Community extends React.Component {
 
         //const [lat, setLat] = React.useState();
         //const [lon, setLong] = React.useState();
+
+        this.submitAnnounceInstant = this.submitAnnounceInstant.bind(this);
 
         this.state = {
             ws: null,
@@ -40,18 +43,56 @@ class Community extends React.Component {
                 source: null,
                 username: null,
                 userId: null,
-                data: null
+                data: null,
+                announce: null
             },
 
+
+            isDisableAnnounceInstantField: true,
+            isDisableBtnAnnounceInstant: true,
+            error: false,
+            isLoading: false,
+
+            announceMsg: "",
             // Contains all map data
-            testMapData : []
+            testMapData: []
         };
     }
+
 
     // single websocket instance for the own application and constantly trying to reconnect.
 
     componentDidMount() {
         this.connect(); // connection to WS and set into the state the WS connection + perm for position
+    }
+
+    submitAnnounceInstant(ev) {
+        ev.preventDefault();
+
+        if (this.state.announceMsg.trim().length === 0) {
+            this.setState({
+                error: true
+            })
+        } else {
+            this.setState({
+                error: false,
+                isLoading: true,
+                isDisableBtnAnnounceInstant: true
+            });
+
+            const {ws} = this.state;
+            const payload = this.state.wsPayload;
+            payload.source = "community";
+            payload.userId = this.state.userDetails.userId;
+            payload.username = this.state.userDetails.username;
+            payload.data = this.state.position;
+            payload.announce = this.state.announceMsg;
+            setTimeout(() => {
+                ws.send(JSON.stringify(payload));
+            }, 2000);
+
+            // waiting for answer server
+        }
     }
 
     /**
@@ -82,6 +123,8 @@ class Community extends React.Component {
                                 lat: position.coords.latitude,
                                 lon: position.coords.longitude
                             },
+                            isDisableAnnounceInstantField: false,
+                            isDisableBtnAnnounceInstant: false
                         });
 
                     });
@@ -106,6 +149,8 @@ class Community extends React.Component {
                     payload.userId = this.state.userDetails.userId;
                     payload.username = this.state.userDetails.username;
                     payload.data = this.state.position;
+                    payload.announce = "";
+
                     console.log("payload send", payload);
                     ws.send(JSON.stringify(payload));
 
@@ -115,17 +160,34 @@ class Community extends React.Component {
                 };
 
                 ws.onmessage = msg => {
-                  console.log("RECEIVED MSG")
-                  console.log(msg);
-                  let json = JSON.parse(msg.data);
-                  this.setState({
-                      testMapData: json
-                  })
+                    console.log("RECEIVED MSG")
+                    console.log(msg);
+                    let json = JSON.parse(msg.data);
+                    console.log("message");
+                    console.log(json);
+
+                    // message to only the current client request
+                    // this is reset disable form for announce if the purpose of the request was the announc ecreation
+                    if(typeof json["reset_announce_form"] !== "undefined" ) {
+                        this.setState({
+                            isDisableBtnAnnounceInstant: false,
+                            isLoading: false
+                        })
+                    } else {
+                        this.setState({
+                            testMapData: json,
+                            isDisableAnnounceInstantField: false,
+                            isDisableBtnAnnounceInstant: false
+                        })
+                    }
+
+
                 };
 
                 // websocket onclose event listener
                 ws.onclose = e => {
                     console.log("on close ws");
+                    // TODO -> remove user when page close, that send this event ?
                     /*
                     console.log(
                         `Socket is closed. Reconnect will be attempted in ${Math.min(
@@ -178,43 +240,86 @@ class Community extends React.Component {
                 <div className="row m-2">
                     <div className="col-md-6 mt-2">
                         <code>{JSON.stringify(this.state.testMapData)}</code>
-                        { Array.isArray(this.state.testMapData) && this.state.testMapData.length > 1 ? <p>{this.state.testMapData.length} utilisateurs</p> : <p>1 utilisateur</p>}
                         <ul className="nav nav-tabs" id="myTab" role="tablist">
                             <li className="nav-item">
                                 <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                   aria-controls="home" aria-selected="true">Home</a>
+                                   aria-controls="home" aria-selected="true">Annonces <i className="fa fa-bullhorn"
+                                                                                         aria-hidden="true"></i></a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                   aria-controls="profile" aria-selected="false">Profile</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                                   aria-controls="contact" aria-selected="false">Contact</a>
+                                   aria-controls="profile" aria-selected="false">Utilisateurs <i
+                                    className="fa fa-circle animated pulse"></i></a>
                             </li>
                         </ul>
                         <div className="tab-content" id="myTabContent">
                             <div className="tab-pane fade show active" id="home" role="tabpanel"
-                                 aria-labelledby="home-tab">...
+                                 aria-labelledby="home-tab">
+                                <div className="card mt-4">
+                                    <div className="card-body">
+
+                                        <h4 className="card-title">Crééer votre annonce</h4>
+                                        <div className="card-text">
+                                            <form onSubmit={this.submitAnnounceInstant}>
+                                                <div className="form-group">
+                                                    <label htmlFor="exampleInputEmail1">Email</label>
+                                                    <input type="email" value={this.state.userDetails.username}
+                                                           disabled={true} className="form-control"
+                                                           id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp" placeholder="Enter email"/>
+
+                                                </div>
+                                                <div className="form-group">
+                                                    <label htmlFor="exampleInputPassword1">Announce</label>
+                                                    <textarea className="form-control"
+                                                              id="exampleInputPassword1" onChange={(ev) => {
+                                                        this.setState({
+                                                            announceMsg: ev.target.value
+                                                        })
+                                                    }
+                                                    } placeholder="Votre message ..."
+                                                              disabled={this.state.isDisableAnnounceInstantField}/>
+                                                </div>
+                                                <p className={this.state.error ? 'text-danger' : 'd-none'}>
+                                                    Votre message est vide
+                                                </p>
+                                                <button type="submit" className="btn btn-success"
+                                                        disabled={this.state.isDisableBtnAnnounceInstant}>
+                                                    Mettre à jour
+                                                    <div
+                                                        className={this.state.isLoading === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
+                                                        role="status">
+                                                        <span className="sr-only">Loading...</span>
+                                                    </div>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                </div>
                             </div>
                             <div className="tab-pane fade" id="profile" role="tabpanel"
-                                 aria-labelledby="profile-tab">...
-                            </div>
-                            <div className="tab-pane fade" id="contact" role="tabpanel"
-                                 aria-labelledby="contact-tab">...
+                                 aria-labelledby="profile-tab">
+                                <p className="mt-4">
+                                    {this.state.testMapData.length > 1 ?
+                                        <p>{this.state.testMapData.length} utilisateurs en ligne</p> :
+                                        <p>1 utilisateur en ligne</p>}
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-6 mt-2">
                         <div style={mapStyle}>
-                            <Map center={this.state.position} zoom={this.state.leafletDefaultZoom} style={{height: '600px', borderRadius: '5px', width: '100%'}}>
+                            <Map center={this.state.position} zoom={this.state.leafletDefaultZoom}
+                                 style={{height: '600px', borderRadius: '5px', width: '100%'}}>
                                 <TileLayer
                                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                 />
                                 <Marker position={this.state.position}>
                                     <Popup>
-                                        Vous êtes là
+                                        Vous êtes ici
                                     </Popup>
                                 </Marker>
                             </Map>
