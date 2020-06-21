@@ -32,6 +32,7 @@ import Account from "./components/Account/Account";
 import Store from "./components/Store/Store";
 import AnnouncePayment from "./components/Payment/AnnouncePayment";
 import MyDemande from "./components/Account/MyDemande";
+import Community from "./components/Community/Community";
 
 
 function isUserAuthenticated() {
@@ -91,6 +92,9 @@ function App() {
                                 <li className="nav-item">
                                     <a className="nav-link" target="_blank" href="/store">Store</a>
                                 </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" target="_blank" href="/community">Communauté</a>
+                                </li>
                             </ul>
                             <ul className="navbar-nav nav-flex-icons">
                                 <li className="nav-item">
@@ -129,7 +133,7 @@ function App() {
                     <Route exact path="/store" component={ () => <Store/>} />
                     <Route exact path="/annonce/payment/:uuid" component={ () => <AnnouncePayment/>} />
                     <Route exact path="/compte/:announceUuid/demandes" component={ () => <MyDemande/>} />
-
+                    <Route exact path="/community" component={ () => <Community/>} />
                 </Switch>
             </div>
         </Router>

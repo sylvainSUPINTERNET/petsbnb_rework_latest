@@ -122,3 +122,7 @@ export let jwtConfiguration = {
   secret: "n2r5u8xkAmDxGeKaPdSgVkYp3s6v9ysBdEvHrMbQeThWmZq4t7wezZCxFFJANcRf" // for test locally (correspond to API secret for test)
 
 };
+
+export let wsConfig  ={
+    URL : "ws://localhost:9999" // ws -> port from docker-compose
+};
