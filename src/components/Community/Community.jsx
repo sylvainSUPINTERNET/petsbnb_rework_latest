@@ -4,12 +4,13 @@ import constantsDb from '../../constants/index';
 import Api from "../../api/index"
 import moment from "moment";
 import {wsConfig} from "../../api/config";
-import {Map, Marker, Popup, TileLayer} from "react-leaflet";
+import {Map, Marker, Popup, TileLayer, Tooltip} from "react-leaflet";
 
 import {
     mapStyle
 } from '../../style/map.style';
 import {preventDefault} from "leaflet/src/dom/DomEvent";
+import {testProp} from "leaflet/src/dom/DomUtil";
 
 
 class Community extends React.Component {
@@ -44,16 +45,20 @@ class Community extends React.Component {
                 username: null,
                 userId: null,
                 data: null,
-                announce: null
+                announce: null,
+                phoneNumber: null
             },
 
 
             isDisableAnnounceInstantField: true,
             isDisableBtnAnnounceInstant: true,
+            isDisablePhoneNumber: true,
             error: false,
+            errorPhone: false,
             isLoading: false,
 
             announceMsg: "",
+            phoneNumber: "",
             // Contains all map data
             testMapData: []
         };
@@ -69,15 +74,21 @@ class Community extends React.Component {
     submitAnnounceInstant(ev) {
         ev.preventDefault();
 
-        if (this.state.announceMsg.trim().length === 0) {
+        if (this.state.announceMsg.trim().replace(/\s/g, "").length === 0) {
             this.setState({
                 error: true
+            })
+        } else if (this.state.phoneNumber === "") {
+            this.setState({
+                errorPhone: true
             })
         } else {
             this.setState({
                 error: false,
+                errorPhone: false,
                 isLoading: true,
-                isDisableBtnAnnounceInstant: true
+                isDisableBtnAnnounceInstant: true,
+                isDisablePhoneNumber: true
             });
 
             const {ws} = this.state;
@@ -87,6 +98,13 @@ class Community extends React.Component {
             payload.username = this.state.userDetails.username;
             payload.data = this.state.position;
             payload.announce = this.state.announceMsg;
+            payload.phoneNumber = this.state.phoneNumber;
+
+            this.setState({
+                announceMsg: ""
+            });
+
+            console.log("PA", payload.announce)
             setTimeout(() => {
                 ws.send(JSON.stringify(payload));
             }, 2000);
@@ -116,6 +134,7 @@ class Community extends React.Component {
 
                 if ("geolocation" in navigator) {
                     navigator.geolocation.watchPosition((position) => {
+                        console.log("POSITION", position);
 
                         // use arrow, else this not refer to state and throw undefined this.setState !
                         this.setState({
@@ -124,7 +143,8 @@ class Community extends React.Component {
                                 lon: position.coords.longitude
                             },
                             isDisableAnnounceInstantField: false,
-                            isDisableBtnAnnounceInstant: false
+                            isDisableBtnAnnounceInstant: false,
+                            isDisablePhoneNumber: false
                         });
 
                     });
@@ -149,7 +169,7 @@ class Community extends React.Component {
                     payload.userId = this.state.userDetails.userId;
                     payload.username = this.state.userDetails.username;
                     payload.data = this.state.position;
-                    payload.announce = "";
+                    //payload.announce = "";
 
                     console.log("payload send", payload);
                     ws.send(JSON.stringify(payload));
@@ -168,16 +188,18 @@ class Community extends React.Component {
 
                     // message to only the current client request
                     // this is reset disable form for announce if the purpose of the request was the announc ecreation
-                    if(typeof json["reset_announce_form"] !== "undefined" ) {
+                    if (typeof json["reset_announce_form"] !== "undefined") {
                         this.setState({
                             isDisableBtnAnnounceInstant: false,
+                            isDisablePhoneNumber: false,
                             isLoading: false
                         })
                     } else {
                         this.setState({
                             testMapData: json,
                             isDisableAnnounceInstantField: false,
-                            isDisableBtnAnnounceInstant: false
+                            isDisableBtnAnnounceInstant: false,
+                            isDisablePhoneNumber: false
                         })
                     }
 
@@ -186,7 +208,11 @@ class Community extends React.Component {
 
                 // websocket onclose event listener
                 ws.onclose = e => {
+                    /*
                     console.log("on close ws");
+                    console.log("DISCONNECT USER ID", this.state.userId);
+                    ws.send("USER ID -> " + this.state.userId);
+                     */
                     // TODO -> remove user when page close, that send this event ?
                     /*
                     console.log(
@@ -238,8 +264,9 @@ class Community extends React.Component {
 
             <div className="card">
                 <div className="row m-2">
-                    <div className="col-md-6 mt-2">
-                        <code>{JSON.stringify(this.state.testMapData)}</code>
+                    <div className="col-md-12 mt-2">
+                        {/*/<code>{JSON.stringify(this.state.testMapData)}</code>*/}
+
                         <ul className="nav nav-tabs" id="myTab" role="tablist">
                             <li className="nav-item">
                                 <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
@@ -258,7 +285,7 @@ class Community extends React.Component {
                                 <div className="card mt-4">
                                     <div className="card-body">
 
-                                        <h4 className="card-title">Crééer votre annonce</h4>
+                                        <h4 className="card-title">Crééer votre annonce instantanée</h4>
                                         <div className="card-text">
                                             <form onSubmit={this.submitAnnounceInstant}>
                                                 <div className="form-group">
@@ -267,11 +294,28 @@ class Community extends React.Component {
                                                            disabled={true} className="form-control"
                                                            id="exampleInputEmail1"
                                                            aria-describedby="emailHelp" placeholder="Enter email"/>
-
                                                 </div>
                                                 <div className="form-group">
+                                                    <label htmlFor="exampleInputEmail1">Téléphone</label>
+                                                    <input type="tel" name="tel" maxLength="10"
+                                                           pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
+                                                           onChange={(ev) => {
+                                                               this.setState({
+                                                                   phoneNumber: ev.target.value
+                                                               })
+                                                           }}
+                                                           disabled={this.state.isDisablePhoneNumber}
+                                                           className="form-control"
+                                                           id="phonenumber"
+                                                           aria-describedby="phonenumber" placeholder="0642112020"/>
+                                                </div>
+                                                <p className={this.state.errorPhone ? 'text-danger' : 'd-none'}>
+                                                    Votre numéro de téléphone est invalide
+                                                </p>
+                                                <div className="form-group">
                                                     <label htmlFor="exampleInputPassword1">Announce</label>
-                                                    <textarea className="form-control"
+                                                    <textarea className="form-control" value={this.state.announceMsg}
+                                                              required
                                                               id="exampleInputPassword1" onChange={(ev) => {
                                                         this.setState({
                                                             announceMsg: ev.target.value
@@ -283,6 +327,22 @@ class Community extends React.Component {
                                                 <p className={this.state.error ? 'text-danger' : 'd-none'}>
                                                     Votre message est vide
                                                 </p>
+                                                {/*
+                                                <div className="form-group">
+                                                    <label>Photo</label>
+                                                    <div className="custom-file">
+                                                        <input type="file" className="custom-file-input"
+                                                               id="validatedCustomFile" onChange={(e) => {
+                                                                   console.log(e.target.files);
+                                                        }}/>
+                                                            <label className="custom-file-label"
+                                                                   htmlFor="validatedCustomFile">Télécharger une photo...</label>
+                                                            <div className="invalid-feedback">Example invalid custom
+                                                                file feedback
+                                                            </div>
+                                                    </div>
+                                                </div>
+                                                */}
                                                 <button type="submit" className="btn btn-success"
                                                         disabled={this.state.isDisableBtnAnnounceInstant}>
                                                     Mettre à jour
@@ -309,7 +369,7 @@ class Community extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6 mt-2">
+                    <div className="col-md-12 mt-2">
                         <div style={mapStyle}>
                             <Map center={this.state.position} zoom={this.state.leafletDefaultZoom}
                                  style={{height: '600px', borderRadius: '5px', width: '100%'}}>
@@ -317,11 +377,34 @@ class Community extends React.Component {
                                     attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                                 />
-                                <Marker position={this.state.position}>
-                                    <Popup>
-                                        Vous êtes ici
-                                    </Popup>
-                                </Marker>
+                                {
+                                    this.state.testMapData.filter(el => el.announce !== null).map(e => {
+                                        return <Marker position={e.data}>
+                                            <Popup>
+                                                {/*<p className={e.announce === "" ? '':'d-none'}>Pas d'annonce</p>*/}
+
+                                                <div className={e.announce === "" ? 'd-none' : ''}>
+                                                    <div className="container">
+                                                        {/*
+                                                        <div className="row">
+                                                            <div className="col-md-12">
+                                                                <img className="img-fluid"
+                                                                     src="https://www.canva.com/fr_fr/decouvrir/wp-content/uploads/sites/14/2019/03/canva_creer_photo_de_profil.png"/>
+                                                            </div>
+                                                        </div>
+                                                        */}
+                                                        <p className="text-justify">{e.announce}</p>
+                                                        <hr></hr>
+                                                        <p><i className="fa fa-envelope text-primary"></i> {e.username}
+                                                        </p>
+                                                        <p><i className="fa fa-phone text-primary"></i> {e.phoneNumber}</p>
+                                                    </div>
+                                                </div>
+                                            </Popup>
+                                        </Marker>
+
+                                    })
+                                }
                             </Map>
                         </div>
                     </div>
