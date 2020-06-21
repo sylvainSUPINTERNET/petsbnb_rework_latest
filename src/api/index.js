@@ -1,5 +1,7 @@
 
 import login from './Authentication/login';
+import register from "./Authentication/register";
+
 import AnimalsType from './AnimalType/AnimalType';
 import Services from './Services/Services';
 import Announces from './Announces/Announces';
@@ -18,7 +20,8 @@ export default {
     Bookings: Booking,
     Equipments: Equipments,
     Public: Public,
-    Media: Media
+    Media: Media,
+    Register:register
 }
 
 

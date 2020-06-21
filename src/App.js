@@ -33,6 +33,7 @@ import Store from "./components/Store/Store";
 import AnnouncePayment from "./components/Payment/AnnouncePayment";
 import MyDemande from "./components/Account/MyDemande";
 import Community from "./components/Community/Community";
+import RegisterForm from "./components/Authentication/RegisterForm";
 
 
 function isUserAuthenticated() {
@@ -127,6 +128,7 @@ function App() {
                     <Route exact path="/annonces/creation" component={() => <AnnoncesCreate/>}/>
                     <Route exact path="/auth/login" component={() => <LoginForm/>}/>
                     <Route exact path="/logout" component={() => <Logout/>}/>
+                    <Route exact path="/register" component={() => <RegisterForm/>}/>
                     <Route path="/annonces" component={() => <AnnoncesList/>}/>
                     <Route exact path="/annonce/:uuid" component={ () => <AnnouncesProfile/>}/>
                     <Route exact path="/compte" component={ () => <Account/>} />
@@ -134,6 +136,7 @@ function App() {
                     <Route exact path="/annonce/payment/:uuid" component={ () => <AnnouncePayment/>} />
                     <Route exact path="/compte/:announceUuid/demandes" component={ () => <MyDemande/>} />
                     <Route exact path="/community" component={ () => <Community/>} />
+
                 </Switch>
             </div>
         </Router>

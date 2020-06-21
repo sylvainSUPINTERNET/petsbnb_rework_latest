@@ -10,6 +10,7 @@ export let apiConfiguration = {
     // AUTHENTICATION
     loginPath: "/auth/login",
 
+    registerPath: "/auth/register",
 
     // AnimalsType
     animalTypePath: "/animalsType",
@@ -57,6 +58,9 @@ export let apiEndpoints = {
     // Authentication
     login: `${apiConfiguration.apiUrl}${apiConfiguration.loginPath}`,
     loginProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.loginPath}`,
+
+    register: `${apiConfiguration.apiUrl}${apiConfiguration.registerPath}`,
+    registerProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.registerPath}`,
 
 
     // AnimalsType
