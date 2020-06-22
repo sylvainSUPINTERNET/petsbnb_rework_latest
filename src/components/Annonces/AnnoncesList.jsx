@@ -16,6 +16,7 @@ import LoadingOverlay from 'react-loading-overlay';
 
 import AnnouncesCard from '../Annonces/AnnouncesCard';
 import {Form, Row} from "react-bootstrap";
+import Menu from "../Menu/Menu";
 
 
 
@@ -296,6 +297,7 @@ class AnnoncesList extends React.Component {
         if (this.state.announces.length > 0) {
             return (
                 <div>
+                    <Menu/>
                     <LoadingOverlay
                         active={this.state.isLoading}
                         spinner
@@ -513,6 +515,7 @@ class AnnoncesList extends React.Component {
         } else {
             return (
                 <div>
+                    <Menu/>
                     <LoadingOverlay
                         active={this.state.isLoading}
                         spinner

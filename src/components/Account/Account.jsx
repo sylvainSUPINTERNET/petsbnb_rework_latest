@@ -15,6 +15,7 @@ import Announces from "../../api/Announces/Announces";
 import AnnouncesCard from "../Annonces/AnnouncesCard";
 import AnnouncesCardAccount from "../Annonces/AnnouncesCardAccount";
 import moment from "moment";
+import Menu from "../Menu/Menu";
 
 
 class Account extends React.Component {
@@ -91,6 +92,7 @@ class Account extends React.Component {
     render() {
         return (
             <div className="container">
+                <Menu/>
                 <div className="row m-2">
                     <div className="col-md-6 mb-4">
                         <h4 className="card-header primary-color-dark white-text text-center">Mes annonces</h4>

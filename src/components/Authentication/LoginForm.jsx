@@ -9,6 +9,7 @@ import {apiConfiguration, jwtConfiguration} from "../../api/config";
 import Footer from "../Partials/Footer";
 import login from "../../api/Authentication/login";
 import {withRouter} from "react-router-dom";
+import Menu from "../Menu/Menu";
 
 
 class LoginForm extends React.Component {
@@ -103,6 +104,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div>
+                <Menu/>
                 <Container className="mt-4 pt-5">
 
                     <div className="card">
@@ -138,7 +140,7 @@ class LoginForm extends React.Component {
                                 </div>
                                 <div className="text-center">
                                     <button className="mt-3 btn btn-primary btn-lg" disabled={this.state.disableInputs}>
-                                        S'enregistrer
+                                        Se connecter
                                         <div
                                             className={this.state.isLoading === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
                                             role="status">

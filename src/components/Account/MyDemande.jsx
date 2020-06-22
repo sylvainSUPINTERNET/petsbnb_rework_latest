@@ -9,6 +9,7 @@ import Api from '../../api/index';
 import Announces from "../../api/Announces/Announces";
 import AnnouncesCardAccount from "../Annonces/AnnouncesCardAccount";
 import moment from "moment";
+import Menu from "../Menu/Menu";
 
 
 class MyDemande extends React.Component {
@@ -144,6 +145,7 @@ class MyDemande extends React.Component {
     render() {
         return (
             <div className="container">
+                <Menu/>
                 <div className="row">
                     <div className="col-md-6">
                         <div className="card">

@@ -8,6 +8,7 @@ import {getLoadingText} from '../LoaderSettings';
 import Checkbox from "rc-checkbox";
 import LoadingOverlay from 'react-loading-overlay';
 import { Redirect } from "react-router-dom";
+import Menu from "../Menu/Menu";
 
 
 class AnnoncesCreate extends React.Component {
@@ -209,6 +210,7 @@ class AnnoncesCreate extends React.Component {
     render() {
         return (
             <div className="">
+                <Menu/>
                 <div className="container white darken-4 rounded-1 p-4 mt-2">
 
 

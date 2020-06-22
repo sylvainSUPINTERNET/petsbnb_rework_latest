@@ -11,6 +11,7 @@ import {
 } from '../../style/map.style';
 import {preventDefault} from "leaflet/src/dom/DomEvent";
 import {testProp} from "leaflet/src/dom/DomUtil";
+import Menu from "../Menu/Menu";
 
 
 class Community extends React.Component {
@@ -261,7 +262,7 @@ class Community extends React.Component {
 
     render() {
         return <div>
-
+            <Menu/>
             <div className="card">
                 <div className="row m-2">
                     <div className="col-md-12 mt-2">

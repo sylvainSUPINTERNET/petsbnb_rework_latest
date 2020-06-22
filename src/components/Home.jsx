@@ -1,7 +1,6 @@
 import React from 'react';
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 
-
 import Moment from 'react-moment';
 
 import Api from '../api/index';
@@ -11,6 +10,7 @@ import Footer from '../components/Partials/Footer';
 
 import { withRouter } from "react-router-dom";
 import AnnouncesCard from "./Annonces/AnnouncesCard";
+import Menu from "./Menu/Menu";
 
 
 class Home extends React.Component {
@@ -193,6 +193,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
+                <Menu/>
                 <div className="container">
                     <div>
                         <div className="card-header blue darken-4 m-0 p-0">

@@ -15,6 +15,7 @@ import {apiEndpoints, stripeConfig} from "../../api/config";
 import {StripeProvider, CardCVCElement} from "react-stripe-elements";
 import StoreCheckout from "../Stripe/StoreCheckout";
 import * as axios from "axios";
+import Menu from "../Menu/Menu";
 
 
 class AnnouncesProfile extends React.Component {
@@ -434,6 +435,7 @@ class AnnouncesProfile extends React.Component {
         let animalType = this.state.animalTypeChoice;
         return (
             <div>
+                <Menu/>
                 <LoadingOverlay
                     active={this.state.isLoading}
                     spinner
