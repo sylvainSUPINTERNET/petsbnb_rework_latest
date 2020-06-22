@@ -211,41 +211,47 @@ class AnnoncesCreate extends React.Component {
         return (
             <div className="">
                 <Menu/>
-                <div className="container white darken-4 rounded-1 p-4 mt-2">
+                        
+                <div className="container py-5">
+                    <div className="row">
+                        <div id="form_annonce" className="col-md-10 mx-auto white">
+                   
+                            <h5 className="title_form">
+                                Déposer votre annonce
+                            </h5>
 
-
-                    <div className="card">
-                        <h5 className="card-header info-color white-text text-center py-4">
-                            <strong>Déposer votre annonce</strong>
-                        </h5>
-
-                        <div className="card-body px-lg-5 pt-0">
+                            <hr className="hr_title"></hr>
 
                             <form className="text-center" onSubmit={this.onSubmit}>
 
-                                <div className="md-form">
-                                    <input type="text" id="title" className="form-control" onChange={this.onChange}/>
-                                    <label htmlFor="title">Titre de l'annonce</label>
+                            <div className="form-group row">
+                                <div className="col-sm-6">
+                                <label className="label_annonce" htmlFor="title">Titre de l'annonce</label>
+                                <input type="text" id="title" className="form-control" placeholder="Ex. Garder un chien" onChange={this.onChange}/>
                                 </div>
+                                <div className="col-sm-6">
+                                <label className="label_annonce" htmlFor="description">Description de l'annonce</label>
+                                <textarea id="description" rows="1" cols="59" className="form-control" placeholder="Ex. Je peux garder un chien pendant quelques jours"
+                                              onChange={this.onChange}/>              
+                                </div>
+                            </div>
 
-                                <div className="md-form">
-                                    <input type="text" id="streetAddress" className="form-control"
+                            <div className="form-group row">
+                                <div className="col-sm-6">
+                                <label className="label_annonce" htmlFor="streetAddress">Adresse complète</label>
+                                <input type="text" id="streetAddress" className="form-control" placeholder="Ex. 14 rue de la paix"
                                            onChange={this.onChange}/>
-                                    <label htmlFor="streetAddress">Adresse complète</label>
                                 </div>
-
-                                <div className="md-form">
-                                    <input type="text" id="city" className="form-control" onChange={this.onChange}/>
-                                    <label htmlFor="city">Ville</label>
+                                <div className="col-sm-6">
+                                <label className="label_annonce" htmlFor="city">Ville</label>
+                                <input type="text" id="city" className="form-control" placeholder="Ex. Paris" onChange={this.onChange}/>
                                 </div>
+                            </div>    
 
-                                <div className="md-form mb-4 pink-textarea active-pink-textarea">
-                                    <textarea id="description" className="md-textarea form-control"
-                                              onChange={this.onChange}/>
-                                    <label for="description">Description</label>
-                                </div>
+                            <div className="form-group row">
 
-
+                            <div className="col-sm-6">
+                            <label className="label_annonce" htmlFor="departement">Département</label>
                                 <select
                                     onChange={this.onChange}
                                     defaultValue={"default_dept"} className="custom-select"
@@ -354,28 +360,30 @@ class AnnoncesCreate extends React.Component {
                                     <option value="975">975 - Saint Pierre et Miquelon</option>
                                     <option value="976">976 - Mayotte</option>
                                 </select>
-
-
-                                <div className="md-form">
-                                    <input type="number" id="farePerDay" className="form-control"
-                                           onChange={this.onChange} min="1" step="any"/>
-                                    <label htmlFor="farePerDay">Tarif journalier</label>
                                 </div>
-                                <div className="md-form">
-                                    <input type="number" id="farePerMonth" className="form-control"
+                                <div className="col-sm-6">
+                                <label className="label_annonce" htmlFor="farePerDay">Tarif journalier</label>
+                                <input type="number" id="farePerDay" className="form-control" placeholder="Ex. 25"
                                            onChange={this.onChange} min="1" step="any"/>
-                                    <label htmlFor="farePerMonth">Tarif mensuel</label>
                                 </div>
-                                <div className="md-form">
-                                    <input type="number" id="farePerHour" className="form-control"
-                                           onChange={this.onChange} min="1" step="any"/>
-                                    <label htmlFor="farePerHour">Tarif par heure</label>
-                                </div>
+                            </div>
 
+                            <div className="form-group row">
+                                <div className="col-sm-6">
+                                <label className="label_annonce"  htmlFor="farePerMonth">Tarif mensuel</label>
+                                <input type="number" id="farePerMonth" className="form-control" placeholder="Ex. 150"
+                                           onChange={this.onChange} min="1" step="any"/>
+                                </div>
+                                <div className="col-sm-6">
+                                <label className="label_annonce" htmlFor="farePerHour">Tarif par heure</label>
+                                <input type="number" id="farePerHour" className="form-control" placeholder="Ex. 6"
+                                           onChange={this.onChange} min="1" step="any"/>
+                                </div>
+                            </div>                           
 
                                 <div className="container">
                                     <ul className="list-group">
-                                        <p>Vos services :</p>
+                                        <p className="service">Vos services </p>
 
                                         {
                                             this.state.services.map((service) => {
@@ -389,9 +397,8 @@ class AnnoncesCreate extends React.Component {
                                         }
                                     </ul>
 
-
                                     <ul className="list-group">
-                                        <p>Equipements que vous disposez :</p>
+                                        <p className="equipement">Équipements que vous disposez </p>
 
                                         {
                                             this.state.equipments.map((equipments) => {
@@ -406,7 +413,7 @@ class AnnoncesCreate extends React.Component {
                                     </ul>
 
                                     <ul className="list-group">
-                                        <p>Type d'animaux que vous acceuillez :</p>
+                                        <p className="type">Type d'animaux que vous acceuillez </p>
                                         {
                                             this.state.animalsType.map((at) => {
                                                 return (
@@ -424,20 +431,15 @@ class AnnoncesCreate extends React.Component {
                                     type="submit">Ajouter
                                 </button>
 
-
                             </form>
+                       
                         </div>
-
                     </div>
-
-
-                    <hr className="m-3 p-3"/>
-
                 </div>
+   
                 <LoadingOverlay>
 
                 </LoadingOverlay>
-
 
                 <Footer></Footer>
 
@@ -446,6 +448,5 @@ class AnnoncesCreate extends React.Component {
         )
     }
 }
-
 
 export default withRouter(AnnoncesCreate);

@@ -20,3 +20,50 @@
 .App-link {
   color: #09d3ac;
 }
+
+#form_annonce {
+  border-radius: 6px;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+}
+
+.label_annonce {
+  float: left;
+  color: brown;
+  font-weight: bold;
+}
+
+.service {
+  color: brown;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.equipement {
+  color: brown;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.type {
+  color: brown;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.title_form {
+  margin-top: 20px;
+  text-align: center;
+  color: #7c48ad;
+  font-family: Open Sans,sans-serif;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.hr_title {
+  background-color:  #7c48ad; ;
+  height: 1px;
+  margin-right: 100px;
+  margin-left: 100px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
