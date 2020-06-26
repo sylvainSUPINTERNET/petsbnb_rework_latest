@@ -53,10 +53,10 @@ class Menu extends React.Component {
                                     <Link className="nav-link" to="/compte">Inscription</Link>
                                 </li>
                                 <li className={this.state.isLogged === true ? "nav-item": "d-none"}>
-                                    <a className="nav-link" target="_blank" href="/store">Store</a>
+                                    <a className="nav-link" href="/store">Store</a>
                                 </li>
                                 <li className={this.state.isLogged === true ? "nav-item": "d-none"}>
-                                    <a className="nav-link" target="_blank" href="/community">Communauté</a>
+                                    <a className="nav-link" href="/community">Communauté</a>
                                 </li>
                             </ul>
                             <ul className="navbar-nav nav-flex-icons">
