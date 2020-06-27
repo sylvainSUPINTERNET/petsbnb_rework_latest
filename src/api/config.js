@@ -42,7 +42,10 @@ export let apiConfiguration = {
     // public annonces
     publicAnnounces: "/public/latest",
 
-    media: "/media/announce/picture"
+    media: "/media/announce/picture",
+
+    // Store
+    store: "/store/item",
 
 };
 
@@ -66,6 +69,10 @@ export let apiEndpoints = {
     // AnimalsType
     animalsType:`${apiConfiguration.apiUrl}${apiConfiguration.animalTypePath}`,
     animalsTypeProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.animalTypePath}`,
+
+    // Store
+    store:`${apiConfiguration.apiUrl}${apiConfiguration.store}`,
+    storeProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.store}`,
 
     // Services
     services:`${apiConfiguration.apiUrl}${apiConfiguration.servicesPath}`,
