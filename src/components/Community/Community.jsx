@@ -308,7 +308,7 @@ class Community extends React.Component {
                                                            disabled={this.state.isDisablePhoneNumber}
                                                            className="form-control"
                                                            id="phonenumber"
-                                                           aria-describedby="phonenumber" placeholder="0642112020"/>
+                                                           aria-describedby="phonenumber" />
                                                 </div>
                                                 <p className={this.state.errorPhone ? 'text-danger' : 'd-none'}>
                                                     Votre numéro de téléphone est invalide
@@ -322,8 +322,8 @@ class Community extends React.Component {
                                                             announceMsg: ev.target.value
                                                         })
                                                     }
-                                                    } placeholder="Votre message ..."
-                                                              disabled={this.state.isDisableAnnounceInstantField}/>
+                                                    } 
+                                                        disabled={this.state.isDisableAnnounceInstantField}/>
                                                 </div>
                                                 <p className={this.state.error ? 'text-danger' : 'd-none'}>
                                                     Votre message est vide
