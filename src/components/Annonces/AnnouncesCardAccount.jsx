@@ -137,7 +137,7 @@ class AnnouncesCardAccount extends React.Component {
                 <div className="card card-cascade mb-2">
 
                     <button onClick={ () => this.changeStatusAnnounce()}
-                        className={this.props.announce.active === true ? "badge badge-success p-2" : "badge badge-danger p-2"}>{
+                        className={this.props.announce.active === true ? "btn btn-success" : "btn btn-danger"}>{
                         this.props.announce.active === true ?
                             <div>
                                 <i className="fa fa-eye" aria-hidden="true"></i> active
