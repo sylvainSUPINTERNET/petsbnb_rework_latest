@@ -61,13 +61,13 @@ class Menu extends React.Component {
                             </ul>
                             <ul className="navbar-nav nav-flex-icons">
                                 <li className="nav-item">
-                                    <a className="nav-link"><i className="fab fa-facebook-f"></i></a>
+                                    <a href="https://www.facebook.com/Pets-BNB-112643583833880" target="_blank" className="nav-link"><i className="fab fa-facebook-f"></i></a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link"><i className="fab fa-twitter"></i></a>
+                                    <a href="https://twitter.com/bnb_pets" target="_blank" className="nav-link"><i className="fab fa-twitter"></i></a>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link"><i className="fab fa-instagram"></i></a>
+                                    <a href="https://www.instagram.com/pets_bnb/" target="_blank" className="nav-link"><i className="fab fa-instagram"></i></a>
                                 </li>
                             </ul>
                         </div>
