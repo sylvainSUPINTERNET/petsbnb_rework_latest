@@ -146,17 +146,15 @@ class MyDemande extends React.Component {
         return (
             <div className="container">
                 <Menu/>
-                <div className="row">
-                    <div className="col-md-6">
+                <div className="row m-2">
+                    <div className="col-md-6 mb-4">
+                            <h4 className="card-header primary-color-dark white-text text-center">Nouvelles demandes</h4>
                         <div className="card">
                             <div className="card-body">
 
                                 <div className={this.state.bookings.filter(el => el.active === true && el.confirmed === false).length !== 0 ? '' : 'd-none'}>
                                     {this.state.bookings.filter(el => el.active === true  && el.confirmed === false).map(booking => {
-                                        return <div>
-                                            <div className="card-title">
-                                                <h5 className="mb-4">Nouvelles demandes</h5>
-                                            </div>
+                                        return <div>                                        
                                             <h4 className="card-title m-3 text-primary"><i
                                                 className="fa fa-tag"></i> {booking.uuid}</h4>
                                             <p><i
@@ -259,11 +257,10 @@ class MyDemande extends React.Component {
                         </div>
                     </div>
                     <div className="col-md-6">
+                            <h4 className="card-header primary-color-dark white-text text-center">Historique des demandes</h4>
                         <div className="card">
                             <div className="card-body">
-                                <div className="card-title">
-                                    <h3 className="mb-4">Historique des demandes</h3>
-                                </div>
+                                
                                 <div className={this.state.bookings.filter(el => el.confirmed === true || el.active === false).length !== 0 ? '' : 'd-none'}>
                                     {this.state.bookings.filter(el => el.confirmed === true || el.active === false).map(booking => {
                                         return <div>
