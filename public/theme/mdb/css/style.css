@@ -6,3 +6,62 @@
         width: 100px;
     }
 }
+
+@media (min-width: 1200px) {
+    .list-group{
+      width: 200px;
+      display: -webkit-box !important;
+    }   
+}
+
+.label_annonce {
+    float: left;
+    color: black;
+    font-weight: bold;
+}
+  
+.service {
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+}
+  
+.equipment {
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+}
+  
+.type {
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+}
+  
+.title_form {
+    margin-top: 20px;
+    text-align: center;
+    color: #1565c0;
+    font-family: Open Sans,sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+}
+  
+.hr_title {
+    background-color:  #1565c0; ;
+    height: 1px;
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+  
+#form_annonce {
+    border-radius: 6px;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+}
+  
+#button_annonce {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
