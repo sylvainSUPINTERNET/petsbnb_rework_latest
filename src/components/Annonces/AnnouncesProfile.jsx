@@ -442,8 +442,8 @@ class AnnouncesProfile extends React.Component {
                     text={getLoadingText()}>
 
                     <div className="container darken-4 rounded-1 p-4 mt-2">
-                        <div class="card-header blue darken-4 m-0 p-0">
-                            <div class="text-center mt-2 p-1 white-text">
+                        <div className="card-header blue darken-4 m-0 p-0">
+                            <div className="text-center mt-2 p-1 white-text">
                                 <h3>{this.state.announce.title}</h3>
                             </div>
                         </div>

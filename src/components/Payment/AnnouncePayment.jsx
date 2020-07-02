@@ -53,9 +53,9 @@ class AnnouncePayment extends React.Component {
             <div>
                 <Menu/>
             <div className="container">
-            <div class="card-header blue darken-4 m-0 p-0">
-                <div class="text-center mt-2 p-1 white-text">
-                    <h5><i class="fa fa-bullhorn"></i> Annonce importante</h5>
+            <div className="card-header blue darken-4 m-0 p-0">
+                <div className="text-center mt-2 p-1 white-text">
+                    <h5><i className="fa fa-bullhorn"></i> Annonce importante</h5>
                 </div>
             </div>
                 <div className="card">

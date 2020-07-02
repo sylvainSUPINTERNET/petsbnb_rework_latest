@@ -205,8 +205,8 @@ class Store extends React.Component {
             <div>
                 <Menu/>
                 <div className="container mb-4">
-                <div class="card-header blue darken-4 m-0 p-0">
-                    <div class="text-center mt-2 p-1 white-text"><h3>Notre sélection de produits</h3></div>
+                <div className="card-header blue darken-4 m-0 p-0">
+                    <div className="text-center mt-2 p-1 white-text"><h3>Notre sélection de produits</h3></div>
                 </div>
                     <div className="card">
                         <div className="card-body">
