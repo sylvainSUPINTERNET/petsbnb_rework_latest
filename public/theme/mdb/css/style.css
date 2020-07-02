@@ -44,7 +44,7 @@
     color: #1565c0;
     font-family: Open Sans,sans-serif;
     font-size: 3rem;
-    font-weight: bold;
+    font-weight: bold !important;
 }
   
 .hr_title {
@@ -64,4 +64,16 @@
 #button_annonce {
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.label_login {
+    float: left;
+    color: black;
+    font-weight: bold;
+}
+
+.label_register {
+    float: left;
+    color: black;
+    font-weight: bold;
 }
