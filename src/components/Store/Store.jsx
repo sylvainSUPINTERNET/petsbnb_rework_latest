@@ -205,7 +205,9 @@ class Store extends React.Component {
             <div>
                 <Menu/>
                 <div className="container mb-4">
-
+                <div class="card-header blue darken-4 m-0 p-0">
+                    <div class="text-center mt-2 p-1 white-text"><h3>Notre sélection de produits</h3></div>
+                </div>
                     <div className="card">
                         <div className="card-body">
                             <div className="input-group mb-3 col-md-4">
@@ -227,8 +229,7 @@ class Store extends React.Component {
                             </div>
                             <div className="row m-2">
                                 <div className="col-md-12">
-                                    <h3>Notre sélection de produits</h3>
-                                    <p className="mt-4 mb-4">Ici vous trouverez une sélection de produits de la communauté, testés et approuvés !</p>
+                                    <p className="text-center">Ici vous trouverez une sélection de produits de la communauté, testés et approuvés !</p>
                                    <div className={this.state.isAdmin === true ? '': 'd-none'}>
                                        <form onSubmit={this.onSubmitCreationItem}>
                                            <div className="">
@@ -361,4 +362,3 @@ class Store extends React.Component {
 }
 
 export default withRouter(Store);
-

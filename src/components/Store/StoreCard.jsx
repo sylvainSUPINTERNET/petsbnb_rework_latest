@@ -68,7 +68,7 @@ class StoreCard extends React.Component {
                                 })
                             }
                         </div>
-                        <p>{this.props.announce.name}</p>
+                        <p className="title_store">{this.props.announce.name}</p>
                         <p className="align-content-center">
                             {this.props.announce.description}
                         </p>
@@ -79,7 +79,7 @@ class StoreCard extends React.Component {
                             Voir l'article
                         </a>
                         */}
-                        <a target="_blank"
+                        <a target="_blank" className="mt-3 btn btn-primary btn-block"
                            href={this.props.announce.affiliate_link}>
                             Acheter
                         </a>
@@ -94,4 +94,3 @@ class StoreCard extends React.Component {
 }
 
 export default withRouter(StoreCard);
-
