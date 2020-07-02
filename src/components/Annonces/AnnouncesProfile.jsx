@@ -441,33 +441,38 @@ class AnnouncesProfile extends React.Component {
                     spinner
                     text={getLoadingText()}>
 
-                    <div className="container white darken-4 rounded-1 p-4 mt-2">
+                    <div className="container darken-4 rounded-1 p-4 mt-2">
+                        <div class="card-header blue darken-4 m-0 p-0">
+                            <div class="text-center mt-2 p-1 white-text">
+                                <h3>{this.state.announce.title}</h3>
+                            </div>
+                        </div>
                         <div className="card">
-                            <div className="card-body">
-                                <h3 className="card-title">{this.state.announce.title}</h3>
+                            <div className="card-body">                     
                                 <h4 className=""><i
-                                    className="fa fa-map-marker-alt"></i> {this.state.announce.dept} - {capitalize(this.state.announce.city)} , {this.state.announce.streetAddress}
+                                    className="fa fa-map-marker-alt"></i> {this.state.announce.dept} - {capitalize(this.state.announce.city)}, {this.state.announce.streetAddress}
                                 </h4>
 
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="">
-                                            <span className="badge badge-info"><i
+                                            <span data-title="Tarif par heure" className="badge badge-info"><i
                                                 className="fas fa-clock"></i> {this.state.announce.farePerHour}{displayCurrency(this.state.announce.currency)}</span>
-                                            <span className="badge badge-info ml-2"><i
+                                            <span data-title="Tarif journalier" className="badge badge-info ml-2"><i
                                                 className="fas fa-calendar-day"></i> {this.state.announce.farePerDay}{displayCurrency(this.state.announce.currency)}</span>
-                                            <span className="badge badge-info ml-2"><i
+                                            <span data-title="Tarif mensuel" className="badge badge-info ml-2"><i
                                                 className="fa fa-calendar-alt"></i> {this.state.announce.farePerMonth}{displayCurrency(this.state.announce.currency)}</span>
                                         </div>
-                                        <p className="card-text mt-4">{this.state.announce.description}</p>
+                                        <p className="mt-4">{this.state.announce.description}</p>
 
                                         {this.state.announce.equipments.length > 0 &&
                                         <div className="mt-4">
                                             <div>
+                                                <p className="title_equipement">Équipements que vous disposez :</p>
                                                 {this.state.announce.equipments.map(equipment => {
                                                     return <div className="row" key={equipment.id}>
                                                         <div className="col">
-                                                            <i className="fa fa-check green-text"></i> {equipment.name}
+                                                            <i className="fa fa-arrow-right green-text"></i> {equipment.name}
                                                         </div>
                                                     </div>
                                                 })}

@@ -83,3 +83,42 @@
     font-weight: bold;
     font-size: 18px;
 }
+
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.1s;
+    visibility: visible;
+}
+
+[data-title]:after {
+    content: attr(data-title);
+    background-color: #f5f4ed;
+    color: #111;
+    font-size: 12px;
+    font-family: Segoe UI;
+    position: absolute;
+    padding: 5px 10px;
+    bottom: 26px;
+    right: 0;
+    white-space: nowrap;
+    box-shadow: 3px 3px 10px rgba(0,0,0,.2);
+    opacity: 0;
+    border: 1px solid #111111;
+    border-radius: 3px;
+    z-index: 99999;
+    visibility: hidden;
+}
+
+[data-title] {
+    position: relative;
+}
+
+#alert_annonce {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.title_equipement {
+    font-weight: bold;
+    margin-top: 10px;
+}
