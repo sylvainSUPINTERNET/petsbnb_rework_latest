@@ -308,9 +308,11 @@ class AnnoncesList extends React.Component {
 
                                     <div className="grid-item col-md-12 mb-4">
                                         <div className="card">
-                                            <div className="card-header text-center">
-                                                Filtres
+                                        <div className="card-header blue darken-4 m-0 p-0">
+                                            <div className="text-center mt-2 p-1 white-text">
+                                                <h5><i className="fa fa-bullhorn"/> Filtres</h5>
                                             </div>
+                                        </div>
                                             <div className="card-body">
                                                 <Form>
                                                     <Row>
@@ -525,9 +527,11 @@ class AnnoncesList extends React.Component {
                                 <div className="col-md-12 col-sm-12">
                                     <div className="grid-item col-md-12 mb-4">
                                         <div className="card">
-                                            <div className="card-header text-center">
-                                                Filtres
+                                        <div className="card-header blue darken-4 m-0 p-0">
+                                            <div className="text-center mt-2 p-1 white-text">
+                                                <h5><i className="fa fa-bullhorn"/> Filtres</h5>
                                             </div>
+                                        </div>
                                             <div className="card-body">
                                                 <Form>
                                                     <Row>
@@ -680,11 +684,11 @@ class AnnoncesList extends React.Component {
                                     </div>
                                 </div>
 
-                                <div className="col-md-6">
-                                    <div className="row">
-
-                                        <div className="alert alert-light" role="alert">
-                                            <p className="text-center">Aucunes annonces pour cette recherche ...</p>
+                                <div className="col-md-12 col-sm-12">
+                                    <div className="row">       
+                                        
+                                        <div id="alert_annonce" class="alert alert-warning text-center" role="alert">
+                                            Aucune annonces pour cette recherche ...
                                         </div>
 
                                     </div>

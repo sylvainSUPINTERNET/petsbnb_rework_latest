@@ -124,13 +124,15 @@ class RegisterForm extends React.Component {
             <div>
                 <Menu/>
                 <div className="container">
-                    <div className="card">
-                        <h2 className="card-title text-center mt-4">Inscription</h2>
-                        <hr></hr>
+                    <div className="card">              
                         <div className="card-body">
+                            <h5 className="title_form">
+                                Inscription
+                            </h5>
+                            <hr className="hr_title"></hr>
                             <form onSubmit={this.submitRegister}>
                                 <div className="ml-5 mr-5 p5 mt-4">
-                                    <label htmlFor="validationDefault05">Nom d'utilisateur*</label>
+                                    <label htmlFor="validationDefault05" className="label_register">Nom d'utilisateur*</label>
                                     <input type="text"
                                            className={this.state.usernameIsValid === true ? 'form-control' : 'form-control is-invalid'}
                                            id="" placeholder="Nom d'utilisateur"
@@ -144,7 +146,7 @@ class RegisterForm extends React.Component {
                                 </div>
 
                                 <div className="ml-5 mr-5 p5 mt-4">
-                                    <label htmlFor="validationDefault05">Email*</label>
+                                    <label htmlFor="validationDefault05" className="label_register">Email*</label>
                                     <input type="email"
                                            className={this.state.emailIsValid === true ? 'form-control' : 'form-control is-invalid'}
                                            id="" placeholder="Email"
@@ -159,7 +161,7 @@ class RegisterForm extends React.Component {
                                 </div>
 
                                 <div className="ml-5 mr-5 p5 mt-4">
-                                    <label htmlFor="validationDefault05">Password*</label>
+                                    <label htmlFor="validationDefault05" className="label_register">Password*</label>
                                     <input type="password"
                                            className={this.state.passwordIsValid === true ? 'form-control' : 'form-control is-invalid'}
                                            id="" placeholder="Mot de passe"
@@ -173,10 +175,10 @@ class RegisterForm extends React.Component {
                                 </div>
 
                                 <div className="ml-5 mr-5 p5 mt-4">
-                                    <label htmlFor="validationDefault05">Confirmé votre mot de passe*</label>
+                                    <label htmlFor="validationDefault05" className="label_register">Confirmer votre mot de passe*</label>
                                     <input type="password"
                                            className={this.state.passwordConfirmedIsValid === true ? 'form-control' : 'form-control is-invalid'}
-                                           id="" placeholder=""
+                                           id="" placeholder="Confirmer votre mot de passe"
                                            required disabled={this.state.disableInputs}
                                            onChange={(ev) => {
                                                this.setState({

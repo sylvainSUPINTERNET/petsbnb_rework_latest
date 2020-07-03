@@ -109,11 +109,13 @@ class LoginForm extends React.Component {
 
                     <div className="card">
                         <div className="card-body">
-                            <h2 className="card-title text-center">Connection</h2>
-                            <hr></hr>
+                            <h5 className="title_form">
+                               Connexion
+                            </h5>
+                            <hr className="hr_title"></hr>
                             <form onSubmit={this.onSubmit}>
                                 <div className="ml-5 mr-5 p5 mt-4">
-                                    <label htmlFor="validationDefault05">Email*</label>
+                                    <label htmlFor="validationDefault05" className="label_login">Email*</label>
                                     <input type="text" className={this.state.emailIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder="Nom d'utilisateur"
                                            required disabled={this.state.disableInputs}
                                            onChange={(ev) => {
@@ -124,7 +126,7 @@ class LoginForm extends React.Component {
                                     <div className="invalid-feedback">indiquez votre email</div>
                                 </div>
                                 <div className="ml-5 mr-5 p5 mt-4">
-                                    <label htmlFor="validationDefault05">Password*</label>
+                                    <label htmlFor="validationDefault05" className="label_login">Password*</label>
                                     <input type="password" className={this.state.passwordIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder="Mot de passe"
                                            onChange={(ev) => {
                                                this.setState({
