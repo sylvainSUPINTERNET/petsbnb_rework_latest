@@ -16,6 +16,7 @@
     "jsonwebtoken": "^8.5.1",
     "leaflet": "^1.6.0",
     "moment": "^2.24.0",
+    "pm2": "^4.4.0",
     "rc-checkbox": "^2.1.8",
     "react": "^16.10.2",
     "react-bootstrap": "^1.0.0-beta.14",
@@ -36,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:prod": "pm2 start npm -- start",
+    "start:prod": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

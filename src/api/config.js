@@ -5,7 +5,9 @@
 export let apiConfiguration = {
     // API Server
     apiUrl: 'http://localhost:4999/v1',
+    // EC2_API_URL from env DockerfileProd
     apiProxyUrl: 'http://localhost:4200/api/v1',
+
 
     // AUTHENTICATION
     loginPath: "/auth/login",

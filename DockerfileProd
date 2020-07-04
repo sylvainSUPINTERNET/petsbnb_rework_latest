@@ -6,4 +6,4 @@ COPY package.json /app
 #Installing all dependencies.
 RUN npm install
 # Running the dev server.
-CMD ["npm", "start:prod"]
+CMD ["npm", "start"]
