@@ -211,7 +211,7 @@ class AnnoncesCreate extends React.Component {
         return (
             <div className="">
                 <Menu/>
-                <div className="container py-5">
+                <div className="container py-3">
                     <div className="row">
                         <div id="form_annonce" className="col-md-10 mx-auto white">
         

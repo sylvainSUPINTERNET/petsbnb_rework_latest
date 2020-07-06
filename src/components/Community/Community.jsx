@@ -5,6 +5,7 @@ import Api from "../../api/index"
 import moment from "moment";
 import {wsConfig} from "../../api/config";
 import {Map, Marker, Popup, TileLayer, Tooltip} from "react-leaflet";
+import Footer from "../Partials/Footer";
 
 import {
     mapStyle
@@ -263,7 +264,7 @@ class Community extends React.Component {
     render() {
         return <div>
             <Menu/>
-            <div className="card">
+            <div id="community" className="card">
                 <div className="row m-2">
                     <div className="col-md-12 mt-2">
                         {/*/<code>{JSON.stringify(this.state.testMapData)}</code>*/}
@@ -411,9 +412,10 @@ class Community extends React.Component {
                     </div>
 
                 </div>
-
+                
             </div>
 
+        <Footer></Footer>
 
         </div>;
     }

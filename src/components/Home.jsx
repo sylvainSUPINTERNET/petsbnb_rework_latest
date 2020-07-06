@@ -194,7 +194,7 @@ class Home extends React.Component {
         return (
             <div>
                 <Menu/>
-                <div className="container">
+                <div className="container py-3">
                     <div>
                         <div className="card-header blue darken-4 m-0 p-0">
                             <div className="text-center mt-2 p-1 white-text">
@@ -357,7 +357,7 @@ class Home extends React.Component {
                 </div>
 
 
-                <div className="container">
+                <div className="container py-3">
                     <div className="row">
                         {
                             this.state.latestAnnounces.map( announce => {

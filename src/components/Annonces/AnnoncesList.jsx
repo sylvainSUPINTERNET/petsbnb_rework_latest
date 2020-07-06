@@ -302,7 +302,7 @@ class AnnoncesList extends React.Component {
                         active={this.state.isLoading}
                         spinner
                         text={getLoadingText()}>
-                        <div className="container white darken-4 rounded-1 p-4 mt-2">
+                        <div id="annoncesList" className="container white darken-4 rounded-1 p-4 mt-2">
                             <div className="row">
                                 <div className="col-md-12 col-sm-12 mt-2">
 
@@ -522,7 +522,7 @@ class AnnoncesList extends React.Component {
                         active={this.state.isLoading}
                         spinner
                         text={getLoadingText()}>
-                        <div className="container white darken-4 rounded-1 p-4 mt-2">
+                        <div id="annoncesList" className="container white darken-4 rounded-1 p-4 mt-2">
                             <div className="row">
                                 <div className="col-md-12 col-sm-12">
                                     <div className="grid-item col-md-12 mb-4">

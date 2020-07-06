@@ -11,6 +11,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import {StripeProvider} from "react-stripe-elements";
 import StoreCheckout from "../Payment/StoreCheckout";
 import Menu from "../Menu/Menu";
+import Footer from "../Partials/Footer";
 
 class AnnouncePayment extends React.Component {
     constructor(props) {
@@ -52,7 +53,7 @@ class AnnouncePayment extends React.Component {
         return (
             <div>
                 <Menu/>
-            <div className="container">
+            <div className="container py-3">
             <div className="card-header blue darken-4 m-0 p-0">
                 <div className="text-center mt-2 p-1 white-text">
                     <h5><i className="fa fa-bullhorn"></i> Annonce importante</h5>
@@ -84,6 +85,7 @@ class AnnouncePayment extends React.Component {
                     </div>
                 </div>
             </div>
+            <Footer></Footer>
             </div>
 
         )
