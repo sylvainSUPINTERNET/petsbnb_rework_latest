@@ -1,12 +1,11 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 export default class Footer extends React.Component {
-
 
     constructor(props) {
         super(props)
     }
-
 
     render() {
         return (
@@ -21,16 +20,16 @@ export default class Footer extends React.Component {
                                 <hr className="w-100 clearfix d-md-none"></hr>
                             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                                 <h6 className="text-uppercase mb-4 font-weight-bold">Infos pratiques</h6>
-                                <p><a href="#!">Conditions générales d’utilisation</a></p>
-                                <p><a href="#!">FAQ</a></p>
-                                <p><a href="#!">Crédits</a></p>                         
+                                <p><Link to="/conditions-generales-utilisation">Conditions générales d’utilisation</Link></p>   
+                                <p><Link to="/faq">FAQ</Link></p>   
+                                <p><Link to="/credits">Crédits</Link></p>                         
                             </div>
                                 <hr className="w-100 clearfix d-md-none"></hr>
                             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                                 <h6 className="text-uppercase mb-4 font-weight-bold">A propos</h6>
-                                <p><a href="#!">Comment fonctionne le site ?</a></p>
-                                <p><a href="#!">Notre équipe</a></p>
-                                <p><a href="#!">Nos partenaires</a></p>                     
+                                <p><Link to="/explication-du-site">Explication du site</Link></p>   
+                                <p><Link to="/equipes">Notre équipe</Link></p>
+                                <p><Link to="/partenaires">Nos partenaires</Link></p>                
                             </div>
                                 <hr className="w-100 clearfix d-md-none"></hr>
                             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
@@ -52,8 +51,7 @@ export default class Footer extends React.Component {
                                             <i className="fab fa-instagram"></i>
                                             </a>
                                         </li>
-                                    </ul>
-                                    
+                                    </ul>                             
                             </div>
                         </div>
                         <hr></hr>

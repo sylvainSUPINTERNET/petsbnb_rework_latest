@@ -131,3 +131,31 @@
 #annoncesList {
     margin-bottom: 20px;
 }
+
+.team {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.title_article {
+    font-weight: bold;
+}
+
+#cgu {
+    text-align: justify;
+    margin: 10px;
+}
+
+.contact-faq {
+    margin-top: 30px;
+}
+
+.title_PetsBNB {
+    font-weight: bold;
+}
+
+#petsBNB {
+    text-align: justify;
+    margin: 10px;
+}
