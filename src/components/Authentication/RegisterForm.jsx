@@ -6,6 +6,7 @@ import {default as Api} from '../../api/index';
 import {Button, Modal} from "react-bootstrap";
 import QueryParams from "../../services/QueryParams";
 import Menu from "../Menu/Menu";
+import Footer from "../Partials/Footer";
 
 
 class RegisterForm extends React.Component {
@@ -123,7 +124,7 @@ class RegisterForm extends React.Component {
         return (
             <div>
                 <Menu/>
-                <div className="container">
+                <div className="container py-3">
                     <div className="card">              
                         <div className="card-body">
                             <h5 className="title_form">
@@ -226,6 +227,8 @@ class RegisterForm extends React.Component {
                     </Modal>
 
                 </div>
+
+                <Footer></Footer>
             </div>
 
         )

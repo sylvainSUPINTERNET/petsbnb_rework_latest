@@ -16,6 +16,8 @@ import AnnouncesCard from "../Annonces/AnnouncesCard";
 import AnnouncesCardAccount from "../Annonces/AnnouncesCardAccount";
 import moment from "moment";
 import Menu from "../Menu/Menu";
+import Footer from "../Partials/Footer";
+
 
 
 class Account extends React.Component {
@@ -91,7 +93,8 @@ class Account extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
+            <div className="container py-3">
                 <Menu/>
                 <div className="row m-2">
                     <div className="col-md-6 mb-4">
@@ -198,9 +201,10 @@ class Account extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>    
             </div>
-
+                <Footer></Footer>
+            </div>
         )
     }
 

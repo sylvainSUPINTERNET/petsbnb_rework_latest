@@ -6,6 +6,7 @@ import StoreCard from "./StoreCard";
 import Menu from "../Menu/Menu";
 import Api from "../../api";
 import ReactPaginate from "react-paginate";
+import Footer from "../Partials/Footer";
 
 
 class Store extends React.Component {
@@ -351,9 +352,10 @@ class Store extends React.Component {
                                 activeClassName={'active'}/>
                         </div>
                     </div>
-
-
+               
                 </div>
+               
+                <Footer></Footer>
             </div>
 
         )

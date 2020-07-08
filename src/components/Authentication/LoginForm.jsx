@@ -105,7 +105,7 @@ class LoginForm extends React.Component {
         return (
             <div>
                 <Menu/>
-                <Container className="mt-4 pt-5">
+                <div className="container py-3">
 
                     <div className="card">
                         <div className="card-body">
@@ -155,7 +155,7 @@ class LoginForm extends React.Component {
                         </div>
                     </div>
 
-                </Container>
+                </div>
 
                 <Modal
                     className="modal-container"
