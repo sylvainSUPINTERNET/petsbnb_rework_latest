@@ -234,7 +234,7 @@ class Store extends React.Component {
                                    <div className={this.state.isAdmin === true ? '': 'd-none'}>
                                        <form onSubmit={this.onSubmitCreationItem}>
                                            <div className="">
-                                               <label htmlFor="validationDefault05">Nom*</label>
+                                               <label htmlFor="validationDefault05" className="label_store">Nom*</label>
                                                <input type="text" className={this.state.nameIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder=""
                                                       required disabled={this.state.disableInputs}
                                                       onChange={(ev) => {
@@ -246,7 +246,7 @@ class Store extends React.Component {
                                            </div>
 
                                            <div className="">
-                                               <label htmlFor="validationDefault05">Description*</label>
+                                               <label htmlFor="validationDefault05" className="label_store">Description*</label>
                                                <textarea className={this.state.descriptionIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder=""
                                                       required disabled={this.state.disableInputs}
                                                       onChange={(ev) => {
@@ -258,7 +258,7 @@ class Store extends React.Component {
                                            </div>
 
                                            <div className="">
-                                               <label htmlFor="validationDefault05">Lien*</label>
+                                               <label htmlFor="validationDefault05" className="label_store">Lien*</label>
                                                <input type="text" className={this.state.linkIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder=""
                                                          required disabled={this.state.disableInputs}
                                                          onChange={(ev) => {
@@ -270,7 +270,7 @@ class Store extends React.Component {
                                            </div>
 
                                            <div className="">
-                                               <label htmlFor="validationDefault05">Lien de l'image*</label>
+                                               <label htmlFor="validationDefault05" className="label_store">Lien de l'image*</label>
                                                <input type="text" className={this.state.imageLinkIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder=""
                                                          required disabled={this.state.disableInputs}
                                                          onChange={(ev) => {
@@ -282,7 +282,7 @@ class Store extends React.Component {
                                            </div>
 
                                            <div className="">
-                                               <label htmlFor="validationDefault05">Note*</label>
+                                               <label htmlFor="validationDefault05" className="label_store">Note*</label>
                                                <input type="number" max={5} className={this.state.ratingIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder=""
                                                          required disabled={this.state.disableInputs}
                                                          onChange={(ev) => {

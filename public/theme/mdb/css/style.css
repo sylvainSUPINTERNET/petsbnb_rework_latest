@@ -88,6 +88,7 @@
     opacity: 1;
     transition: all 0.1s ease 0.1s;
     visibility: visible;
+    overflow: visible !important;
 }
 
 [data-title]:after {
@@ -158,4 +159,71 @@
 #petsBNB {
     text-align: justify;
     margin: 10px;
+}
+
+.hr_home {
+    background-color: #1565c0;
+    height: 1px;
+    margin-right: 200px;
+    margin-left: 200px;
+    margin-bottom: 40px;
+}
+
+.hr-title-home {
+    background-color: #1565c0;
+    height: 1px;
+}   
+
+#last_announce {
+    font-weight: bold;
+    color: #43485c;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+#search_announce {
+    font-weight: bold;
+    color: #43485c;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+#title_home {
+    font-weight: bold;
+    color: rgba(23, 106, 196, 0.95);
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+.description {
+    color: #020305;
+}
+
+.hook {
+    color: #020305;
+}
+
+#button_site {
+    background-color: rgba(55,122,195,.95);
+    border-color: transparent;
+    color: #fff;
+}
+
+#button_team {
+    background-color: rgba(55,122,195,.95);
+    border-color: transparent;
+    color: #fff;
+}
+
+.view {
+    overflow: visible!important;
+}
+
+.label_store {
+    color: black;
+    font-weight: bold;
+    margin-top: 20px;
 }
