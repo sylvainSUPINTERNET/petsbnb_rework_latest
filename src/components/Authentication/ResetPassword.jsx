@@ -16,7 +16,9 @@ class ResetPassword extends React.Component {
             email: '',
             emailToReset: true,
             emailToResetDisableInput: false,
-            isLoading: false
+            isLoading: false,
+
+            notify: false
 
         };
 
@@ -47,7 +49,8 @@ class ResetPassword extends React.Component {
                     emailToResetDisableInput: false,
                     emailToReset: true,
                     isLoading: false,
-                    email: ""
+                    email: "",
+                    notify: true
                 });
 
             }, 1000)
@@ -105,6 +108,26 @@ class ResetPassword extends React.Component {
                                 </div>
                             </form>
                         </div>
+
+                        <Modal
+                            className="modal-container"
+                            show={this.state.notify}
+                            onHide={() => this.setState({
+                                notify: false
+                            })}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Email envoyé <i
+                                    className="fa fa-check text-success"></i>
+                                </Modal.Title>
+                            </Modal.Header>
+
+                            <Modal.Body>Un message vous a été envoyé pour réinitialiser votre mot de passe</Modal.Body>
+                            <Modal.Footer>
+
+                            </Modal.Footer>
+                        </Modal>
+
+
                     </div>
                 </div>
 
