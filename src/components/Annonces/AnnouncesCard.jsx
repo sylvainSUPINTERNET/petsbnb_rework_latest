@@ -4,7 +4,7 @@ import {displayCurrency, displayDate, truncate} from "../Utils";
 import Truncate from 'react-truncate';
 
 import {withRouter} from "react-router-dom";
-
+import image_annonce from "../../images/announce/default-image-announce.png"
 
 class AnnouncesCard extends React.Component {
 
@@ -32,7 +32,7 @@ class AnnouncesCard extends React.Component {
                 <div className="card card-cascade mb-2">
                     <div className="view view-cascade overlay">
                         <img src={this.displayBase64(this.props.announce.picture)} className={this.props.announce.picture !== null ? 'card-img-top': 'd-none'}/>
-                        <img src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png" alt="image annonce" className={this.props.announce.picture === null ? 'card-img-top': 'd-none'}/>
+                        <img src={image_annonce} alt="image annonce" className={this.props.announce.picture === null ? 'card-img-top': 'd-none'}/>
 
                         <a>
                             <div className="mask rgba-white-slight"></div>

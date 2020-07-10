@@ -211,15 +211,16 @@ class AnnoncesCreate extends React.Component {
         return (
             <div className="">
                 <Menu/>
-                <div className="container py-3">
-                    <div className="row">
-                        <div id="form_annonce" className="col-md-10 mx-auto white">
+                <div className="container mb-4">
+                        
+                       
         
-                            <h5 className="title_form">
-                                Déposer votre annonce
-                            </h5>
+                        <div className="card-header blue darken-4 m-0 p-0">
+                                 <div className="text-center mt-2 p-1 white-text"><h3>Déposer votre annonce</h3></div>
+                        </div>
 
-                            <hr className="hr_title"></hr>
+                        <div class="card">
+                            <div class="card-body">
 
                             <form className="text-center" onSubmit={this.onSubmit}>
 
@@ -432,7 +433,8 @@ class AnnoncesCreate extends React.Component {
 
                             </form>
                        
-                        </div>
+                       
+                    </div>
                     </div>
                 </div>
 

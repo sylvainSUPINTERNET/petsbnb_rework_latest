@@ -11,7 +11,7 @@ import Footer from '../components/Partials/Footer';
 import { withRouter } from "react-router-dom";
 import AnnouncesCard from "./Annonces/AnnouncesCard";
 import Menu from "./Menu/Menu";
-
+import header_dog from "../images/header/dog.png"
 
 class Home extends React.Component {
     constructor(props) {
@@ -194,13 +194,39 @@ class Home extends React.Component {
         return (
             <div>
                 <Menu/>
+                <div class="mask d-flex justify-content-center align-items-center">
+                    <div class="container">
+                        <div class="row d-flex h-100 justify-content-center align-items-center wow fadeIn">
+                             <div class="col-md-6 mb-4 white-text text-center text-md-left">
+                                <h1 id="title_home" class="display-4 font-weight-bold">Pets BNB</h1>
+                                <hr class="hr-title-home"></hr>
+                                <p>
+                                <strong className="description">Plateforme qui met en relation les détenteurs d’animaux et petsitters. </strong>
+                                </p>
+                                <p class="mb-4 d-none d-md-block">
+                                <strong className="hook">Vous avez envie de garder un animal de compagnie ? Vous voulez faire garder votre animal de compagnie pour pouvoir partir en vacances ? 
+                                    Alors, inscrivez-vous de suite ! Ce site est fait pour vous <i class="far fa-smile-wink"></i>
+                                </strong>
+                                </p>
+                                <a href="/explication-du-site" id="button_site" class="btn waves-effect waves-light">Explication de notre site
+                                <i class="fas fa-exclamation-circle ml-2"></i>
+                                </a>
+                                <a  href="/equipes" id="button_team" class="btn waves-effect waves-light">Notre équipe
+                                    <i class="fas fa-users ml-2"></i>
+                                </a>
+                            </div>     
+                            <div class="col-md-6 col-xl-5 mb-4">
+                                <img src={header_dog} alt="header dog" class="img-fluid"></img>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+
+                <hr className="hr_home"></hr>
+
                 <div className="container py-3">
                     <div>
-                        <div className="card-header blue darken-4 m-0 p-0">
-                            <div className="text-center mt-2 p-1 white-text">
-                                <h5><i className="fa fa-bullhorn"/> Rechercher des annonces</h5>
-                            </div>
-                        </div>
+                    <p id="search_announce" class="text-center"><i class="fa fa-arrow-right blue-text"></i> Rechercher une annonce</p>
 
                         <div className="card">
                             <div className="card-body">
@@ -356,6 +382,9 @@ class Home extends React.Component {
 
                 </div>
 
+                <hr className="hr_home"></hr>
+
+                <p id="last_announce" class="text-center"><i class="fa fa-arrow-right blue-text"></i> Les dernières annonces ...</p>
 
                 <div className="container py-3">
                     <div className="row">
