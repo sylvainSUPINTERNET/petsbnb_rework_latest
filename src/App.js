@@ -40,6 +40,7 @@ import Credit from "./components/Practical Information/Credit"
 import FAQ from "./components/Practical Information/FAQ"
 import TermsOfService from "./components/Practical Information/TermsOfService"
 import PetsBNB from "./components/About/PetsBNB"
+import ResetPassword from "./components/Authentication/ResetPassword";
 
 export function isUserAuthenticated() {
     let isLogged = false;
@@ -80,6 +81,7 @@ function App() {
                             }
                         }}/>
                     <Route exact path="/auth/login" component={() => <LoginForm/>}/>
+                    <Route exact path="/forgive-password" component={() => <ResetPassword/>}/>
                     <Route exact path="/logout" component={() => <Logout/>}/>
                     <Route exact path="/register" component={() => <RegisterForm/>}/>
                     <Route exact path="/equipes" component={() => <Team/>}/>

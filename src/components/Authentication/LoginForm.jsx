@@ -126,7 +126,7 @@ class LoginForm extends React.Component {
                                     <div className="invalid-feedback">indiquez votre email</div>
                                 </div>
                                 <div className="ml-5 mr-5 p5 mt-4">
-                                    <label htmlFor="validationDefault05" className="label_login">Password*</label>
+                                    <label htmlFor="validationDefault05" className="label_login">Mot de passe*</label>
                                     <input type="password" className={this.state.passwordIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder="Mot de passe"
                                            onChange={(ev) => {
                                                this.setState({
@@ -137,8 +137,13 @@ class LoginForm extends React.Component {
                                     <div className="invalid-feedback">indiquez votre mot de passe</div>
                                 </div>
 
-                                <div className="text-center mt-4 mb-4">
-                                    <a href="/register" className="alert-link">Pas de compte ?</a>
+                                <div className="row text-center mt-4 mb-4">
+                                    <div className="col-md-12 m-2">
+                                        <a href="/register" className="alert-link">Pas de compte ?</a>
+                                    </div>
+                                    <div className="col-md-12 m-2">
+                                        <a href="/forgive-password" className="alert-link">Mot de passe oublié ?</a>
+                                    </div>
                                 </div>
                                 <div className="text-center">
                                     <button className="mt-3 btn btn-primary btn-lg" disabled={this.state.disableInputs}>
@@ -190,6 +195,8 @@ class LoginForm extends React.Component {
 
                     </Modal.Footer>
                 </Modal>
+
+
 
                 <Footer></Footer>
             </div>

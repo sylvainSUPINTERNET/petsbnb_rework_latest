@@ -139,3 +139,7 @@ export let jwtConfiguration = {
 export let wsConfig  ={
     URL : "ws://localhost:9999" // ws -> port from docker-compose
 };
+
+export const emailSystemConfiguration = {
+    tok: "pETSBNBresetPassword!"
+};
