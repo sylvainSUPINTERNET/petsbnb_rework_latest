@@ -211,10 +211,7 @@ class AnnoncesCreate extends React.Component {
         return (
             <div className="">
                 <Menu/>
-                <div className="container mb-4">
-                        
-                       
-        
+                <div className="container-fluid mb-4">
                         <div className="card-header blue darken-4 m-0 p-0">
                                  <div className="text-center mt-2 p-1 white-text"><h3>Déposer votre annonce</h3></div>
                         </div>
@@ -380,7 +377,7 @@ class AnnoncesCreate extends React.Component {
                                 </div>
                             </div>                           
 
-                            <div className="container">
+                            <div className="container mt-4">
                                 <p className="service">Vos services </p>
                                     <ul className="list-group">              
                                         {

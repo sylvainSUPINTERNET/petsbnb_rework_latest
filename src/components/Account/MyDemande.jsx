@@ -146,7 +146,7 @@ class MyDemande extends React.Component {
     render() {
         return (
             <div>
-            <div className="container py-3">
+            <div className="container-fluid card py-3">
                 <Menu/>
                 <div className="row m-2">
                     <div className="col-md-6 mb-4">
@@ -158,19 +158,65 @@ class MyDemande extends React.Component {
                                     {this.state.bookings.filter(el => el.active === true  && el.confirmed === false).map(booking => {
                                         return <div>                                        
                                             <h4 className="card-title m-3 text-primary"><i
-                                                className="fa fa-tag"></i> {booking.uuid}</h4>
-                                            <p><i
-                                                className="fa fa-stopwatch text-danger m-3"></i> {moment(booking.startAt).format("DD/MM/YYYY HH:MM")}
-                                            </p>
-                                            <p><i
-                                                className="fa fa-clock text-danger m-3"></i> {moment(booking.endAt).format("DD/MM/YYYY HH:MM")}
-                                            </p>
-                                            <p><i className="fa fa-check green-text m-3"></i> {booking.services[0].name}</p>
-                                            <p><i className="fa fa-check green-text m-3"></i> {booking.animalsTypes[0].name}</p>
+                                                className="fa fa-tag"></i> {booking.uuid.split('-')[0]}
+                                            </h4>
+                                            <div className="row mt-1">
+                                                <div className="col-md-12">
+                                                    <ul className="stepper stepper-vertical">
+
+                                                        <li className="completed">
+                                                            <a>
+                                                                <img
+                                                                    src="https://image.flaticon.com/icons/svg/59/59252.svg"
+                                                                    className="img-fluid mr-2"
+                                                                    style={{width: '20px'}}/> <span>
+
+                                                                            {moment(booking.startAt).format("DD-MM-YYYY HH:MM")} (début)
+
+                                                                        </span>
+                                                            </a>
+                                                        </li>
 
 
-                                            <p><i className="fa fa-hand-holding-usd text-success m-3"></i>{booking.totalPrice} €
-                                            </p>
+                                                        <li>
+                                                            <a>
+                                                                <img
+                                                                    src="https://image.flaticon.com/icons/svg/66/66403.svg"
+                                                                    className="img-fluid mr-2"
+                                                                    style={{width: '20px'}}/>
+                                                                <span>
+                                                                                {moment(booking.endAt).format("DD-MM-YYYY HH:MM")} (fin)
+                                                                            </span>
+
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+
+
+                                                </div>
+                                            </div>
+
+
+                                            <div className="row">
+                                                <div className="col-md-6 col-sm-6 text-center">
+                                                    <p>
+                                                        <img src="https://image.flaticon.com/icons/svg/850/850960.svg" className="img-fluid mr-2" style={{width: '40px'}} />
+                                                        {booking.services[0].name}</p>
+                                                </div>
+                                                <div className="col-md-6 col-sm-6 text-center">
+                                                    <p>
+                                                        <img src="https://image.flaticon.com/icons/svg/1810/1810042.svg" className="img-fluid mr-2" style={{width: '40px'}} />
+                                                        {booking.animalsTypes[0].name}</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="text-center m-5">
+                                                <img
+                                                    src="https://image.flaticon.com/icons/svg/2867/2867617.svg"
+                                                    className="img-fluid mr-2" style={{width: '20px'}}/>
+                                                Estimation gain : {booking.totalPrice}  €
+                                            </div>
 
                                             <Modal
                                                 className="modal-container"
@@ -267,7 +313,7 @@ class MyDemande extends React.Component {
                                     {this.state.bookings.filter(el => el.confirmed === true || el.active === false).map(booking => {
                                         return <div>
                                             <h5 className="card-title m-3 text-primary"><i
-                                                className="fa fa-tag"></i> {booking.uuid}</h5>
+                                                className="fa fa-tag"></i> {booking.uuid.split('-')[0]}</h5>
 
                                             <span className={booking.confirmed === true ?  "badge badge-pill badge-success" : 'd-none'}>
                                                 accepté - {moment(booking.updatedAt).format("DD/MM/YYYY HH:MM")}
@@ -276,20 +322,63 @@ class MyDemande extends React.Component {
                                                 refusé - {moment(booking.updatedAt).format("DD/MM/YYYY HH:MM")}
                                             </span>
 
-                                            <p><i
-                                                className="fa fa-stopwatch text-danger m-3"></i> {moment(booking.startAt).format("DD/MM/YYYY HH:MM")}
-                                            </p>
-                                            <p><i
-                                                className="fa fa-clock text-danger m-3"></i> {moment(booking.endAt).format("DD/MM/YYYY HH:MM")}
-                                            </p>
-                                            <p><i className="fa fa-check green-text m-3"></i> {booking.services[0].name}</p>
-                                            <p><i className="fa fa-check green-text m-3"></i> {booking.animalsTypes[0].name}</p>
+
+                                            <div className="row mt-1">
+                                                <div className="col-md-12">
+                                                    <ul className="stepper stepper-vertical">
+
+                                                        <li className="completed">
+                                                            <a>
+                                                                <img
+                                                                    src="https://image.flaticon.com/icons/svg/59/59252.svg"
+                                                                    className="img-fluid mr-2"
+                                                                    style={{width: '20px'}}/> <span>
+
+                                                                            {moment(booking.startAt).format("DD-MM-YYYY HH:MM")} (début)
+
+                                                                        </span>
+                                                            </a>
+                                                        </li>
 
 
-                                            <p><i className="fa fa-hand-holding-usd text-success m-3"></i>{booking.totalPrice} €
-                                            </p>
-                                            <hr></hr>
+                                                        <li>
+                                                            <a>
+                                                                <img
+                                                                    src="https://image.flaticon.com/icons/svg/66/66403.svg"
+                                                                    className="img-fluid mr-2"
+                                                                    style={{width: '20px'}}/>
+                                                                <span>
+                                                                                {moment(booking.endAt).format("DD-MM-YYYY HH:MM")} (fin)
+                                                                            </span>
 
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div className="row">
+                                                <div className="col-md-6 col-sm-6 text-center">
+                                                    <p>
+                                                        <img src="https://image.flaticon.com/icons/svg/850/850960.svg" className="img-fluid mr-2" style={{width: '40px'}} />
+                                                        {booking.services[0].name}</p>
+                                                </div>
+                                                <div className="col-md-6 col-sm-6 text-center">
+                                                    <p>
+                                                        <img src="https://image.flaticon.com/icons/svg/1810/1810042.svg" className="img-fluid mr-2" style={{width: '40px'}} />
+                                                        {booking.animalsTypes[0].name}</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="text-center m-5">
+                                                <img
+                                                    src="https://image.flaticon.com/icons/svg/2867/2867617.svg"
+                                                    className="img-fluid mr-2" style={{width: '20px'}}/>
+                                                Estimation gain : {booking.totalPrice}  €
+                                            </div>
 
                                         </div>
                                     })}

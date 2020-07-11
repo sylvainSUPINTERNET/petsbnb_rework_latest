@@ -442,7 +442,7 @@ class Home extends React.Component {
                                     </div>
                                 </div>
                                 <hr></hr>
-                                <div className="container mt-4">
+                                <div className="container mt-4 mb-5">
                                     <p style={{fontSize: '25px'}} className="m-5">Je veux être petsitter</p>
                                     <div className="row ml-1">
                                         <div className="col-md-3 m-4">

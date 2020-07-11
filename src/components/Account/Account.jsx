@@ -19,7 +19,6 @@ import Menu from "../Menu/Menu";
 import Footer from "../Partials/Footer";
 
 
-
 class Account extends React.Component {
 
     constructor(props) {
@@ -94,14 +93,14 @@ class Account extends React.Component {
     render() {
         return (
             <div>
-            <div className="container py-3">
-                <Menu/>
-                <div className="row m-2">
-                    <div className="col-md-6 mb-4">
-                        <h4 className="card-header primary-color-dark white-text text-center">Mes annonces</h4>
-                        <div className="card">
-                            <div className="card-body">
-                                {/*
+                <div className="container-fluid mt-4 mb-4 card py-3">
+                    <Menu/>
+                    <div className="row m-2">
+                        <div className="col-md-6 mb-4">
+                            <h4 className="card-header primary-color-dark white-text text-center">Mes annonces</h4>
+                            <div className="">
+                                <div className="card-body">
+                                    {/*
                                   <div className={this.state.userAnnounces.length === 0 ? "d-none" : ""}>
 
                                           <span className="badge badge-pill badge-danger mb-1">
@@ -116,93 +115,127 @@ class Account extends React.Component {
                                 */}
 
 
-                                <div className={this.state.userAnnounces.length === 0 ? "" : "d-none"}>
-                                    <div className="alert alert-warning text-center" role="alert">
-                                        Pas d'annonces pour le moment
+                                    <div className={this.state.userAnnounces.length === 0 ? "" : "d-none"}>
+                                        <div className="alert alert-warning text-center" role="alert">
+                                            Pas d'annonces pour le moment
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className={this.state.userAnnounces.length === 0 ? "d-none" : ""}>
-                                    {
-                                        this.state.userAnnounces.map(announce => {
-                                            return <AnnouncesCardAccount userAnnounces={this.state.userAnnounces}
-                                                                         announce={announce}
-                                                                         modifPictureBtn={true}></AnnouncesCardAccount>
-                                        })
-                                    }
+                                    <div className={this.state.userAnnounces.length === 0 ? "d-none" : ""}>
+                                        {
+                                            this.state.userAnnounces.map(announce => {
+                                                return <AnnouncesCardAccount userAnnounces={this.state.userAnnounces}
+                                                                             announce={announce}
+                                                                             modifPictureBtn={true}></AnnouncesCardAccount>
+                                            })
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="col-md-6">
-                        <h4 className="card-header primary-color-dark white-text text-center">Mes demande de
-                            réservation</h4>
-                        <div className="card">
-                            <div className="card-body">
-                                <div className={this.state.userBookings.length === 0 ? "" : "d-none"}>
-                                    <div className="alert alert-warning text-center" role="alert">
-                                        Pas de réservation pour le moment
+                        <div className="col-md-6">
+                            <h4 className="card-header primary-color-dark white-text text-center">Mes demande de
+                                réservation</h4>
+                            <div className="">
+                                <div className="mb-3 mt-3">
+                                    <div className={this.state.userBookings.length === 0 ? "" : "d-none"}>
+                                        <div className="alert alert-warning text-center" role="alert">
+                                            Pas de réservation pour le moment
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div className={this.state.userBookings.length === 0 ? "d-none" : ""}>
-                                    {
-                                        this.state.userBookings.map(booking => {
-                                            return <div className="container mb-3">
+                                    <div className={this.state.userBookings.length === 0 ? "d-none" : ""}>
+                                        {
+                                            this.state.userBookings.map(booking => {
+                                                return <div className="container mb-3">
+                                                    <div className="card">
+                                                        <div className="card-body">
+                                                            <p className={booking.confirmed === true ? '' : 'd-none'}>
+                                                                <span className="badge badge-success">Confirmé</span>
+                                                            </p>
+                                                            <p className={booking.confirmed === false && booking.active === true ? '' : 'd-none'}>
+                                                                <span className="badge badge-warning">En cours</span>
+                                                            </p>
+                                                            <p className={booking.confirmed === true && booking.active === false ? '' : 'd-none'}>
+                                                                <span className="badge badge-success">Accepté</span>
+                                                            </p>
+                                                            <p className={booking.confirmed === false && booking.active === false ? '' : 'd-none'}>
+                                                                <span className="badge badge-danger">Refusé</span>
+                                                            </p>
+                                                            <p className="text-center mt-2">
+                                                                <i className="fa fa-tag"></i> <span
+                                                                className="text-sm">Réf :{booking.bookingUuid.split('-')[0]}</span>
+                                                            </p>
 
-                                                <div className="card">
-                                                    <div className="card-body">
-                                                        <p className={booking.confirmed === true ? '' : 'd-none'}>
-                                                            <span className="badge badge-success">Confirmé</span>
-                                                        </p>
-                                                        <p className={booking.confirmed === false && booking.active === true ? '' : 'd-none'}>
-                                                            <span className="badge badge-warning">En cours</span>
-                                                        </p>
-                                                        <p className={booking.confirmed === true && booking.active === false ? '' : 'd-none'}>
-                                                            <span className="badge badge-success">Accepté</span>
-                                                        </p>
-                                                        <p className={booking.confirmed === false && booking.active === false ? '' : 'd-none'}>
-                                                            <span className="badge badge-danger">Refusé</span>
-                                                        </p>
-                                                        <p className="text-center mt-2">
-                                                            <i className="fa fa-tag"></i> <span
-                                                            className="text-sm">{booking.bookingUuid}</span>
-                                                        </p>
-                                                        <p className="text-center mt-3">Début
-                                                            : {moment(booking.bookingStartAt).format("DD-MM-YYYY HH:MM")}</p>
-                                                        <p className="text-center mt-3">Fin
-                                                            : {moment(booking.bookingEndAt).format("DD-MM-YYYY HH:MM")}</p>
+                                                            <div className="row mt-1">
+                                                                <div className="col-md-12">
 
-                                                        <p className={booking.confirmed === true && booking.active === false ? '' : 'd-none'}>
-                                                            <div className="mt-2 text-center">
-                                                                <a className=""
-                                                                   href={`mailto:${booking.announceContactEmail}`}><i
-                                                                    className="fa fa-envelope"></i> {booking.announceContactEmail}
-                                                                </a>
+                                                                    <ul className="stepper stepper-vertical">
+
+                                                                        <li className="completed">
+                                                                            <a>
+                                                                                <img
+                                                                                    src="https://image.flaticon.com/icons/svg/59/59252.svg"
+                                                                                    className="img-fluid mr-2"
+                                                                                    style={{width: '20px'}}/> <span
+                                                                                className="label">{moment(booking.bookingStartAt).format("DD-MM-YYYY HH:MM")} (début)</span>
+                                                                            </a>
+                                                                        </li>
+
+
+                                                                        <li>
+                                                                            <a>
+                                                                                <img
+                                                                                    src="https://image.flaticon.com/icons/svg/66/66403.svg"
+                                                                                    className="img-fluid mr-2"
+                                                                                    style={{width: '20px'}}/>
+                                                                                <span
+                                                                                    className="label">{moment(booking.bookingEndAt).format("DD-MM-YYYY HH:MM")} (fin)</span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                    </ul>
+
+                                                                </div>
                                                             </div>
-                                                        </p>
 
-                                                        <div className="text-center">
-                                                            <button className="btn btn-sm btn-info mt-3"
-                                                                    onClick={() => this.props.history.push(`/annonce/${booking.announceUuid}`)}> Voir l'annonce
-                                                            </button>
+                                                            <div className="text-center mb-3">
+                                                                <img
+                                                                    src="https://image.flaticon.com/icons/svg/2867/2867617.svg"
+                                                                    className="img-fluid mr-2" style={{width: '20px'}}/>
+                                                                Estimation gain : {booking.bookingTotalPrice} €
+                                                            </div>
+
+                                                            <p className={booking.confirmed === true && booking.active === false ? '' : 'd-none'}>
+                                                                <div className="mt-2 text-center">
+                                                                    <a className=""
+                                                                       href={`mailto:${booking.announceContactEmail}`}><i
+                                                                        className="fa fa-envelope"></i> {booking.announceContactEmail}
+                                                                    </a>
+                                                                </div>
+                                                            </p>
+
+                                                            <div className="text-center">
+                                                                <button className="btn btn-sm btn-primary mt-3"
+                                                                        onClick={() => this.props.history.push(`/annonce/${booking.announceUuid}`)}> Voir
+                                                                    l'annonce
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
+
                                                 </div>
 
-                                            </div>
 
-
-
-                                        })
-                                    }
+                                            })
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>    
-            </div>
+                </div>
                 <Footer></Footer>
             </div>
         )
