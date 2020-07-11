@@ -8,11 +8,22 @@ class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLogged: false
+            isLogged: false,
+            displayImage: false
         };
     }
 
     componentDidMount() {
+        console.log(this.props.location);
+        if(this.props.location.pathname === '/') {
+            this.setState({
+                displayImage: true
+            })
+        } else {
+            this.setState({
+                displayImage: false
+            })
+        }
         console.log(isUserAuthenticated());
         this.setState({
             isLogged: isUserAuthenticated()
@@ -64,10 +75,30 @@ class Menu extends React.Component {
                         </div>
                     </nav>
                 </header>
+                <div style={style} className={this.state.displayImage === true ? '': 'd-none'}>
+                    <div className="container h-100">
+                        <div className="row h-100 align-items-center">
+                            <div className="col-12 text-center">
+                                <h1 className="font-weight-light text-white">Les animaux, notre passion <i
+                                    className="fa fa-paw" aria-hidden="true"></i></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         )
     }
+}
+
+const style = {
+    height: '100vh',
+    marginTop: '-50px',
+    minHeight: '500px',
+    backgroundImage: "url('https://yolaw-production.s3.amazonaws.com/publicmedia/devenir_pet_sitter.jpg')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
 }
 
 export default withRouter(Menu);
