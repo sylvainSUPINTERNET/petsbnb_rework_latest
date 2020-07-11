@@ -49,6 +49,10 @@ export let apiConfiguration = {
     // Store
     store: "/store/item",
 
+    resetEmailPath: "/auth/reset/email",
+
+    resetPassword: "/auth/reset/password",
+
 };
 
 export const jwt = {
@@ -67,6 +71,11 @@ export let apiEndpoints = {
     register: `${apiConfiguration.apiUrl}${apiConfiguration.registerPath}`,
     registerProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.registerPath}`,
 
+    resetEmail: `${apiConfiguration.apiUrl}${apiConfiguration.resetEmailPath}`,
+    resetEmailProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.resetEmailPath}`,
+
+    resetPassword: `${apiConfiguration.apiUrl}${apiConfiguration.resetPassword}`,
+    resetPasswordProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.resetPassword}`,
 
     // AnimalsType
     animalsType:`${apiConfiguration.apiUrl}${apiConfiguration.animalTypePath}`,

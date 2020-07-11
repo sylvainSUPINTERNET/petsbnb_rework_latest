@@ -11,6 +11,7 @@ import Equipments from "./Equipments/Equipments";
 import Public from "./Public/Publics";
 import Media from "./Media/Media";
 import Store from "./Store/Store";
+import Reset from "./Authentication/resetPassword";
 
 export default {
     authenticationLogin: login,
@@ -23,7 +24,8 @@ export default {
     Public: Public,
     Media: Media,
     Register:register,
-    Store: Store
+    Store: Store,
+    Reset: Reset
 }
 
 

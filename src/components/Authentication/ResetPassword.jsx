@@ -18,14 +18,15 @@ class ResetPassword extends React.Component {
             emailToResetDisableInput: false,
             isLoading: false,
 
-            notify: false
+            notify: false,
+            notifyError: false
 
         };
 
         this.submitReset = this.submitReset.bind(this);
     }
 
-    submitReset(ev){
+     submitReset(ev){
         ev.preventDefault();
 
         this.setState({
@@ -35,24 +36,38 @@ class ResetPassword extends React.Component {
         });
 
         if(this.validateEmail(this.state.email)) {
-            setTimeout(()=> {
+            setTimeout(async ()=> {
                 const {tok} = emailSystemConfiguration;
                 const emailLink = btoa(`${tok}_${this.state.email}`);
-                // TODO
-                // TODO -> active less security app sur le compte google
-                // TODO -> api rajouter la method envoit d'email
+                try {
+                    const {status} = await Api.Reset.emailVerify({emailVerify: this.state.email});
 
-
-                // ICI on envoit à cette route qui envoit l'email
-                // DANS l'email i lfaudra avoir un lien avec le password
-                this.setState({
-                    emailToResetDisableInput: false,
-                    emailToReset: true,
-                    isLoading: false,
-                    email: "",
-                    notify: true
-                });
-
+                    if(status === 200 || status === 204) {
+                        this.setState({
+                            emailToResetDisableInput: false,
+                            emailToReset: true,
+                            isLoading: false,
+                            email: "",
+                            notify: true
+                        });
+                    } else {
+                        this.setState({
+                            emailToResetDisableInput: false,
+                            emailToReset: true,
+                            isLoading: false,
+                            email: "",
+                            notifyError: true
+                        });
+                    }
+                } catch (e) {
+                    this.setState({
+                        emailToResetDisableInput: false,
+                        emailToReset: true,
+                        isLoading: false,
+                        email: "",
+                        notifyError: true
+                    });
+                }
             }, 1000)
         } else {
             this.setState({
@@ -122,6 +137,23 @@ class ResetPassword extends React.Component {
                             </Modal.Header>
 
                             <Modal.Body>Un message vous a été envoyé pour réinitialiser votre mot de passe</Modal.Body>
+                            <Modal.Footer>
+
+                            </Modal.Footer>
+                        </Modal>
+
+                        <Modal
+                            className="modal-container"
+                            show={this.state.notifyError}
+                            onHide={() => this.setState({
+                                notifyError: false
+                            })}>
+                            <Modal.Header closeButton>
+                                <Modal.Title><i
+                                    className="fa fa-exclamation-triangle text-danger"></i> Une erreur est survenue</Modal.Title>
+                            </Modal.Header>
+
+                            <Modal.Body>Veuillez réessayer plus tard</Modal.Body>
                             <Modal.Footer>
 
                             </Modal.Footer>
