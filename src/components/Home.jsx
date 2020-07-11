@@ -8,10 +8,12 @@ import Api from '../api/index';
 
 import Footer from '../components/Partials/Footer';
 
-import { withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import AnnouncesCard from "./Annonces/AnnouncesCard";
 import Menu from "./Menu/Menu";
 import header_dog from "../images/header/dog.png"
+import Sylvain from "../images/team/JOLY_Sylvain.png";
+import Thomas from "../images/team/MALLET_Thomas.png";
 
 class Home extends React.Component {
     constructor(props) {
@@ -76,19 +78,19 @@ class Home extends React.Component {
     }
 
 
-    async getLatestAnnounces () {
+    async getLatestAnnounces() {
         try {
             const res = await Api.Public.getLatestAnnounces();
 
-            if(res.status === 200) {
+            if (res.status === 200) {
                 this.setState({
-                    latestAnnounces : res.data.body.data
+                    latestAnnounces: res.data.body.data
                 });
             }
 
             return res
 
-        } catch( e ) {
+        } catch (e) {
             console.log(e);
             // TODO error display
             return e
@@ -115,22 +117,22 @@ class Home extends React.Component {
         this.setState({services: data})
     }
 
-    generateQueryParamsUrlForRedirection(){
+    generateQueryParamsUrlForRedirection() {
 
-        if(this.state.servicesChoiceId === "" && this.state.animalsTypeChoiceId === "" && this.state.departmentChoiceName === ""){
-           return "/annonces?page=0"; // only pagination and full list
+        if (this.state.servicesChoiceId === "" && this.state.animalsTypeChoiceId === "" && this.state.departmentChoiceName === "") {
+            return "/annonces?page=0"; // only pagination and full list
         } else {
             let url = "/annonces?page=0";
 
-            if(this.state.servicesChoiceId){
+            if (this.state.servicesChoiceId) {
                 url += `&services=${this.state.servicesChoiceId}`
             }
 
-            if(this.state.animalsTypeChoiceId){
+            if (this.state.animalsTypeChoiceId) {
                 url += `&animals=${this.state.animalsTypeChoiceId}`
             }
 
-            if(this.state.departmentChoiceName){
+            if (this.state.departmentChoiceName) {
                 url += `&department=${this.state.departmentChoiceName}`
             }
 
@@ -149,7 +151,6 @@ class Home extends React.Component {
             this.props.history.push(this.generateQueryParamsUrlForRedirection())
         }, this.state.timerRedirectionSearchBtn);
     }
-
 
 
     generateListAnimalsType() {
@@ -194,44 +195,52 @@ class Home extends React.Component {
         return (
             <div>
                 <Menu/>
-                <div class="mask d-flex justify-content-center align-items-center">
-                    <div class="container">
-                        <div class="row d-flex h-100 justify-content-center align-items-center wow fadeIn">
-                             <div class="col-md-6 mb-4 white-text text-center text-md-left">
-                                <h1 id="title_home" class="display-4 font-weight-bold">Pets BNB</h1>
+                <div className="mask d-flex justify-content-center align-items-center">
+                    <div className="container-fluid card" id="content">
+                        <div className="row d-flex h-100 justify-content-center align-items-center wow fadeIn">
+                            <div className="col-md-6 mb-4 white-text text-center text-md-left">
+                                <h1 id="title_home" className="display-4 font-weight-bold">Vous ne savez comment faire
+                                    garder vos compagnons ? PetsBNB !</h1>
                                 <hr class="hr-title-home"></hr>
                                 <p>
-                                <strong className="description">Plateforme qui met en relation les détenteurs d’animaux et petsitters. </strong>
+                                    <strong className="text-dark">PetsBNB à votre service !</strong>
                                 </p>
                                 <p class="mb-4 d-none d-md-block">
-                                <strong className="hook">Vous avez envie de garder un animal de compagnie ? Vous voulez faire garder votre animal de compagnie pour pouvoir partir en vacances ? 
-                                    Alors, inscrivez-vous de suite ! Ce site est fait pour vous <i class="far fa-smile-wink"></i>
-                                </strong>
+                                    <strong className="text-dark">Trouvez le petsitter qui vous correspond, selon vos
+                                        propres critères <i class="far fa-smile-wink"></i>
+                                    </strong>
                                 </p>
-                                <a href="/explication-du-site" id="button_site" class="btn waves-effect waves-light">Explication de notre site
-                                <i class="fas fa-exclamation-circle ml-2"></i>
+                                {/*
+                                <a href="/explication-du-site" id="button_site" class="btn waves-effect waves-light">Explication
+                                    de notre site
+                                    <i class="fas fa-exclamation-circle ml-2"></i>
                                 </a>
-                                <a  href="/equipes" id="button_team" class="btn waves-effect waves-light">Notre équipe
+                                <a href="/equipes" id="button_team" class="btn waves-effect waves-light">Notre équipe
                                     <i class="fas fa-users ml-2"></i>
                                 </a>
-                            </div>     
-                            <div class="col-md-6 col-xl-5 mb-4">
-                                <img src={header_dog} alt="header dog" class="img-fluid"></img>
+                                */}
+
                             </div>
-                         </div>
+                            <div class="col-md-6 col-xl-5 mb-4 mt-4">
+                                <img
+                                    src="https://www.thesprucepets.com/thmb/1HQxXRVRCA2_CHJaZAlTk0Ype3g=/2304x1728/filters:fill(auto,1)/close-up-of-cat-lying-on-floor-at-home-908763830-1d61bee6961b45ee8a55bdfa5da1ebb3.jpg"
+                                    alt="header dog" class="img-fluid"></img>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <hr className="hr_home"></hr>
-
                 <div className="container py-3">
                     <div>
-                    <p id="search_announce" class="text-center"><i class="fa fa-arrow-right blue-text"></i> Rechercher une annonce</p>
-
                         <div className="card">
+                            <div className="card-title mt-4">
+                                <p id="search_announce" className="text-center"><i
+                                    className="fa fa-search blue-text"></i> Rechercher une annonce</p>
+                            </div>
                             <div className="card-body">
-                                <p className="justify-content-center text-center m-3 p-3 font-weight-lighter">Découvrez
-                                    toutes les annonces près de chez vous pour votre familier !</p>
+                                <p className="justify-content-center text-center m-1 mb-4 p-2 font-weight-lighter">Trouvez votre petsitter selon vos critères !</p>
+                                <div className="text-center mt-4">
+                                    <a href="#works">Comment ça marche ?</a>
+                                </div>
                                 <hr className="m-3 p-3"/>
                                 <Form>
                                     <Row>
@@ -373,28 +382,153 @@ class Home extends React.Component {
                                         </button>
                                     </div>
                                 </div>
+
+                                <div className="mt-5">
+                                    <p id="last_announce" className="text-center"><i className="fa fa-arrow-right blue-text"></i> Annonces récentes</p>
+
+                                    <div className="container py-3">
+                                        <div className="row">
+                                            {
+                                                this.state.latestAnnounces.map(announce => {
+                                                    return <div className="col mt-2">
+                                                        <AnnouncesCard announce={announce} modifPictureBtn={false}/>
+                                                    </div>
+                                                })
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
-
-
                         </div>
-
                     </div>
 
                 </div>
 
-                <hr className="hr_home"></hr>
+                <div className="mask d-flex justify-content-center align-items-center mt-5">
+                    <div className="container-fluid card">
+                        <div className="row">
+                            <div className="col-md-12 m-3" id="works">
+                                <p className="text-center"
+                                   style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>Comment ça marche ?</p>
 
-                <p id="last_announce" class="text-center"><i class="fa fa-arrow-right blue-text"></i> Les dernières annonces ...</p>
-
-                <div className="container py-3">
-                    <div className="row">
-                        {
-                            this.state.latestAnnounces.map( announce => {
-                                return <div className="col mt-2">
-                                    <AnnouncesCard announce={announce} modifPictureBtn={false}/>
+                                <p className=" container text-dark text-justify">PetsBNB assure la relation entre les petsitters et
+                                    les personnes à la recherche de petsitters. Nous nous engageons à placer le bien
+                                    être animal en première position, et souhaitons ainsi laisser les petsitter choisir
+                                    leurs tarifs, sans aucune commission de notre part !</p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-9">
+                                <div className="container">
+                                    <p style={{fontSize: '25px'}} className="m-5">Je recherche un petsitter</p>
+                                    <div className="row ml-1">
+                                        <div className="col-md-3 m-4">
+                                            <img className="rounded float-left img-fluid" style={{width: '120px'}}
+                                                 src="https://image.flaticon.com/icons/svg/3043/3043946.svg"/>
+                                            <p> Chercher votre annonce </p>
+                                        </div>
+                                        <div className="col-md-3 m-4">
+                                            <img className="rounded float-left img-fluid" style={{width: '120px'}}
+                                                 src="https://image.flaticon.com/icons/svg/3078/3078971.svg"/>
+                                            <p>Réserver votre créneaux</p>
+                                        </div>
+                                        <div className="col-md-3 m-4">
+                                            <img className="rounded float-left img-fluid" style={{width: '170px'}}
+                                                 src="https://imageog.flaticon.com/icons/png/512/1019/1019607.png?size=1200x630f&pad=10,10,10,10&ext=png"/>
+                                            <p>Payer</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            })
-                        }
+                                <hr></hr>
+                                <div className="container mt-4">
+                                    <p style={{fontSize: '25px'}} className="m-5">Je veux être petsitter</p>
+                                    <div className="row ml-1">
+                                        <div className="col-md-3 m-4">
+                                            <img className="rounded float-left img-fluid" style={{width: '120px'}}
+                                                 src="https://image.flaticon.com/icons/svg/3089/3089692.svg"/>
+                                            <p> Déposer votre annonce </p>
+                                        </div>
+                                        <div className="col-md-3 m-4">
+                                            <img className="rounded float-left img-fluid" style={{width: '120px'}}
+                                                 src="https://image.flaticon.com/icons/svg/2720/2720601.svg"/>
+                                            <p>Je sélectionne mes demandes</p>
+                                        </div>
+                                        <div className="col-md-3 m-4">
+                                            <img className="rounded float-left img-fluid" style={{width: '120px'}}
+                                                 src="https://image.flaticon.com/icons/svg/2132/2132246.svg"/>
+                                            <p>Aucune commission</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-3 mb-3">
+                                <div className="container">
+                                    <p style={{fontSize: '25px'}} className="m-5 text-center">Espace communautaire<br/> 100% gratuit</p>
+                                    <img
+                                        src="https://image.flaticon.com/icons/svg/2472/2472017.svg"
+                                        alt="header dog" className="img-fluid"></img>
+                                    <p className="mt-3 text-dark text-justify">Consultez, proposer des annonces en temps réel !</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div className="card m-4">
+                    <p className="text-center mt-4"
+                       style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>Equipe de passionnés</p>
+                    <div className="row d-flex justify-content-center text-center">
+
+                        <div className="col-lg-4 col-md-6 mb-4  m-5">
+
+                            <div className="avatar mx-auto">
+                                <img src={Sylvain} className="team rounded z-depth-1-half"
+                                     alt="Sample avatar"/>
+                            </div>
+
+                            <h4 className="font-weight-bold dark-grey-text my-4">Sylvain
+                                Joly</h4>
+                            <h6 className="text-uppercase grey-text mb-3"><strong>Co-fondateur</strong></h6>
+
+                            <a type="button"
+                               href="https://www.linkedin.com/in/sylvain-joly-3a7152aa/"
+                               className="btn-floating btn-sm mx-1 mb-0 btn-dribbble">
+                                <i className="fab fa-linkedin-in "></i>
+                            </a>
+
+                            <a type="button" href="https://github.com/sylvainSUPINTERNET"
+                               className="btn-floating btn-sm mx-1 mb-0 btn-tw">
+                                <i className="fab fa-github-alt"></i>
+                            </a>
+
+                        </div>
+
+                        <div className="col-lg-4 col-md-6 mb-4 m-5">
+                            <div className="avatar mx-auto">
+                                <img src={Thomas} className="team rounded z-depth-1-half"
+                                     alt="Sample avatar"/>
+                            </div>
+
+                            <h4 className="font-weight-bold dark-grey-text my-4">Thomas
+                                Mallet</h4>
+                            <h6 className="text-uppercase grey-text mb-3"><strong>Fondateur</strong></h6>
+
+                            <a type="button"
+                               href="https://fr.linkedin.com/in/thomas-mallet-497998121"
+                               className="btn-floating btn-sm mx-1 mb-0 btn-tw">
+                                <i className="fab fa-linkedin-in "></i>
+                            </a>
+
+                            <a type="button" href="https://github.com/kivabien"
+                               className="btn-floating btn-sm mx-1 mb-0 btn-pin">
+                                <i className="fab fa-github-alt"></i>
+                            </a>
+
+                        </div>
+
                     </div>
                 </div>
 
