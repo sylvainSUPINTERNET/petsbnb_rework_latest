@@ -162,7 +162,7 @@ class RegisterForm extends React.Component {
                                 </div>
 
                                 <div className="ml-5 mr-5 p5 mt-4">
-                                    <label htmlFor="validationDefault05" className="label_register">Password*</label>
+                                    <label htmlFor="validationDefault05" className="label_register">Mot de passe*</label>
                                     <input type="password"
                                            className={this.state.passwordIsValid === true ? 'form-control' : 'form-control is-invalid'}
                                            id="" placeholder="Mot de passe"
