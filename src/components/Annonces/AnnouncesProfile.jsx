@@ -16,6 +16,7 @@ import {StripeProvider, CardCVCElement} from "react-stripe-elements";
 import StoreCheckout from "../Stripe/StoreCheckout";
 import * as axios from "axios";
 import Menu from "../Menu/Menu";
+import moment from "moment";
 
 
 class AnnouncesProfile extends React.Component {
@@ -441,7 +442,7 @@ class AnnouncesProfile extends React.Component {
                     spinner
                     text={getLoadingText()}>
 
-                    <div className="container darken-4 rounded-1 p-4 mt-2">
+                    <div className="container-fluid darken-4 rounded-1 p-4 mt-2">
                         <div className="card-header blue darken-4 m-0 p-0">
                             <div className="text-center mt-2 p-1 white-text">
                                 <h3>{this.state.announce.title}</h3>
@@ -549,14 +550,53 @@ class AnnouncesProfile extends React.Component {
                                                     </button>
                                                     <hr/>
                                                     <div className={this.state.childBookingBody !== "" ? 'card' : 'd-none'}>
-                                                        <div className="card-body">
-                                                            <p className="card-title">Prestation</p>
-                                                            <p className="card-text">Début
-                                                                : {this.state.childBookingBody.bookingStartAt}</p>
-                                                            <p className="card-text">Fini
-                                                                : {this.state.childBookingBody.bookingEndAt}</p>
-                                                            <p className="card-text">Total estimé
-                                                                : {this.state.totalPrice} {this.state.currency}</p>
+
+                                                        <div className="row mt-1">
+                                                            <div className="col-md-12">
+                                                                <p>Préstation</p>
+                                                                <ul className="stepper stepper-vertical">
+
+                                                                    <li className="completed">
+                                                                        <a>
+                                                                            <img
+                                                                                src="https://image.flaticon.com/icons/svg/59/59252.svg"
+                                                                                className="img-fluid mr-2"
+                                                                                style={{width: '20px'}}/> <span>
+
+                                                                            {moment(this.state.childBookingBody.bookingStartAt).format("DD-MM-YYYY HH:MM")} (début)
+
+                                                                        </span>
+                                                                        </a>
+                                                                    </li>
+
+
+                                                                    <li>
+                                                                        <a>
+                                                                            <img
+                                                                                src="https://image.flaticon.com/icons/svg/66/66403.svg"
+                                                                                className="img-fluid mr-2"
+                                                                                style={{width: '20px'}}/>
+                                                                            <span>
+                                                                                {moment(this.state.childBookingBody.bookingEndAt).format("DD-MM-YYYY HH:MM")} (fin)
+                                                                            </span>
+
+                                                                        </a>
+                                                                    </li>
+
+                                                                </ul>
+
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="text-center mb-3">
+                                                            <img
+                                                                src="https://image.flaticon.com/icons/svg/2867/2867617.svg"
+                                                                className="img-fluid mr-2" style={{width: '20px'}}/>
+                                                            Estimation gain : {this.state.totalPrice}  €
+                                                        </div>
+
+                                                        <div className="m-3">
                                                             <button className="btn btn-primary"
                                                                     disabled={this.state.isDisabledBtnDemande}
                                                                     onClick={() => this.makeDemande()}>Faire la demande
@@ -654,7 +694,7 @@ class AnnouncesProfile extends React.Component {
                                                 src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png"
                                                 alt="image annonce"
                                                 className={this.state.announce.picture === null && this.state.picturePreview === null ? 'card-img-top' : 'd-none'}/>
-                                            <a href="#!">
+                                            <a>
                                                 <div className="mask rgba-white-slight"></div>
                                             </a>
                                         </div>
