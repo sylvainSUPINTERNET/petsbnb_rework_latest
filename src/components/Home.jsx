@@ -199,7 +199,7 @@ class Home extends React.Component {
                     <div className="container-fluid card" id="content">
                         <div className="row d-flex h-100 justify-content-center align-items-center wow fadeIn">
                             <div className="col-md-6 mb-4 white-text text-center text-md-left">
-                                <h1 id="title_home" className="display-4 font-weight-bold">Vous ne savez comment faire
+                                <h1 id="title_home" className="display-4 font-weight-bold mt-4">Vous ne savez comment faire
                                     garder vos compagnons ? PetsBNB !</h1>
                                 <hr class="hr-title-home"></hr>
                                 <p>
@@ -469,7 +469,7 @@ class Home extends React.Component {
                                     <img
                                         src="https://image.flaticon.com/icons/svg/2472/2472017.svg"
                                         alt="header dog" className="img-fluid"></img>
-                                    <p className="mt-3 text-dark text-justify">Consultez, proposer des annonces en temps réel !</p>
+                                    <p className="mt-3 text-dark text-justify">Crée votre compte, consultez, proposer des annonces en temps réel !</p>
                                 </div>
                             </div>
 
