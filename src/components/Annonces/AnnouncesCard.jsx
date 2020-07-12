@@ -40,11 +40,11 @@ class AnnouncesCard extends React.Component {
 
                         <div className="text-center mt-2">
                             <span data-title="Tarif par heure" className="badge badge-pill badge-info ml-2"><i
-                                className="fas fa-clock"></i> {this.props.announce.farePerHour}{displayCurrency(this.props.announce.currency)}</span>
+                                className="fas fa-clock"></i> {this.props.announce.farePerHour} €</span>
                             <span data-title="Tarif journalier" className="badge badge-pill badge-info ml-2"><i
-                                className="fas fa-calendar-day"></i> {this.props.announce.farePerDay}{displayCurrency(this.props.announce.currency)}</span>
+                                className="fas fa-calendar-day"></i> {this.props.announce.farePerDay} €</span>
                             <span data-title="Tarif mensuel" className="badge badge-pill badge-info ml-2"><i
-                                className="fa fa-calendar-alt"></i> {this.props.announce.farePerMonth}{displayCurrency(this.props.announce.currency)}</span>
+                                className="fa fa-calendar-alt"></i> {this.props.announce.farePerMonth} €</span>
                         </div>
                     </div>
                     <div className="card-body card-body-cascade text-center">
