@@ -548,7 +548,7 @@ class Home extends React.Component {
                                 <p className="text-center mt-4" style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>
                                     <img src="https://image.flaticon.com/icons/svg/2372/2372804.svg" style={{width: '50px'}} className="img-fluid mr-2"></img>
                                     Le meilleur pour vos compagnons</p>
-                                <p className="text-dark text-center mt-3">PetsBNB met à votre disposition une sélection d'équipement qui sera ravir au mieux vos compagnons à quatre pattes</p>
+                                <p className="text-dark text-center mt-3">PetsBNB met à votre disposition <a href="/store">une sélection d'équipement</a> qui sera ravir au mieux vos compagnons à quatre pattes</p>
 
                                 <div className="row mt-4 mb-4">
                                     <div className="col-md-6 col-sm-6 mt-4 text-center">
