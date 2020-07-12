@@ -124,7 +124,7 @@ class RegisterForm extends React.Component {
         return (
             <div>
                 <Menu/>
-                <div className="container py-3">
+                <div className="container-fluid py-3">
                     <div className="card">              
                         <div className="card-body">
                             <h5 className="title_form">

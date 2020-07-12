@@ -64,7 +64,9 @@ class AnnouncesProfile extends React.Component {
 
             // if already one demande from logged user on this announce
             confirmed : null,
-            active: null
+            active: null,
+
+            isVisitor: true
         };
 
         this.handleChangeAnimalTypeChoiceId = this.handleChangeAnimalTypeChoiceId.bind(this);
@@ -82,19 +84,21 @@ class AnnouncesProfile extends React.Component {
                 .getMe()
                 .then(res => {
                     this.setState({
-                        userId: res.data.userId
+                        userId: res.data.userId,
+                        isVisitor: false
                     });
                 })
                 .catch(e => {
-                    alert(e)
+                   //console.log("ERRORRRR", e);
+                    this.setState({
+                        isVisitor: true
+                    })
                 })
         } else {
             this.setState({
                 isAdminAnnounce: false
             })
         }
-
-        console.log("Stripe pK : ", stripeConfig.PK);
 
         // url
         const {uuid} = this.props.match.params;
@@ -306,12 +310,9 @@ class AnnouncesProfile extends React.Component {
     async getUserBookingForTheAnnounceByUuid(announceUuid){
         try {
             const {data, status} = await Api.Bookings.getUserBookingsForAnnounce(announceUuid);
+            console.log("ERRRRRKRKRORKRIRK", status);
             if(status === 200) {
-                console.log("getUserBookingForTheAnnounceByUuid");
-                console.log(data.data);
                 if(data.data.length > 0) {
-                    console.log("set is already demande")
-                    console.log(data.data);
                     this.setState({
                         isAlreadyDemande: true,
                         confirmed: data.data[0].confirmed,
@@ -323,7 +324,8 @@ class AnnouncesProfile extends React.Component {
 
             }
         } catch (e) {
-            alert(e)
+
+            console.log("errrrrrrrror",e)
             // TODO
         }
     }
@@ -493,7 +495,7 @@ class AnnouncesProfile extends React.Component {
                                                 <p className="alert alert-success text-center">Déjà une demande en cours.<br/><a href="/compte"><span className="font-weight-bold">Voir mes réservations</span></a></p>
                                             </div>
                                             */}
-                                            <div className="">
+                                            <div className={this.state.isVisitor === true ? 'd-none': ''}>
                                                 <div className="row m-3">
                                                     <div className="col-md-6">
                                                         <h5>Service</h5>
@@ -537,18 +539,27 @@ class AnnouncesProfile extends React.Component {
                                                 <div
                                                     className={this.state.bookingBtnDisabled ? "small red-text" : "small red-text invisible"}
                                                     role="alert">
-                                                    <p className="text-center">
-                                                        Choisissez votre type d'animal et le service souhaité
-                                                    </p>
+                                                    <div className={this.state.isVisitor === true ? 'd-none': ''}>
+                                                        <p className="text-center">
+                                                            Choisissez votre type d'animal et le service souhaité
+                                                        </p>
+                                                    </div>
                                                 </div>
 
                                                 <div className="text-center">
-                                                    <button type="button" className="btn btn-info" data-toggle="modal"
-                                                            data-target="#modalBooking"
-                                                            disabled={this.state.bookingBtnDisabled}>
-                                                        Réserver votre créneau
-                                                    </button>
-                                                    <hr/>
+                                                    <div className={this.state.isVisitor === true ? "d-none": ""}>
+                                                        <button type="button" className="btn btn-info" data-toggle="modal"
+                                                                data-target="#modalBooking"
+                                                                disabled={this.state.bookingBtnDisabled}>
+                                                            Réserver votre créneau
+                                                        </button>
+                                                        <hr/>
+                                                    </div>
+
+                                                    <div className={this.state.isVisitor === true ? "": "d-none"}>
+                                                        <button className="btn btn-md btn-primary" onClick={ () => {this.props.history.push('/auth/login')}}><i className="fa fa-lock"></i> Connectez-vous pour réserver</button>
+                                                    </div>
+
                                                     <div className={this.state.childBookingBody !== "" ? 'card' : 'd-none'}>
 
                                                         <div className="row mt-1">

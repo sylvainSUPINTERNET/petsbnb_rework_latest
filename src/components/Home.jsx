@@ -229,7 +229,7 @@ class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="container py-3">
+                <div className="container-fluid py-3">
                     <div>
                         <div className="card">
                             <div className="card-title mt-4">
@@ -472,10 +472,83 @@ class Home extends React.Component {
                                     <p className="mt-3 text-dark text-justify">Crée votre compte, consultez, proposer des annonces en temps réel !</p>
                                 </div>
                             </div>
-
                         </div>
+
+                        <hr></hr>
+                            <div className="mb-4">
+                                <p className="text-center mt-4" style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>
+                                    <img src="https://image.flaticon.com/icons/svg/2041/2041020.svg" style={{width: '50px'}} className="img-fluid"></img>
+                                    Besoin d'un boost ?</p>
+                                <p className="text-dark text-center mt-3">Même si nos services restent gratuit, nous vous proposons un boost de notoriété grâce à notre tier payant !</p>
+
+                                <section className="pricing py-5">
+                                    <div className="container">
+                                        <div className="row">
+                                            <div className="col-lg-6">
+                                                <div className="card mb-5 mb-lg-0">
+                                                    <div className="card-body">
+                                                        <h5 className="card-title text-muted text-uppercase text-center">Free</h5>
+                                                        <hr/>
+                                                            <ul className="fa-ul">
+                                                                <li><span className="fa-li"><i
+                                                                    className="fas fa-check text-success"></i></span> Compte
+                                                                </li>
+                                                                <li><span className="fa-li"><i
+                                                                    className="fas fa-check text-success"></i></span> Déposer d'annonce illimité
+                                                                </li>
+                                                                <li><span className="fa-li"><i
+                                                                    className="fas fa-check text-success"></i></span> Consultez des annonces
+                                                                </li>
+                                                                <li><span className="fa-li"><i
+                                                                    className="fas fa-check text-success"></i></span> Services communautaire
+                                                                </li>
+                                                                <li className="text-muted"><span className="fa-li"><i
+                                                                    className="fas fa-times text-danger"></i></span> Annonces prioritaires
+                                                                </li>
+                                                                <li className="text-muted"><span className="fa-li"><i
+                                                                    className="fas fa-times text-danger"></i></span> Plusieurs annonces activent
+                                                                </li>
+                                                            </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="col-lg-6">
+                                                <div className="card mb-5 mb-lg-0">
+                                                    <div className="card-body">
+                                                        <h5 className="card-title text-muted text-uppercase text-center">Plus</h5>
+                                                        <hr/>
+                                                        <ul className="fa-ul">
+                                                            <li><span className="fa-li"><i
+                                                                className="fas fa-check text-success"></i></span> Compte
+                                                            </li>
+                                                            <li><span className="fa-li"><i
+                                                                className="fas fa-check text-success"></i></span> Déposer d'annonce illimité
+                                                            </li>
+                                                            <li><span className="fa-li"><i
+                                                                className="fas fa-check text-success"></i></span> Consultez des annonces
+                                                            </li>
+                                                            <li><span className="fa-li"><i
+                                                                className="fas fa-check text-success"></i></span> Services communautaire
+                                                            </li>
+                                                            <li><span className="fa-li"><i
+                                                                className="fas fa-check text-success"></i></span> Annonces prioritaires
+                                                            </li>
+                                                            <li><span className="fa-li"><i
+                                                                className="fas fa-check text-success"></i></span> Plusieurs annonces activent (2.99 €)
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+
                     </div>
+
                 </div>
+
 
                 <div className="card m-4">
                     <p className="text-center mt-4"

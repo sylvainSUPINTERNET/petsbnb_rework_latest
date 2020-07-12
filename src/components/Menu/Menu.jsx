@@ -48,6 +48,9 @@ class Menu extends React.Component {
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/">Accueil</Link>
                                 </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/annonces?page=0">Rechercher</Link>
+                                </li>
                                 <li className={this.state.isLogged === true ? "nav-item": "d-none"}>
                                     <Link className="nav-link" to="/annonces/creation">Déposer une annonces</Link>
                                 </li>                  
