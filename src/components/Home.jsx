@@ -543,7 +543,38 @@ class Home extends React.Component {
                                         </div>
                                     </div>
                                 </section>
+                                <hr></hr>
+
+                                <p className="text-center mt-4" style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>
+                                    <img src="https://image.flaticon.com/icons/svg/2372/2372804.svg" style={{width: '50px'}} className="img-fluid mr-2"></img>
+                                    Le meilleur pour vos compagnons</p>
+                                <p className="text-dark text-center mt-3">PetsBNB met à votre disposition une sélection d'équipement qui sera ravir au mieux vos compagnons à quatre pattes</p>
+
+                                <div className="row mt-4 mb-4">
+                                    <div className="col-md-6 col-sm-6 mt-4 text-center">
+                                        <img src="https://cdn.allwallpaper.in/wallpapers/1920x1200/4770/animals-dogs-glasses-pets-sunglasses-1920x1200-wallpaper.jpg" style={{width: '800px'}}  className="mr-2 rounded-top rounded-bottom img-fluid"></img>
+                                    </div>
+                                    <div className="col-md-6 col-sm-6 mt-4 text-center">
+                                        <p className="text-dark" style={{fontSize: '45px'}}>
+                                            Tester
+                                            <img src="https://image.flaticon.com/icons/svg/3004/3004112.svg" style={{width: '100px'}} className="img-fluid ml-4"/>
+                                        </p>
+                                        <p className="text-dark" style={{fontSize: '45px'}}>
+                                            Approuvé
+                                            <img src="https://image.flaticon.com/icons/svg/3062/3062354.svg" style={{width: '100px'}} className="img-fluid ml-4"/>
+                                        </p>
+                                        <p className="text-dark mt-2" style={{fontSize: '45px'}}>
+                                            Sécurisé
+                                            <img src="https://image.flaticon.com/icons/svg/3182/3182157.svg" style={{width: '100px'}} className="img-fluid ml-4"/>
+                                        </p>
+                                        <p className="text-dark mt-2" style={{fontSize: '45px'}}>
+                                            Partenaire
+                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1600px-Amazon_logo.svg.png  " style={{width: '100px'}} className="img-fluid ml-4"/>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
+
 
                     </div>
 
@@ -552,7 +583,7 @@ class Home extends React.Component {
 
                 <div className="card m-4">
                     <p className="text-center mt-4"
-                       style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>Equipe de passionnés</p>
+                       style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>On vous accompagne</p>
                     <div className="row d-flex justify-content-center text-center">
 
                         <div className="col-lg-4 col-md-6 mb-4  m-5">
@@ -565,7 +596,11 @@ class Home extends React.Component {
                             <h4 className="font-weight-bold dark-grey-text my-4">Sylvain
                                 Joly</h4>
                             <h6 className="text-uppercase grey-text mb-3"><strong>Co-fondateur</strong></h6>
-
+                            <blockquote className="blockquote">
+                                <p className="mb-0">
+                                    <pre><code className="shell">$ sudo rm -rf ./</code></pre></p>
+                                <footer className="blockquote-footer">The random software engineer, <cite title="Source Title"> localhost</cite></footer>
+                            </blockquote>
                             <a type="button"
                                href="https://www.linkedin.com/in/sylvain-joly-3a7152aa/"
                                className="btn-floating btn-sm mx-1 mb-0 btn-dribbble">
@@ -577,6 +612,11 @@ class Home extends React.Component {
                                 <i className="fab fa-github-alt"></i>
                             </a>
 
+
+                            <a type="button" href="http://sylvain.alwaysdata.net/"
+                               className="btn-floating btn-sm mx-1 mb-0 btn-tw">
+                                <i className="fa fa-globe"></i>
+                            </a>
                         </div>
 
                         <div className="col-lg-4 col-md-6 mb-4 m-5">
