@@ -35,7 +35,6 @@ import MyDemande from "./components/Account/MyDemande";
 import Community from "./components/Community/Community";
 import RegisterForm from "./components/Authentication/RegisterForm";
 import Team from "./components/About/Team"
-import Partners from "./components/About/Partners"
 import Credit from "./components/Practical Information/Credit"
 import FAQ from "./components/Practical Information/FAQ"
 import TermsOfService from "./components/Practical Information/TermsOfService"
@@ -87,7 +86,6 @@ function App() {
                     <Route exact path="/register" component={() => <RegisterForm/>}/>
                     <Route exact path="/equipes" component={() => <Team/>}/>
                     <Route exact path="/credits" component={() => <Credit/>}/>
-                    <Route exact path="/partenaires" component={() => <Partners/>}/>
                     <Route exact path="/faq" component={() => <FAQ/>}/>
                     <Route exact path="/explication-du-site" component={() => <PetsBNB/>}/>
                     <Route exact path="/conditions-generales-utilisation" component={() => <TermsOfService/>}/>
