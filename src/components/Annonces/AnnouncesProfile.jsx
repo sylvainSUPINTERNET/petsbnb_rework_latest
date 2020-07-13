@@ -461,11 +461,11 @@ class AnnouncesProfile extends React.Component {
                                     <div className="col-md-6">
                                         <div className="">
                                             <span data-title="Tarif par heure" className="badge badge-info"><i
-                                                className="fas fa-clock"></i> {this.state.announce.farePerHour}{displayCurrency(this.state.announce.currency)}</span>
+                                                className="fas fa-clock"></i> {this.state.announce.farePerHour} €</span>
                                             <span data-title="Tarif journalier" className="badge badge-info ml-2"><i
-                                                className="fas fa-calendar-day"></i> {this.state.announce.farePerDay}{displayCurrency(this.state.announce.currency)}</span>
+                                                className="fas fa-calendar-day"></i> {this.state.announce.farePerDay} €</span>
                                             <span data-title="Tarif mensuel" className="badge badge-info ml-2"><i
-                                                className="fa fa-calendar-alt"></i> {this.state.announce.farePerMonth}{displayCurrency(this.state.announce.currency)}</span>
+                                                className="fa fa-calendar-alt"></i> {this.state.announce.farePerMonth} €</span>
                                         </div>
                                         <p className="mt-4">{this.state.announce.description}</p>
 
