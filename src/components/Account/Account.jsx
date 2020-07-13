@@ -96,7 +96,7 @@ class Account extends React.Component {
                         <div className="col-md-6 mb-4">
                             <h4 className="card-header primary-color-dark white-text text-center">Mes annonces</h4>
                             <div className="">
-                                <div className="card-body">
+                                <div className="mt-3">
                                     {/*
                                   <div className={this.state.userAnnounces.length === 0 ? "d-none" : ""}>
 

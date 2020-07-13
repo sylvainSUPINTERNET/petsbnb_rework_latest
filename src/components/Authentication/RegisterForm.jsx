@@ -104,7 +104,11 @@ class RegisterForm extends React.Component {
                         }
                     );
                     if (response.status === 200 || response.status === 201) {
-                        this.props.history.push(`/auth/login`);
+                        this.props.history.push({
+                            pathname: '/auth/login',
+                            search: '',
+                            state: { comeFrom: 'newRegister', email : this.state.email, username: this.state.username }
+                        })
                     }
                 } catch (e) {
                     this.setState({

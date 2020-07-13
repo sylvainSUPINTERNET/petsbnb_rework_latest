@@ -23,12 +23,25 @@ class LoginForm extends React.Component {
             disableInputs: false,
             isLoading: false,
             showDeleteModal: false,
-            userNotFound: false
+            userNotFound: false,
+            comeFrom: '',
+            comeFromUsername: '',
+            comeFromEmail : ''
         };
 
         // can use this into the method
         this.onSubmit = this.onSubmit.bind(this);
 
+    }
+
+    componentDidMount() {
+        if(typeof this.props.history.location.state !== 'undefined') {
+            this.setState({
+                comeFrom: this.props.history.location.state.comeFrom, // newRegister
+                comeFromUsername: this.props.history.location.state.username,
+                comeFromEmail: this.props.history.location.state.email
+            })
+        }
     }
 
     validateEmail(email) {
@@ -105,7 +118,6 @@ class LoginForm extends React.Component {
             <div>
                 <Menu/>
                 <div className="container-fluid py-3">
-
                     <div className="card">
                         <div className="card-body">
                             <h5 className="title_form">
@@ -113,6 +125,7 @@ class LoginForm extends React.Component {
                             </h5>
                             <hr className="hr_title"></hr>
                             <form onSubmit={this.onSubmit}>
+                                <p className={this.state.comeFrom === 'newRegister' ? 'text-center text-dark':'d-none'} style={{fontSize: '24px'}} >Bievenue {this.state.comeFromUsername} !</p>
                                 <div className="ml-5 mr-5 p5 mt-4">
                                     <label htmlFor="validationDefault05" className="label_login">Email*</label>
                                     <input type="text" className={this.state.emailIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder="Email"
