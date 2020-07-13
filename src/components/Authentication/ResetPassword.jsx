@@ -94,7 +94,7 @@ class ResetPassword extends React.Component {
                     <div className="card">
                         <div className="card-body">
                             <h5 className="title_form">
-                                Réintialiser votre mot de passe
+                                Réinitialiser votre mot de passe
                             </h5>
                             <hr className="hr_title"></hr>
                             <form onSubmit={this.submitReset}>
@@ -102,7 +102,7 @@ class ResetPassword extends React.Component {
                                     <label htmlFor="validationDefault05" className="label_register">Email de récupération*</label>
                                     <input type="text"
                                            className={this.state.emailToReset === true ? 'form-control' : 'form-control is-invalid'}
-                                           id="" placeholder=""
+                                           id="" placeholder="Email"
                                            required disabled={this.state.emailToResetDisableInput}
                                            value={this.state.email}
                                            onChange={(ev) => {
@@ -113,7 +113,7 @@ class ResetPassword extends React.Component {
                                     <div className="invalid-feedback">Email invalide</div>
                                 </div>
                                 <div className="text-center m-4">
-                                    <button className="btn btn-md btn-primary" disabled={this.state.emailToResetDisableInput}>Réinitialiser
+                                    <button className="mt-3 btn btn-primary btn-lg waves-effect waves-light" disabled={this.state.emailToResetDisableInput}>Réinitialiser
                                         <div
                                             className={this.state.isLoading === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
                                             role="status">

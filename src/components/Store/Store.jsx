@@ -83,14 +83,11 @@ class Store extends React.Component {
                 try {
                     const response = await Api.Store.getItems(0, this.state.categoryDefaultId);
                     if (response.status === 200 || response.status === 204) {
-                        console.log(response);
                         this.setState({
                             items: response.data.data.content,
                             numberOfElements: response.data.data.pageable.pageSize,
                             totalPages: response.data.data.totalPages,
                         });
-                        console.log("ITEMS", this.state.items);
-                        console.log("NOF", this.state.numberOfElements)
 
                     } else {
                         alert("Une erreur est survenue");
@@ -196,8 +193,6 @@ class Store extends React.Component {
             })
         }
 
-
-        console.log("submit");
     }
 
 

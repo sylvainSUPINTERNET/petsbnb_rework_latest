@@ -193,9 +193,6 @@ class AnnoncesCreate extends React.Component {
             body: body
         });
 
-        console.log("on submit");
-        console.log(this.state.body);
-
         const {data, status} = await Api.Announces.post(this.state.body);
         if(status === 200) {
             this.props.history.push(`/annonce/${data.uuid}`);

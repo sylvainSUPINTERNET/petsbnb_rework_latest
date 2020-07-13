@@ -14,7 +14,6 @@ class Menu extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.location);
         if(this.props.location.pathname === '/') {
             this.setState({
                 displayImage: true
@@ -24,7 +23,6 @@ class Menu extends React.Component {
                 displayImage: false
             })
         }
-        console.log(isUserAuthenticated());
         this.setState({
             isLogged: isUserAuthenticated()
         })

@@ -9,16 +9,16 @@ const data = {
     title: " ",
     rows: [
       {
-        title: " Comment supprimer mon compte ? ",
-        content: "Pour cela, il suffit d'envoyer un email à notre adresse <a href=\"mailto:petsbnb45@gmail.com\">petsbnb45@gmail.com</a> en nous transmettant votre nom d'utilisateur et votre adresse mail."
+        title: "J’ai oublié mon mot de passe. Comment faire pour accéder à mon compte ?",
+        content: "Si vous avez oublié votre mot de passe, vous pouvez le réinitialiser en cliquant sur « Mot de passe oublié ». Un mail vous sera alors envoyé pour créer un nouveau mot de passe et ré-accéder à votre compte."
       },
       {
         title: "Comment contacter PetsBNB ?",
         content: " <p>Vous avez besoin de conseil ? Vous avez une suggestion à nous transmettre ? Une question à poser concernant le fonctionnement du site ?</p> <p>Pour cela rien de plus simple, vous pouvez nous contacter par mail à l'adresse <a href=\"mailto:petsbnb45@gmail.com\">petsbnb45@gmail.com</a></p> <p>Nous sommes aussi disponibles sur nos réseaux sociaux."
       },
       {
-        title: "Quel est l'intérêt d'un compte prenium ?",
-        content: "<p>L'offre payante permet de poster plusieurs annonces et donc de bénéficier d'une visibilité supérieure aux personnes bénéficiant de l'offre gratuite.</li></ul><p>"
+        title: "Quel est l'intérêt d'un compte premium ?",
+        content: "<p>L'offre premium permet de poster plusieurs annonces. De plus, les annonces payantes sont prioritaires par rapport aux annonces gratuites. Avec cette offre, vous bénéficiez d'une visibilité supérieure aux personnes bénéficiant de l'offre premium. Donc, vous avez plus de chance de garder un animal de compagnie.</p><p>L'offre premium coûte 2.99 € par mois.</p>"
       },
       {
         title: "Comment sont fixer les prix pour la garde ?",

@@ -5,6 +5,7 @@ import Truncate from 'react-truncate';
 import Api from '../../api/index';
 
 import {Redirect, withRouter} from "react-router-dom";
+import image_annonce from "../../images/announce/default-image-announce_1.png"
 
 
 
@@ -26,7 +27,6 @@ class AnnouncesCardAccount extends React.Component {
         this.props.history.push(`/annonce/${this.props.announce.uuid}`);
     }
     goToDemandes() {
-        console.log(this.props.announce)
         this.props.history.push(`/compte/${this.props.announce.uuid}/demandes`);
     }
 
@@ -36,10 +36,6 @@ class AnnouncesCardAccount extends React.Component {
 
 
     async changeStatusAnnounce(){
-        console.log("CHANGE STATUS");
-
-        console.log(this.props.announce);
-        console.log(this.props.userAnnounces);
         // TODO : cases
         // 2 announces active false / activemultiple false
         // si je click -> active become true
@@ -150,7 +146,7 @@ class AnnouncesCardAccount extends React.Component {
                     <div className="view view-cascade overlay">
                         <img src={this.displayBase64(this.props.announce.picture)}
                              className={this.props.announce.picture !== null ? 'card-img-top' : 'd-none'}/>
-                        <img src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png"
+                        <img src={image_annonce}
                              alt="image annonce"
                              className={this.props.announce.picture === null ? 'card-img-top' : 'd-none'}/>
 

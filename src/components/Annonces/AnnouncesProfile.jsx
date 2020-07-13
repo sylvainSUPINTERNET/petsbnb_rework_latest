@@ -17,6 +17,7 @@ import StoreCheckout from "../Stripe/StoreCheckout";
 import * as axios from "axios";
 import Menu from "../Menu/Menu";
 import moment from "moment";
+import image_annonce from "../../images/announce/default-image-announce_1.png"
 
 
 class AnnouncesProfile extends React.Component {
@@ -702,7 +703,7 @@ class AnnouncesProfile extends React.Component {
                                             <img src={this.displayBase64(this.state.announce.picture)}
                                                  className={this.state.announce.picture !== null && this.state.picturePreview === null ? 'card-img-top' : 'd-none'}/>
                                             <img
-                                                src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png"
+                                                src={image_annonce}
                                                 alt="image annonce"
                                                 className={this.state.announce.picture === null && this.state.picturePreview === null ? 'card-img-top' : 'd-none'}/>
                                             <a>

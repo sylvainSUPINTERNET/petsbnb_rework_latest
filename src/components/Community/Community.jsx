@@ -106,7 +106,6 @@ class Community extends React.Component {
                 announceMsg: ""
             });
 
-            console.log("PA", payload.announce)
             setTimeout(() => {
                 ws.send(JSON.stringify(payload));
             }, 2000);
@@ -120,7 +119,6 @@ class Community extends React.Component {
      * This function establishes the connect with the websocket and also ensures constant reconnection if connection closes
      */
     connect = async () => {
-        console.log("START OPENING");
 
         try {
             const {status, data} = await Api.User.getMe();
@@ -132,11 +130,8 @@ class Community extends React.Component {
                     }
                 });
 
-                console.log("user connect -> ", this.state.userDetails);
-
                 if ("geolocation" in navigator) {
                     navigator.geolocation.watchPosition((position) => {
-                        console.log("POSITION", position);
 
                         // use arrow, else this not refer to state and throw undefined this.setState !
                         this.setState({
@@ -156,14 +151,11 @@ class Community extends React.Component {
                 }
 
                 let ws = new WebSocket(`${wsConfig.URL}`);
-                console.log(`${wsConfig.URL}`)
                 let that = this; // cache the this
                 let connectInterval;
 
                 // websocket onopen event listener
                 ws.onopen = () => {
-                    console.log("connected websocket main component");
-                    console.log("set WS connection into state");
                     this.setState({ws: ws});
 
                     const payload = this.state.wsPayload;
@@ -173,7 +165,6 @@ class Community extends React.Component {
                     payload.data = this.state.position;
                     //payload.announce = "";
 
-                    console.log("payload send", payload);
                     ws.send(JSON.stringify(payload));
 
 
@@ -182,11 +173,7 @@ class Community extends React.Component {
                 };
 
                 ws.onmessage = msg => {
-                    console.log("RECEIVED MSG")
-                    console.log(msg);
                     let json = JSON.parse(msg.data);
-                    console.log("message");
-                    console.log(json);
 
                     // message to only the current client request
                     // this is reset disable form for announce if the purpose of the request was the announc ecreation
@@ -211,8 +198,6 @@ class Community extends React.Component {
                 // websocket onclose event listener
                 ws.onclose = e => {
                     /*
-                    console.log("on close ws");
-                    console.log("DISCONNECT USER ID", this.state.userId);
                     ws.send("USER ID -> " + this.state.userId);
                      */
                     // TODO -> remove user when page close, that send this event ?
@@ -287,7 +272,7 @@ class Community extends React.Component {
                                 <div className="card mt-4">
                                     <div className="card-body">
 
-                                        <h4 className="card-title">Crééer votre annonce instantanée</h4>
+                                        <h4 className="card-title">Créer votre annonce de manière instantanée</h4>
                                         <div className="card-text">
                                             <form onSubmit={this.submitAnnounceInstant}>
                                                 <div className="form-group">
@@ -315,7 +300,7 @@ class Community extends React.Component {
                                                     Votre numéro de téléphone est invalide
                                                 </p>
                                                 <div className="form-group">
-                                                    <label htmlFor="exampleInputPassword1">Announce</label>
+                                                    <label htmlFor="exampleInputPassword1">Annonce</label>
                                                     <textarea className="form-control" value={this.state.announceMsg}
                                                               required
                                                               id="exampleInputPassword1" onChange={(ev) => {
@@ -335,7 +320,6 @@ class Community extends React.Component {
                                                     <div className="custom-file">
                                                         <input type="file" className="custom-file-input"
                                                                id="validatedCustomFile" onChange={(e) => {
-                                                                   console.log(e.target.files);
                                                         }}/>
                                                             <label className="custom-file-label"
                                                                    htmlFor="validatedCustomFile">Télécharger une photo...</label>

@@ -41,7 +41,6 @@ class MyDemande extends React.Component {
 
     componentDidMount() {
         const {announceUuid} = this.props.match.params;
-        console.log(announceUuid);
         this.getBookingsForAnnounce(announceUuid)
     }
 
@@ -49,7 +48,6 @@ class MyDemande extends React.Component {
         try {
             const {data, status} = await Api.Bookings.getBookingsForAnnounce(announceUuid);
             if (status === 200 || status === 204) {
-                console.log(data.data);
                 this.setState({
                     bookings: data.data
                 })
@@ -61,7 +59,6 @@ class MyDemande extends React.Component {
     }
 
     async onClickConfirmAccept() {
-        console.log("confirm ça : ", this.state.announceTarget);
 
         this.setState({
             confirmAcceptBtnLoading: true,
@@ -75,7 +72,6 @@ class MyDemande extends React.Component {
                 window.location.href=`/compte/${this.props.match.params.announceUuid}/demandes`
             }  else {
                 // TODO
-                console.log(data);
                 this.setState({
                     confirmAcceptBtnLoading: false,
                     confirmAcceptBtnDisabled: false,
@@ -97,7 +93,6 @@ class MyDemande extends React.Component {
     }
 
     async onClickConfirmDelete() {
-        console.log("DELETE BOOKING TARGET : ", this.state.announceTarget);
 
         this.setState({
             confirmDeleteBtnLoading: true,
@@ -122,7 +117,6 @@ class MyDemande extends React.Component {
                  */
             }  else {
                 // TODO
-                console.log(data);
                 this.setState({
                     confirmDeleteBtnLoading: false,
                     confirmDeleteBtnDisabled: false,

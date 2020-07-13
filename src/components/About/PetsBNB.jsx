@@ -38,14 +38,17 @@ class PetsBNB extends React.Component {
                         
                             <p><i class="fa fa-arrow-right blue-text"></i> Proposer vos services afin de garder un animal de compagnie. (<Link to="/annonces/creation" target="_blank">déposer votre annonce</Link>) <br />
                             <i class="fa fa-arrow-right blue-text"></i> Partir librement en vacances en faisant garder votre animal de compagnie. (<Link to="/" target="_blank">rechercher une annonce</Link>) <br />
-                            <i class="fa fa-arrow-right blue-text"></i> Achêter du matériel, nourriture et toutes autres choses pour votre animal de compagnie. (<Link to="/store" target="_blank">le store</Link>)</p>
+                            <i class="fa fa-arrow-right blue-text"></i> Bénéficier d'un service communautaire qui permet de créer une annonce de manière instantanée. (<Link to="/community" target="_blank">communauté</Link>) <br />
+                            <i class="fa fa-arrow-right blue-text"></i> Voir une sélection d'équipement qui sera ravir au mieux vos animaux de compagnie. (<Link to="/store" target="_blank">store</Link>)</p>
 
                             <p className="title_PetsBNB">Quelle est la différence entre une offre gratuite et une offre payante dite premium ?</p>
 
                             <p>Lors de votre inscription, vous êtes dans une offre gratuite. <br />
                             L'offre gratuite permet de déposer une seule annonce et de pouvoir bénéficier des différentes annonces à sa disposition afin de garder son animal de compagnie.</p>
+                            <p>De plus, vous avez accès au service communautaire qui permet de créer une annonce de manière instantée et au service du store qui permet de voir notre séléction d'équipement pour vos animaux de compagnie.</p>
 
-                            <p>L'offre payante lui permet de poster plusieurs annonces et donc de bénéficier d'une visibilité supérieure aux personnes bénéficiant de l'offre gratuite.</p>
+                            <p>L'offre premium lui permet de poster plusieurs annonces. De plus, les annonces payantes sont prioritaires par rapport aux annonces gratuites. Avec cette offre, vous bénéficiez d'une visibilité supérieure aux personnes bénéficiant de l'offre premium. Donc, vous avez plus de chance de garder un animal de compagnie.
+                            L'offre premium coûte 2.99 € par mois.</p>
 
                             <p className="title_PetsBNB">Comment rejoindre le site ?</p>
                         
