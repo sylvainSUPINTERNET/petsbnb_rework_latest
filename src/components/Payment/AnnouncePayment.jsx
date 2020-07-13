@@ -34,13 +34,12 @@ class AnnouncePayment extends React.Component {
                 this.setState({announce: resp.data})
             }
         } catch (e) {
-            console.log(e)
+            alert(e)
+            //console.log(e)
         }
     };
 
     createCharge(){
-        console.log("create charge");
-        console.log(this.props.stripe)
     }
 
     // TODO

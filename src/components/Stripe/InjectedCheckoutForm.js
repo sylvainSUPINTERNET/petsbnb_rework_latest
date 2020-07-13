@@ -158,13 +158,12 @@ class CheckoutForm extends React.Component {
                             });
                 } catch (e) {
                     if (e) {
-                        // TODO
-                        console.log("ERROR stripe api : ", e);
+                        //console.log("ERROR stripe api : ", e);
                     }
                 }
 
             })
-            .catch(err => console.log("TOKEN é", err))
+            .catch(err => alert(err))//console.log("TOKEN é", err))
 
 
     };

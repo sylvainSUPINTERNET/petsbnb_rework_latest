@@ -17,6 +17,8 @@ import AnnouncesCardAccount from "../Annonces/AnnouncesCardAccount";
 import moment from "moment";
 import Menu from "../Menu/Menu";
 import Footer from "../Partials/Footer";
+import Resizer from "react-image-file-resizer";
+import image_annonce from "../../images/announce/default-image-announce_1.png";
 
 
 class Account extends React.Component {
@@ -25,6 +27,13 @@ class Account extends React.Component {
         super(props);
         this.state = {
             announceTextCredit: "",
+            usernameEntity: "",
+            email: "",
+            createdAt: "",
+            updatedAt: "",
+            announcesSize: 0,
+            announcesPaid: 0,
+            announcesActive: 0,
             userDetails: {
                 userId: null,
                 username: null
@@ -32,9 +41,70 @@ class Account extends React.Component {
             userBookings: [],
 
             // API
-            userAnnounces: []
+            userAnnounces: [],
+
+            uploadLabel: "",
+            displayBtnSubmitPicture: false,
+            isUploading: false,
+            displayUploadErrorModal: false,
+            errorUploadModalMessage: "",
+            picturePreview: "",
+            currentUserPicture: null
         };
 
+        this.submitPicture = this.submitPicture.bind(this);
+    }
+
+    submitPicture() {
+        this.setState({
+            isUploading: true,
+            displayBtnSubmitPicture: false
+        });
+
+        const formData = new FormData();
+        formData.append('picture', this.state.pictureData.file);
+        formData.append('userId', this.state.userDetails.userId);
+
+
+        setTimeout(() => {
+            Api
+                .Media
+                .addPictureUser(formData)
+                .then(response => {
+                    if (response.status === 200) {
+                        window.location.reload();
+                        /*
+                        this.setState({
+                            isUploading: false,
+                            displayBtnSubmitPicture: true,
+                            displayUploadErrorModal: false,
+                            errorUploadModalMessage: "",
+                            uploadLabel: ""
+                        });
+                        */
+                    } else {
+                        this.setState({
+                            isUploading: false,
+                            displayBtnSubmitPicture: true,
+                            displayUploadErrorModal: true,
+                            errorUploadModalMessage: "Une erreur est survenue, veuillez réessayer plus tard.",
+                            uploadLabel: ""
+                        });
+                    }
+                })
+                .catch(err => this.setState({
+                    isUploading: false,
+                    displayBtnSubmitPicture: true,
+                    displayUploadErrorModal: true,
+                    errorUploadModalMessage: "Une erreur est survenue, veuillez réessayer plus tard.",
+                    uploadLabel: ""
+                }))
+
+        }, 3000)
+    }
+
+    displayBase64(pictureBytesArray) {
+        return `data:image/png;base64, ${pictureBytesArray}`
     }
 
     componentDidMount() {
@@ -42,6 +112,76 @@ class Account extends React.Component {
         this.getUserAnnounces();
     }
 
+    displayUploadLabel(ev) {
+        this.setState(
+            {
+                errorUploadModalMessage: "",
+            }
+        );
+
+        let file = ev.target.files[0];
+        let passBlob;
+        const extension = file['type'];
+        const acceptedImageTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+
+        if (!extension) {
+            alert("error display");
+            this.setState({
+                displayBtnSubmitPicture: false,
+                isUploading: false,
+                displayUploadErrorModal: true,
+                errorUploadModalMessage: "Image incorrect, le format autorisé est : jpg / png",
+            })
+        } else {
+            if (!acceptedImageTypes.includes(extension)) {
+                this.setState({
+                    displayBtnSubmitPicture: false,
+                    isUploading: false,
+                    displayUploadErrorModal: true,
+                    errorUploadModalMessage: "Image incorrect, le format autorisé est : jpg / png",
+                })
+            } else {
+                Resizer.imageFileResizer(
+                    file,
+                    200,
+                    200,
+                    'JPEG',
+                    100,
+                    0,
+                    blob => {
+                        passBlob = blob;
+
+                        if (file.name.length > 10) {
+                            this.setState({
+                                uploadLabel: `${file.name.substring(0, file.name.indexOf(file.name[15]) - 1)}...`
+                            });
+
+                        } else {
+                            this.setState({
+                                uploadLabel: `${file.name}`
+                            });
+                        }
+
+                        let t = new File([passBlob], file.name);
+
+                        this.setPreview(t)
+                    },
+                    'blob'
+                );
+
+            }
+        }
+    }
+
+    setPreview(file) {
+        this.setState({
+            picturePreview: URL.createObjectURL(file),
+            displayBtnSubmitPicture: true,
+            pictureData: {
+                file: file
+            }
+        });
+    }
 
     async getMeAndMyBookings() {
         try {
@@ -53,12 +193,28 @@ class Account extends React.Component {
                         username: data.username
                     }
                 });
-                const response = await Api.Bookings.getUserBookings(this.state.userDetails.userId);
-                if (response.status === 200 || response.status === 204) {
+                const rp = await Api.User.getById(this.state.userDetails.userId);
+                if(rp.status === 200 || rp.status === 204){
+                    const annPaid = rp.data.data.announces.filter( ann => ann.activeMultiple === true);
+                    const annActive = rp.data.data.announces.filter( ann => ann.active === true);
+
                     this.setState({
-                        userBookings: response.data.data
-                    })
+                        email: rp.data.data.email,
+                        usernameEntity: rp.data.data.usernameEntity,
+                        currentUserPicture: rp.data.data.picture,
+                        announcesSize: rp.data.data.announces.length,
+                        announcesPaid: annPaid,
+                        announcesActive: annActive
+                    });
+
+                    const response = await Api.Bookings.getUserBookings(this.state.userDetails.userId);
+                    if (response.status === 200 || response.status === 204) {
+                        this.setState({
+                            userBookings: response.data.data
+                        })
+                    }
                 }
+
             }
         } catch (e) {
             // todo
@@ -75,7 +231,6 @@ class Account extends React.Component {
                     userAnnounces: data.data
                 });
             } else {
-                console.log("ERROR")
                 alert("announces API")
             }
 
@@ -92,6 +247,73 @@ class Account extends React.Component {
             <div>
                 <div className="container-fluid mt-4 mb-4 card py-3">
                     <Menu/>
+                    <div className="container-fluid mb-5">
+                        <h3 className="text-dark">Information de compte</h3>
+                        <div className="container-fluid mt-5">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <p className="text-dark ml-1" style={{fontSize: '18px'}}>Nom d'utilisateur : <span className="text-black-50"> {this.state.usernameEntity}</span> </p>
+                                            <p className="text-dark" style={{fontSize: '18px'}}> <i className="fa fa-envelope"></i>  <span className="text-black-50"> {this.state.email}</span></p>
+                                            <hr></hr>
+                                            <p className="text-dark" style={{fontSize: '18px'}}>Annonces : <span className="text-black-50">{this.state.announcesSize}</span></p>
+                                            <p className="text-dark" style={{fontSize: '18px'}}>Annonces actives : <span className="text-black-50">{this.state.announcesActive.length}</span></p>
+                                            <p className="text-dark" style={{fontSize: '18px'}}>Annonces premium : <span className="text-black-50">{this.state.announcesPaid.length}</span></p>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <img src={this.state.currentUserPicture === null ? 'https://image.flaticon.com/icons/svg/892/892781.svg' : this.displayBase64(this.state.currentUserPicture)} className="img-fluid rounded-top rounded-bottom" style={{width: '120px'}}/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="view overlay">
+                                        <img src={this.state.picturePreview} className="card-img-top img-fluid"
+                                             style={{width:'250px', display: 'block',
+                                                 'margin-left': 'auto',
+                                                 'margin-right': 'auto' }}
+                                        />
+                                    </div>
+                                    <form>
+                                        <p className="text-dark text-center mt-2">Changer votre image de profil</p>
+                                        <div className="form-group">
+                                            <div className="custom-file mt-2">
+                                                <input type="file" className="custom-file-input"
+                                                       id="validatedCustomFile" required
+                                                       onChange={(ev) => this.displayUploadLabel(ev)}/>
+                                                <label className="custom-file-label"
+                                                       htmlFor="validatedCustomFile">
+                                                    {this.state.uploadLabel}
+                                                </label>
+                                                <div className="invalid-feedback">Example invalid custom file
+                                                    feedback
+                                                </div>
+                                                <div
+                                                    className={this.state.displayUploadErrorModal ? "small red-text" : "small red-text invisible"}
+                                                    role="alert">
+                                                    <p className="text-center">
+                                                        {this.state.errorUploadModalMessage}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <button className="btn btn-md btn-success mb-4"
+                                                disabled={!this.state.displayBtnSubmitPicture}
+                                                onClick={this.submitPicture}>
+                                            Télécharger
+                                            <span
+                                                className={this.state.isUploading ? "ml-2 spinner-border spinner-border-sm mr-2 inline-block" : 'd-none'}
+                                                role="status">
+                                                </span>
+                                        </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
                     <div className="row m-2">
                         <div className="col-md-6 mb-4">
                             <h4 className="card-header primary-color-dark white-text text-center">Mes annonces</h4>

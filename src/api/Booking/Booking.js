@@ -18,7 +18,6 @@ let getBookingsForAnnounce = async (announceUuid) => {
 
 // get bookings for announce by user logged
 let getUserBookingsForAnnounce = async (announceUuid) => {
-    console.log(`${apiEndpoints.bookingsProxy}/announce/${announceUuid}`)
     return await axios.get(`${apiEndpoints.bookingsProxy}/announce/${announceUuid}`, {
         headers: {'Authorization': "Bearer " + TokenService.getAccessToken()}
     })

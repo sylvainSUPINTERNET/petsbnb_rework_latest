@@ -214,8 +214,6 @@ class Community extends React.Component {
                     connectInterval = setTimeout(this.check, Math.min(10000, that.timeout)); //call check function after timeout
 
                      */
-
-                    console.log("on close");
                 };
 
 

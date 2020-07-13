@@ -46,6 +46,8 @@ export let apiConfiguration = {
 
     media: "/media/announce/picture",
 
+    mediaUser: "/media/user/picture",
+
     // Store
     store: "/store/item",
 
@@ -99,6 +101,9 @@ export let apiEndpoints = {
     userMe: `${apiConfiguration.apiUrl}${apiConfiguration.userPath}`,
     userMeProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.userPath}`,
 
+    user: `${apiConfiguration.apiUrl}${apiConfiguration.userPath}`,
+    userProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.userPath}`,
+
     // Stripe
     charge: `${apiConfiguration.apiUrl}${apiConfiguration.charge}`,
     chargeProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.charge}`,
@@ -126,7 +131,10 @@ export let apiEndpoints = {
 
     // Media
     media: `${apiConfiguration.apiUrl}${apiConfiguration.media}`,
-    mediaProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.media}`
+    mediaProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.media}`,
+
+    mediaUser: `${apiConfiguration.apiUrl}${apiConfiguration.mediaUser}`,
+    mediaUserProxy: `${apiConfiguration.apiProxyUrl}${apiConfiguration.mediaUser}`
 
 
 };

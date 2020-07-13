@@ -17,9 +17,15 @@ let me = async () => {
         })
 };
 
+let getById = async (userId) => {
+    return await
+        axios.get(`${apiEndpoints.userProxy}/${userId}`, {})
+};
+
 
 const User = {
-    getMe: me
+    getMe: me,
+    getById: getById
 };
 
 

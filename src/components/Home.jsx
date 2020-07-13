@@ -64,7 +64,7 @@ class Home extends React.Component {
 
             })
             .catch(err => {
-                console.log(err);
+                alert(err)
             });
 
         Api
@@ -73,7 +73,7 @@ class Home extends React.Component {
             .then((res) => {
                 this.setServices(res.data);
             })
-            .catch(err => console.log(err))
+            .catch(err => alert(err))
 
     }
 
@@ -91,8 +91,6 @@ class Home extends React.Component {
             return res
 
         } catch (e) {
-            console.log(e);
-            // TODO error display
             return e
         }
     }
