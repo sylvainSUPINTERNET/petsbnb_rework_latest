@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import CookieConsent from "react-cookie-consent";
 
 export default class Footer extends React.Component {
 
@@ -28,8 +29,7 @@ export default class Footer extends React.Component {
                             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                                 <h6 className="text-uppercase mb-4 font-weight-bold">A propos</h6>
                                 <p><Link to="/explication-du-site">Explication du site</Link></p>   
-                                <p><Link to="/equipes">Notre équipe</Link></p>
-                                <p><Link to="/partenaires">Nos partenaires</Link></p>                
+                                <p><Link to="/equipes">Notre équipe</Link></p>              
                             </div>
                                 <hr className="w-100 clearfix d-md-none"></hr>
                             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
@@ -60,6 +60,15 @@ export default class Footer extends React.Component {
                                     <p className="text-center">Copyright - PetsBNB</p>
                                  </div>
                             </div>
+                            <CookieConsent
+                                location="bottom"
+                                buttonText="Accepter"
+                                cookieName="Cookie_PetsBNB"
+                                style={{ background: "#2B373B" }}
+                                buttonStyle={{ backgroundColor: "#1565c0", color: "white", fontSize: "16px" }}
+                            >
+                            Nous utilisons des cookies pour proposer et améliorer nos services. En navigant sur notre site, vous acceptez l'utilisation des cookies.
+                            </CookieConsent>
                     </div>
                 </footer>
             </div>
