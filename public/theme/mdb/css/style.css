@@ -227,3 +227,42 @@
     font-weight: bold;
     margin-top: 20px;
 }
+
+.image_dog {
+    width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.Cat_Photography {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+
+
+@media (min-width: 1200px) {
+    .wrapper { 
+        text-align: center; 
+    }
+    .wrapper ul { 
+        display:inline-table; 
+    }
+    .wrapper li { 
+        display:inline; 
+    }
+}
+
+@media (min-width: 1200px) {
+    .list-group{
+      width: 200px;
+      display: -webkit-box !important;
+    }   
+}
+
+
+.list-group-item{
+    border-top-width: 1px !important;
+}

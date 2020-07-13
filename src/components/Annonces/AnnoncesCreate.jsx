@@ -218,11 +218,11 @@ class AnnoncesCreate extends React.Component {
 
                             <div className="form-group row">
                                 <div className="col-sm-6">
-                                <label htmlFor="title" className="label_annonce">Titre de l'annonce</label>
+                                <label htmlFor="title" className="label_annonce">Titre de l'annonce*</label>
                                 <input type="text" id="title" className="form-control" placeholder="Ex. Garder un chien" onChange={this.onChange}/>
                                 </div>
                                 <div className="col-sm-6">
-                                <label htmlFor="description" className="label_annonce">Description de l'annonce</label>
+                                <label htmlFor="description" className="label_annonce">Description de l'annonce*</label>
                                 <textarea id="description" rows="1" cols="59" className="form-control" placeholder="Ex. Je peux garder un chien pendant quelques jours"
                                               onChange={this.onChange}/>              
                                 </div>
@@ -230,19 +230,19 @@ class AnnoncesCreate extends React.Component {
 
                             <div className="form-group row">
                                 <div className="col-sm-6">
-                                <label htmlFor="streetAddress" className="label_annonce">Adresse complète</label>
+                                <label htmlFor="streetAddress" className="label_annonce">Adresse complète*</label>
                                 <input type="text" id="streetAddress" className="form-control" placeholder="Ex. 14 rue de la paix"
                                            onChange={this.onChange}/>
                                 </div>
                                 <div className="col-sm-6">
-                                <label htmlFor="city" className="label_annonce">Ville</label>
+                                <label htmlFor="city" className="label_annonce">Ville*</label>
                                 <input type="text" id="city" className="form-control" placeholder="Ex. Paris" onChange={this.onChange}/>
                                 </div>
                             </div>      
 
                             <div className="form-group row">
                                 <div className="col-sm-6">
-                                    <label htmlFor="departement" className="label_annonce">Département</label>
+                                    <label htmlFor="departement" className="label_annonce">Département*</label>
                                     <select
                                         onChange={this.onChange}
                                         defaultValue={"default_dept"} className="custom-select"
@@ -353,7 +353,7 @@ class AnnoncesCreate extends React.Component {
                                     </select>
                                 </div>
                                 <div className="col-sm-6">
-                                <label htmlFor="farePerDay" className="label_annonce">Tarif journalier</label>
+                                <label htmlFor="farePerDay" className="label_annonce">Tarif journalier*</label>
                                 <input type="number" id="farePerDay" className="form-control" placeholder="Ex. 25"
                                            onChange={this.onChange} min="1" step="any"/>
                                 </div>
@@ -361,20 +361,21 @@ class AnnoncesCreate extends React.Component {
 
                             <div className="form-group row">
                                 <div className="col-sm-6">
-                                <label htmlFor="farePerMonth" className="label_annonce">Tarif mensuel</label>
+                                <label htmlFor="farePerMonth" className="label_annonce">Tarif mensuel*</label>
                                 <input type="number" id="farePerMonth" className="form-control" placeholder="Ex. 150"
                                            onChange={this.onChange} min="1" step="any"/>
                                 </div>
                                 <div className="col-sm-6">
-                                <label htmlFor="farePerHour" className="label_annonce">Tarif par heure</label>
+                                <label htmlFor="farePerHour" className="label_annonce">Tarif par heure*</label>
                                 <input type="number" id="farePerHour" className="form-control" placeholder="Ex. 6"
                                            onChange={this.onChange} min="1" step="any"/>
                                 </div>
                             </div>                           
 
                             <div className="container mt-4">
-                                <p className="service">Vos services </p>
-                                    <ul className="list-group">              
+                                <p className="service">Vos services* </p>
+                                <div class="wrapper">
+                                    <ul>              
                                         {
                                             this.state.services.map((service) => {
                                                 return (
@@ -387,9 +388,11 @@ class AnnoncesCreate extends React.Component {
                                             })
                                         }
                                     </ul>
+                                </div>
 
-                                <p className="equipment">Équipements que vous disposez </p>
-                                    <ul className="list-group">                                
+                                <p className="equipment">Équipements que vous disposez* </p>
+                                <div class="wrapper">
+                                    <ul>                                
                                         {
                                             this.state.equipments.map((equipments) => {
                                                 return (
@@ -401,9 +404,11 @@ class AnnoncesCreate extends React.Component {
                                             })
                                         }
                                     </ul>
+                                </div>
 
-                                <p className="type">Type d'animaux que vous acceuillez </p>
-                                    <ul className="list-group">                                     
+                                <p className="type">Type d'animaux que vous accueillez* </p>
+                                <div class="wrapper">
+                                    <ul>                                     
                                         {
                                             this.state.animalsType.map((at) => {
                                                 return (
@@ -415,6 +420,7 @@ class AnnoncesCreate extends React.Component {
                                             })
                                         }
                                     </ul>
+                                </div>
                             </div>
 
                                 <button

@@ -7,6 +7,7 @@ import {Button, Modal} from "react-bootstrap";
 import QueryParams from "../../services/QueryParams";
 import Menu from "../Menu/Menu";
 import Footer from "../Partials/Footer";
+import Dog from "../../images/header/dog.png"
 
 
 class ResetPassword extends React.Component {
@@ -97,6 +98,7 @@ class ResetPassword extends React.Component {
                                 Réinitialiser votre mot de passe
                             </h5>
                             <hr className="hr_title"></hr>
+                            <img src={Dog} className="image_dog"></img>
                             <form onSubmit={this.submitReset}>
                                 <div className="ml-5 mr-5 p5 mt-4">
                                     <label htmlFor="validationDefault05" className="label_register">Email de récupération*</label>
@@ -122,6 +124,8 @@ class ResetPassword extends React.Component {
                                     </button>
                                 </div>
                             </form>
+                            <hr></hr>
+                            <p className="text-center">Un courriel vous permettant de créer un nouveau mot de passe vous sera envoyé.</p>
                         </div>
 
                         <Modal

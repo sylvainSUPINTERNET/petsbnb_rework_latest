@@ -17,6 +17,7 @@ import LoadingOverlay from 'react-loading-overlay';
 import AnnouncesCard from '../Annonces/AnnouncesCard';
 import {Form, Row} from "react-bootstrap";
 import Menu from "../Menu/Menu";
+import Cat_Photography from "../../images/search/cat-photography.png"
 
 
 
@@ -300,6 +301,7 @@ class AnnoncesList extends React.Component {
 
                                     <div className="grid-item col-md-12 mb-4">
                                         <div className="card">
+                                    
                                         <div className="card-header blue darken-4 m-0 p-0">
                                             <div className="text-center mt-2 p-1 white-text">
                                                 <h5><i className="fa fa-bullhorn"/> Filtres</h5>
@@ -677,8 +679,11 @@ class AnnoncesList extends React.Component {
                                 </div>
 
                                 <div className="col-md-12 col-sm-12">
-                                    <div className="row">       
-                                        
+
+                                <img src={Cat_Photography} className="Cat_Photography"></img>
+                                
+                                    <div className="row">  
+                                                                          
                                         <div id="alert_annonce" class="alert alert-warning text-center" role="alert">
                                             Aucune annonces pour cette recherche ...
                                         </div>
