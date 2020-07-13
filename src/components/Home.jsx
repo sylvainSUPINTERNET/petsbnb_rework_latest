@@ -235,7 +235,6 @@ class Home extends React.Component {
                             <div className="card-body">
                                 <p className="justify-content-center text-center m-1 mb-4 p-2 font-weight-lighter">Trouvez votre petsitter, selon vos critères !</p>
                                 <div className="text-center mt-4">
-                                    <a href="#works">Comment ça marche ?</a>
                                 </div>
                                 <hr className="m-3 p-3"/>
                                 <Form>
