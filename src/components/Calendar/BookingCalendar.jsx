@@ -108,7 +108,6 @@ class BookingCalendar extends React.Component {
             }
 
         } else if (multiple) {
-            console.log("multiple");
 
             let arrival = new Date(this.state.bookingPeriod[0]);
             arrival.setHours(
@@ -151,7 +150,6 @@ class BookingCalendar extends React.Component {
 
 
         } else {
-            console.log("ERROR");
             // TODO
             this.generateBookingError("ERROR TODO")
         }
@@ -180,9 +178,6 @@ class BookingCalendar extends React.Component {
             //Difference in number of weeks
             let weeksDiff = Math.abs(Math.round(moment.duration(start.diff(end)).asWeeks()))+1;
 
-            //console.log(daysDiff);
-            //console.log(weeksDiff)
-
             // bitwsie | 0 -> better than Math.flour (too slow)
             if(weeksDiff > 4) {
 
@@ -190,9 +185,6 @@ class BookingCalendar extends React.Component {
 
                 let nbFullMonths = Math.abs((weeksDiff / FULL_MONTH_AS_WEEK)) | 0;
                 let offsetDays = Math.abs( ( ((nbFullMonths * 4) - weeksDiff) * 7)); // days remains cant be a month
-
-                //console.log("full month : ", nbFullMonths)
-                //console.log("offset d" , offsetDays);
 
                 let totalPriceDue = (nbFullMonths * fareMonth) + (offsetDays * fareDay);
                 res.totalPrice = parseFloat(totalPriceDue).toFixed(2);
@@ -214,17 +206,12 @@ class BookingCalendar extends React.Component {
     };
 
     onConfirmBookingDate() {
-        console.log(" ---> BOOKING CONFIRMED todo");
-
 
         Api
             .User
             .getMe()
             .then(async (data) => {
-                console.log(data);
                 if (data.status === 200) {
-                    console.log("announce", this.props.announce);
-                    console.log("booking period", this.state.bookingPeriod);
                     const {userId} = data.data;
                     const {id} = this.props.announce;
                     this.generatePrice();
@@ -239,8 +226,6 @@ class BookingCalendar extends React.Component {
                     this.state.bookingBody.serviceId = this.props.serviceChoice;
                     this.state.bookingBody.bookingTotalPrice = this.props.price;
 
-
-                    console.log("READY FOR POST : ", this.state.bookingBody);
                     this.props.cbBookingBody(this.state.bookingBody); // send the bookingbody to the parent and the parent send to the children Stripe to be able to create the booking then the bill (require the booking id)
 
 
@@ -253,7 +238,6 @@ class BookingCalendar extends React.Component {
     }
 
     onChangeBookingDate(bookingPeriod) {
-        console.log("service choose - parent", this.props.service)
         this.setState({
             bookingPeriod: bookingPeriod,
             bookingPeriod2: new Date(bookingPeriod)
@@ -261,15 +245,12 @@ class BookingCalendar extends React.Component {
     }
 
     handleChangeDepartureTime(e) {
-        console.log("change departure time : ", e.target.value)
-        console.log(this.props.announce);
         this.setState({
             departureTime: e.target.value,
         })
     }
 
     handleChangeArrivalTime(e) {
-        console.log("change arrival time : ", e.target.value)
         this.setState({
             arrivalTime: e.target.value
         })

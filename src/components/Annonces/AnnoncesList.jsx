@@ -62,7 +62,6 @@ class AnnoncesList extends React.Component {
     componentDidMount() {
         let objQueryParams = QueryParams.getQueryParams(this.props.location.search);
         this.props.history.push(`/annonces${QueryParams.buildQueryAnnouncesList(objQueryParams)}`);
-        console.log("query params : " , objQueryParams);
 
         this.getAnnouncesList(objQueryParams, false, true);
 
@@ -76,7 +75,6 @@ class AnnoncesList extends React.Component {
                 const {data, status} = res;
 
                 if (status === 200) {
-                    console.log(data);
                     this.setAnimalsType(data)
                 }
 
@@ -142,7 +140,6 @@ class AnnoncesList extends React.Component {
                     this.setState({
                         isLoading: false
                     });
-                    console.log("TODO -> display error")
                 }
             }, this.state.delay);
 
@@ -223,7 +220,6 @@ class AnnoncesList extends React.Component {
                         this.setState({
                             isLoading: false
                         });
-                        console.log("TODO -> display error")
                     }
                 }, this.state.delay);
 
@@ -236,9 +232,6 @@ class AnnoncesList extends React.Component {
     }
 
     onClickSearchBtn() {
-        console.log("SARCH");
-        console.log(this.state);
-        console.log(this.generateQueryParamsUrlForRedirection());
         this.setState({
             searchBtnLoaderDisplay: true,
             searchBtnDisabled: true,
@@ -254,7 +247,6 @@ class AnnoncesList extends React.Component {
     }
 
     generateListAnimalsType() {
-        console.log(this.state.animalsType);
         let animalsTypeChoices = this.state.animalsType.map((type) => {
             return <option value={type.id}>{type.name}</option>
         });

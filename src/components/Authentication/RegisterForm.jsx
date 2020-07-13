@@ -94,7 +94,6 @@ class RegisterForm extends React.Component {
                 usernameIsValid: true
             });
             setTimeout(async () => {
-                console.log("register submit")
 
                 try {
                     const response = await Api.Register(

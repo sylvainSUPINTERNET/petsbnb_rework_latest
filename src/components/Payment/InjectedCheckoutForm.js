@@ -62,7 +62,6 @@ class CheckoutForm extends React.Component {
         this.props.stripe
             .createToken({name: this.state.cardHolder, email: this.state.cardHolderEmail})
             .then(async (dataStripe) => {
-                console.log(dataStripe.token)
                 try {
                     const chargeAnnounceCreateResponse = await axios // thats also generate automaticaly the bills and set the correct status for the announce
                         .post(`${apiEndpoints.chargeAnnounceProxy}`, {
@@ -97,7 +96,6 @@ class CheckoutForm extends React.Component {
                 } catch (e) {
                     if (e) {
                         // TODO
-                        console.log("ERROR stripe api : ", e);
                         this.setState({
                             payBtnLoading : false,
                             payBtnDisabled: false
@@ -107,7 +105,6 @@ class CheckoutForm extends React.Component {
 
             })
             .catch(err => {
-                console.log("TOKEN é", err)
                 this.setState({
                     payBtnLoading : false,
                     payBtnDisabled: false

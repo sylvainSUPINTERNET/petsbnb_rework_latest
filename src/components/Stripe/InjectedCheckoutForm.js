@@ -97,12 +97,6 @@ class CheckoutForm extends React.Component {
         // With createSource, you will not need to pass in the reference to
         // the Element. It will be inferred automatically.
 
-        //console.log(tok);
-
-        console.log("BOOKING BODY IS HERE from children -> ", this.props.bookingBody);
-        console.log("TKS", this.props.accessToken);
-
-
         this.props.stripe
             .createToken({name: this.state.cardHolder, email: this.state.cardHolderEmail})
             .then(async (dataStripe) => {
@@ -124,8 +118,6 @@ class CheckoutForm extends React.Component {
                                 'Authorization': 'Bearer ' + this.props.accessToken
                             }
                         });
-                    console.log(">>>> b-booking ", booking);
-                    console.log(booking.data.id);
 
                     const {data} = await axios
                         .post(`${apiEndpoints.chargeProxy}`,
@@ -140,8 +132,6 @@ class CheckoutForm extends React.Component {
                                     'Authorization': 'Bearer ' + this.props.accessToken
                                 }
                             });
-                    console.log("------>", data);
-                    console.log(">>>>>", dataStripe);
                     const bills = await axios
                         .post(`http://localhost:4200/api/v1/bills`,
                             {
@@ -166,7 +156,6 @@ class CheckoutForm extends React.Component {
                                     'Authorization': 'Bearer ' + this.props.accessToken
                                 }
                             });
-                    console.log("t : >>>>>", bills);
                 } catch (e) {
                     if (e) {
                         // TODO

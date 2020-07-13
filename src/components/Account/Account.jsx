@@ -53,10 +53,8 @@ class Account extends React.Component {
                         username: data.username
                     }
                 });
-                console.log("ok");
                 const response = await Api.Bookings.getUserBookings(this.state.userDetails.userId);
                 if (response.status === 200 || response.status === 204) {
-                    console.log(response.data.data);
                     this.setState({
                         userBookings: response.data.data
                     })
@@ -73,7 +71,6 @@ class Account extends React.Component {
         try {
             const {status, data} = await Announces.getByUser();
             if (status === 200) {
-                console.log(data.data);
                 this.setState({
                     userAnnounces: data.data
                 });
@@ -135,7 +132,7 @@ class Account extends React.Component {
                         </div>
 
                         <div className="col-md-6">
-                            <h4 className="card-header primary-color-dark white-text text-center">Mes demandes de
+                            <h4 className="card-header primary-color-dark white-text text-center">Mes demande de
                                 réservation</h4>
                             <div className="">
                                 <div className="mb-3 mt-3">

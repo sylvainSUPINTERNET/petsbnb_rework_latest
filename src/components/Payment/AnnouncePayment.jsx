@@ -31,7 +31,6 @@ class AnnouncePayment extends React.Component {
         try {
             const resp = await Announces.getOne(params.uuid);
             if (resp.status === 200 || resp.status === 204) {
-                console.log(resp.data);
                 this.setState({announce: resp.data})
             }
         } catch (e) {

@@ -53,7 +53,6 @@ export function isUserAuthenticated() {
             isLogged = false;
         } else {
             // todo -> set le decoded payload in store if that necessary
-            console.log(decoded);
             isLogged = true;
         }
     });

@@ -80,7 +80,6 @@ class LoginForm extends React.Component {
                             .setItem("accessToken",response.data.token);
                         localStorage
                             .setItem("accessToken_exp", exp);
-                        console.log(response);
                         this.props.history.push(`/`);
                     } else {
                         this.setState({

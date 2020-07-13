@@ -141,8 +141,6 @@ class Home extends React.Component {
     }
 
     onClickSearchBtn() {
-        console.log("SARCH");
-        console.log(this.state);
         this.setState({
             searchBtnLoaderDisplay: true,
             searchBtnDisabled: true
@@ -201,13 +199,13 @@ class Home extends React.Component {
                             <div className="col-md-6 mb-4 white-text text-center text-md-left">
                                 <h1 id="title_home" className="display-4 font-weight-bold mt-4">Vous ne savez pas comment faire
                                     garder vos compagnons ? PetsBNB !</h1>
-                                <hr class="hr-title-home"></hr>
+                                <hr className="hr-title-home"></hr>
                                 <p>
                                     <strong className="text-dark">PetsBNB est à votre service !</strong>
                                 </p>
-                                <p class="mb-4 d-none d-md-block">
+                                <p className="mb-4 d-none d-md-block">
                                     <strong className="text-dark">Ici, trouvez le petsitter qui vous correspond, selon vos
-                                        propres critères <i class="far fa-smile-wink"></i>
+                                        propres critères <i className="far fa-smile-wink"></i>
                                     </strong>
                                 </p>
                                 {/*
@@ -221,7 +219,7 @@ class Home extends React.Component {
                                 */}
 
                             </div>
-                            <div class="col-md-6 col-xl-5 mb-4 mt-4">
+                            <div className="col-md-6 col-xl-5 mb-4 mt-4">
                                 <img
                                     src="https://www.thesprucepets.com/thmb/1HQxXRVRCA2_CHJaZAlTk0Ype3g=/2304x1728/filters:fill(auto,1)/close-up-of-cat-lying-on-floor-at-home-908763830-1d61bee6961b45ee8a55bdfa5da1ebb3.jpg"
                                     alt="header dog" class="img-fluid"></img>
@@ -596,11 +594,7 @@ class Home extends React.Component {
                             <h4 className="font-weight-bold dark-grey-text my-4">Sylvain
                                 Joly</h4>
                             <h6 className="text-uppercase grey-text mb-3"><strong>Co-fondateur</strong></h6>
-                            <blockquote className="blockquote">
-                                <p className="mb-0">
-                                    <pre><code className="shell">$ sudo rm -rf ./</code></pre></p>
-                                <footer className="blockquote-footer">The random software engineer, <cite title="Source Title"> localhost</cite></footer>
-                            </blockquote>
+
                             <a type="button"
                                href="https://www.linkedin.com/in/sylvain-joly-3a7152aa/"
                                className="btn-floating btn-sm mx-1 mb-0 btn-dribbble">

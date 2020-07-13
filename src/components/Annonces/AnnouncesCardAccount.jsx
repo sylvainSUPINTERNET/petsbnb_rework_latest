@@ -27,7 +27,6 @@ class AnnouncesCardAccount extends React.Component {
         this.props.history.push(`/annonce/${this.props.announce.uuid}`);
     }
     goToDemandes() {
-        console.log(this.props.announce)
         this.props.history.push(`/compte/${this.props.announce.uuid}/demandes`);
     }
 
@@ -37,10 +36,6 @@ class AnnouncesCardAccount extends React.Component {
 
 
     async changeStatusAnnounce(){
-        console.log("CHANGE STATUS");
-
-        console.log(this.props.announce);
-        console.log(this.props.userAnnounces);
         // TODO : cases
         // 2 announces active false / activemultiple false
         // si je click -> active become true
