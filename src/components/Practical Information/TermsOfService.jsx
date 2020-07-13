@@ -28,14 +28,7 @@ class TermsOfService extends React.Component {
                             l’accès au site doit être précédé de l’acceptation de ces CGU. 
                             L’accès à cette plateforme signifie l’acceptation des présentes CGU.</p>
 
-                            <p class="title_article">Article 2 : Mentions légales</p>
-
-                            <p>L’édition du site PetsBNB est assurée par la société .... inscrite au RCS 
-                            sous le numéro ....., dont le siège social est localisé au ......</p>
-
-                            <p>L’hébergeur du site PetsBNB est la société ...., situé au .....</p>
-
-                            <p class="title_article">Article 3 : Accès au site</p>
+                            <p class="title_article">Article 2 : Accès au site</p>
 
                             <p>Le site PetsBNB permet d’accéder gratuitement aux services suivants :</p>
 
@@ -48,7 +41,7 @@ class TermsOfService extends React.Component {
 
                             <p>Pour des raisons de maintenance ou autres, l’accès au site peut être interrompu ou suspendu par l’éditeur sans préavis ni justification.</p>
 
-                            <p class="title_article">Article 4 : Collecte des données</p>
+                            <p class="title_article">Article 3 : Collecte des données</p>
 
                             <p>Pour la création du compte de l’Utilisateur, la collecte des informations au moment de l’inscription sur le site est nécessaire et obligatoire. 
                             Conformément à la loi n°78-17 du 6 janvier relative à l’informatique, aux fichiers et aux libertés, 
@@ -59,14 +52,14 @@ class TermsOfService extends React.Component {
 
                             <p>Pour le faire, il peut contacter l'administrateur du site par email : <a href="mailto:petsbnb45@gmail.com">petsbnb45@gmail.com</a>.</p>
 
-                            <p class="title_article">Article 5 : Propriété intellectuelle</p>
+                            <p class="title_article">Article 4 : Propriété intellectuelle</p>
 
                             <p>Les marques, logos ainsi que les contenus du site PetsBNB (illustrations graphiques, textes…) sont protégés par le Code de la propriété intellectuelle et par le droit d’auteur.</p>
 
                             <p>La reproduction et la copie des contenus par l’Utilisateur requièrent une autorisation préalable du site.
                             Dans ce cas, toute utilisation à des usages commerciaux ou à des fins publicitaires est proscrite.</p>
 
-                            <p class="title_article"> Article 6 : Responsabilité</p>
+                            <p class="title_article"> Article 5 : Responsabilité</p>
 
                             <p>Bien que les informations publiées sur le site soient réputées fiables, 
                             le site se réserve la faculté d’une non-garantie de la fiabilité des sources.</p>
@@ -83,13 +76,13 @@ class TermsOfService extends React.Component {
                             <p>La garantie totale de la sécurité et la confidentialité des données n’est pas assurée par le site.
                             Cependant, le site s’engage à mettre en œuvre toutes les méthodes requises pour le faire au mieux.</p>
 
-                            <p class="title_article"> Article 7 : Liens hypertextes</p>
+                            <p class="title_article"> Article 6 : Liens hypertextes</p>
 
                             <p>Le site peut être constitué de liens hypertextes. 
                             En cliquant sur ces derniers, l’Utilisateur sortira de la plateforme. 
                             Cette dernière n’a pas de contrôle et ne peut pas être tenue responsable du contenu des pages web relatives à ces liens.</p>
 
-                            <p class="title_article">Article 8 : Cookies</p>
+                            <p class="title_article">Article 7 : Cookies</p>
 
                             <p> Lors des visites sur le site, 
                             l’installation automatique d’un cookie sur le logiciel de navigation de l’Utilisateur peut survenir.</p>
@@ -103,7 +96,7 @@ class TermsOfService extends React.Component {
                             <p>En naviguant sur le site,
                             l’Utilisateur accepte les cookies. Leur désactivation peut s’effectuer via les paramètres du logiciel de navigation.</p>
 
-                            <p class="title_article">Article 9 : Publication par l’Utilisateur</p>
+                            <p class="title_article">Article 8 : Publication par l’Utilisateur</p>
 
                             <p>Le site PetsBNB permet aux membres de publier des annonces.</p>
 
@@ -127,12 +120,12 @@ class TermsOfService extends React.Component {
                             <p>La suppression ou la modification par le site du contenu de l’Utilisateur peut s’effectuer à tout moment, 
                             pour n’importe quelle raison et sans préavis.</p>
 
-                            <p class="title_article">Article 10 : Durée du contrat</p>
+                            <p class="title_article">Article 9 : Durée du contrat</p>
 
                             <p>Le présent contrat est valable pour une durée indéterminée. 
                             Le début de l’utilisation des services du site marque l’application du contrat à l’égard de l’Utilisateur.</p>
 
-                            <p class="title_article">Article 11 : Droit applicable et juridiction compétente</p>
+                            <p class="title_article">Article 10 : Droit applicable et juridiction compétente</p>
 
                             <p>Le présent contrat est soumis à la législation française. 
                             L’absence de résolution à l’amiable des cas de litige entre les parties implique le recours aux tribunaux français compétents pour régler le contentieux.</p>

@@ -272,7 +272,7 @@ class Community extends React.Component {
                                 <div className="card mt-4">
                                     <div className="card-body">
 
-                                        <h4 className="card-title">Crééer votre annonce de manière instantanée</h4>
+                                        <h4 className="card-title">Créer votre annonce de manière instantanée</h4>
                                         <div className="card-text">
                                             <form onSubmit={this.submitAnnounceInstant}>
                                                 <div className="form-group">
