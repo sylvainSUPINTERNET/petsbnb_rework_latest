@@ -80,7 +80,7 @@ class AnnoncesList extends React.Component {
 
             })
             .catch(err => {
-                console.log(err);
+                alert(err)
             });
 
         Api
@@ -89,7 +89,7 @@ class AnnoncesList extends React.Component {
             .then((res) => {
                 this.setServices(res.data);
             })
-            .catch(err => console.log(err))
+            .catch(err => alert(err))
     }
 
 
@@ -144,7 +144,7 @@ class AnnoncesList extends React.Component {
             }, this.state.delay);
 
         } catch (e) {
-            console.log(e);
+            alert(e)
         }
     }
 
@@ -224,7 +224,7 @@ class AnnoncesList extends React.Component {
                 }, this.state.delay);
 
             })
-            .catch(err => console.log(err));
+            .catch(err => alert(err));
     };
 
     handleChangeDepartment(event) {

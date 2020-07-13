@@ -230,11 +230,9 @@ class BookingCalendar extends React.Component {
 
 
                 } else {
-                    // TODO
-                    console.log("API USER ERROR", data);
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => alert(err))
     }
 
     onChangeBookingDate(bookingPeriod) {

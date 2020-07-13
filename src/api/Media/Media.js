@@ -16,9 +16,19 @@ let addPicture = async (data) => {
     })
 };
 
+let addPictureUser = async (data) => {
+    return await axios.post(`${apiEndpoints.mediaUserProxy}`, data, {
+        headers: {
+            'Authorization': 'Bearer ' + TokenService.getAccessToken(),
+            'content-type': 'multipart/form-data',
+        }
+    })
+};
+
 
 const Public = {
-    mediaAddPicture: addPicture
+    mediaAddPicture: addPicture,
+    addPictureUser: addPictureUser
 };
 
 

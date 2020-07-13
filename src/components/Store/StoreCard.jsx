@@ -39,7 +39,6 @@ class StoreCard extends React.Component {
     }
 
     componentDidMount() {
-        console.log("PROPS", this.props.announce);
     }
 
     render() {

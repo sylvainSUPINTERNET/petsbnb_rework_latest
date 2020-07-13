@@ -58,11 +58,9 @@ class AnnouncesCardAccount extends React.Component {
                 if(resp.status === 200 || resp.status === 204) {
                    window.location.reload();
                 } else {
-                    console.log(resp);
-                    console.log("erreur resp")
                 }
             } catch (e) {
-                console.log("error", e)
+                alert(e)
             }
             // TODO add servide to updat
         } else {
@@ -76,11 +74,9 @@ class AnnouncesCardAccount extends React.Component {
                     if(resp.status === 200 || resp.status === 204) {
                         window.location.reload();
                     } else {
-                        console.log(resp);
-                        console.log("erreur resp")
                     }
                 } catch (e) {
-                    console.log("error", e)
+                    alert(e)
                 }
             }
 
@@ -91,11 +87,9 @@ class AnnouncesCardAccount extends React.Component {
                     if(resp.status === 200 || resp.status === 204) {
                         window.location.reload();
                     } else {
-                        console.log(resp);
-                        console.log("erreur resp")
                     }
                 } catch (e) {
-                    console.log("error", e)
+                    alert(e)
                 }
             }
 
@@ -112,11 +106,9 @@ class AnnouncesCardAccount extends React.Component {
                     if(resp.status === 200 || resp.status === 204) {
                         window.location.reload();
                     } else {
-                        console.log(resp);
-                        console.log("erreur resp")
                     }
                 } catch (e) {
-                    console.log("error", e)
+                    alert(e)
                 }
             }
         }

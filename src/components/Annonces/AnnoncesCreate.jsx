@@ -199,8 +199,6 @@ class AnnoncesCreate extends React.Component {
         } else {
             // TODO
             // error
-            console.log(status);
-            console.log(data)
         }
     };
 

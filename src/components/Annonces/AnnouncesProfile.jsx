@@ -27,6 +27,10 @@ class AnnouncesProfile extends React.Component {
             isLoading: true,
             delay: 10,
             isAlreadyDemande: false,
+            announceOwnerData: {
+              picture: "",
+              usernameEntity: ""
+            },
             announce: {
                 id: "",
                 city: "", // to avoid undefined when we using method for display
@@ -254,7 +258,6 @@ class AnnouncesProfile extends React.Component {
     }
 
     handleChangeServiceChoiceId(event) {
-        console.log('service changed', event.target.value);
         this.setState({
             servicesChoice: event.target.value
         }, async () => {
@@ -269,9 +272,6 @@ class AnnouncesProfile extends React.Component {
                 bookingBtnDisabled: false
             });
         }
-
-        console.log("c", this.state.servicesChoice)
-        console.log("b", this.state.animalTypeChoice)
     }
 
     cbBookingBody = (bookingBody) => {
@@ -289,8 +289,7 @@ class AnnouncesProfile extends React.Component {
 
             const {data, status} = await Api.AnimalsType.list();
             if (status === 200) {
-                console.log("animalsType data ");
-                console.log(data);
+
                 this.setState({
                     animalsType: data,
                     isLoading: false
@@ -304,14 +303,12 @@ class AnnouncesProfile extends React.Component {
             this.setState({
                 isLoading: false
             });
-            console.log("error api animalsType-> ", e)
         }
     }
 
     async getUserBookingForTheAnnounceByUuid(announceUuid){
         try {
             const {data, status} = await Api.Bookings.getUserBookingsForAnnounce(announceUuid);
-            console.log("ERRRRRKRKRORKRIRK", status);
             if(status === 200) {
                 if(data.data.length > 0) {
                     this.setState({
@@ -319,15 +316,11 @@ class AnnouncesProfile extends React.Component {
                         confirmed: data.data[0].confirmed,
                         active:data.data[0].active
                     });
-
-                    console.log("ALREADY DEMNADE : ", this.state.isAlreadyDemande === true)
                 }
 
             }
         } catch (e) {
-
-            console.log("errrrrrrrror",e)
-            // TODO
+            alert(e)
         }
     }
 
@@ -387,8 +380,6 @@ class AnnouncesProfile extends React.Component {
         try {
             const {data, status} = await Api.Services.list();
             if (status === 200) {
-                console.log("SERVICES data ")
-                console.log(data);
                 this.setState({
                     services: data,
                     isLoading: false
@@ -399,7 +390,6 @@ class AnnouncesProfile extends React.Component {
                 })
             }
         } catch (e) {
-            console.log("get services error : ", e);
             this.setState({
                 isLoading: false
             });
@@ -409,16 +399,22 @@ class AnnouncesProfile extends React.Component {
     async getAnnounce(uuid) {
         try {
             const {data, status} = await Api.Announces.getOne(uuid);
-
             if (status === 200) {
-                console.log("DATA")
-                console.log(data);
+
                 this.setState({
                     announce: data,
                     isLoading: false
                 });
+                const rp = await Api.User.getById(this.state.announce.user.id);
+
+                this.setState({
+                    announceOwnerData: {
+                        usernameEntity: rp.data.data.usernameEntity,
+                        picture: rp.data.data.picture
+                    }
+                });
+
             } else {
-                // todo -> error
                 this.setState({
                     isLoading: false
                 })
@@ -429,7 +425,7 @@ class AnnouncesProfile extends React.Component {
             this.setState({
                 isLoading: false
             });
-            console.log("error -> ", e)
+            alert(e)
         }
     }
 
@@ -452,11 +448,10 @@ class AnnouncesProfile extends React.Component {
                             </div>
                         </div>
                         <div className="card">
-                            <div className="card-body">                     
-                                <h4 className=""><i
-                                    className="fa fa-map-marker-alt"></i> {this.state.announce.dept} - {capitalize(this.state.announce.city)}, {this.state.announce.streetAddress}
+                            <div className="card-body">
+                                <h4 className="text-dark"><i
+                                    className="fa fa-map-marker-alt text-primary"></i> {this.state.announce.dept} - {capitalize(this.state.announce.city)}, {this.state.announce.streetAddress}
                                 </h4>
-
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="">
@@ -467,14 +462,18 @@ class AnnouncesProfile extends React.Component {
                                             <span data-title="Tarif mensuel" className="badge badge-info ml-2"><i
                                                 className="fa fa-calendar-alt"></i> {this.state.announce.farePerMonth} €</span>
                                         </div>
-                                        <p className="mt-4">{this.state.announce.description}</p>
-
+                                        <p className="mt-4 text-justify">{this.state.announce.description}</p>
+                                        <div className="row text-center">
+                                            <hr></hr>
+                                            <img src={this.state.announceOwnerData.picture === null ? 'https://image.flaticon.com/icons/svg/892/892781.svg' : this.displayBase64(this.state.announceOwnerData.picture)} className="img-fluid rounded-top rounded-bottom" style={{width: '70px'}}/>
+                                            <p className="ml-2 text-black-50"> Posté par {this.state.announceOwnerData.usernameEntity} le {moment(this.state.announce.createdAt).format("DD-MM-YYYY HH:MM")}</p>
+                                        </div>
                                         {this.state.announce.equipments.length > 0 &&
                                         <div className="mt-4">
                                             <div>
                                                 <p className="title_equipement">Équipements que vous disposez :</p>
                                                 {this.state.announce.equipments.map(equipment => {
-                                                    return <div className="row" key={equipment.id}>
+                                                    return <div className="row mb-5" key={equipment.id}>
                                                         <div className="col">
                                                             <i className="fa fa-arrow-right green-text"></i> {equipment.name}
                                                         </div>
@@ -662,9 +661,29 @@ class AnnouncesProfile extends React.Component {
 
                                     </div>
                                     <div className="col-md-6">
+                                        <div className="view overlay mt-3">
+                                            <img src={this.state.picturePreview} className="card-img-top img-fluid" style={{width:'400px', display: 'block',
+                                                'margin-left': 'auto',
+                                                'margin-right': 'auto' }}/>
+                                            <img src={this.displayBase64(this.state.announce.picture)}
+                                                 className={this.state.announce.picture !== null && this.state.picturePreview === null ? 'card-img-top img-fluid' : 'd-none'} style={{width:'400px', display: 'block',
+                                                'margin-left': 'auto',
+                                                'margin-right': 'auto' }}/>
+                                            <img
+                                                src={image_annonce}
+                                                alt="image annonce"
+                                                className={this.state.announce.picture === null && this.state.picturePreview === null ? 'card-img-top img-fluid' : 'd-none'} style={{width:'400px', display: 'block',
+                                                'margin-left': 'auto',
+                                                'margin-right': 'auto' }}/>
+                                            <a>
+                                                <div className="mask rgba-white-slight"></div>
+                                            </a>
+                                        </div>
+
                                         <div
                                             className={this.state.announce.user.id === this.state.userId ? 'container' : 'd-none'}>
-                                            <form onSubmit={(el) => console.log("SUBMIT")}>
+                                            <form>
+                                                <p className="text-center text-dark mt-2">Changer la photo de l'annonce</p>
                                                 <div className="form-group">
                                                     <div className="custom-file mt-2">
                                                         <input type="file" className="custom-file-input"
@@ -698,18 +717,7 @@ class AnnouncesProfile extends React.Component {
                                                 </span>
                                             </button>
                                         </div>
-                                        <div className="view overlay">
-                                            <img src={this.state.picturePreview} className="card-img-top"/>
-                                            <img src={this.displayBase64(this.state.announce.picture)}
-                                                 className={this.state.announce.picture !== null && this.state.picturePreview === null ? 'card-img-top' : 'd-none'}/>
-                                            <img
-                                                src={image_annonce}
-                                                alt="image annonce"
-                                                className={this.state.announce.picture === null && this.state.picturePreview === null ? 'card-img-top' : 'd-none'}/>
-                                            <a>
-                                                <div className="mask rgba-white-slight"></div>
-                                            </a>
-                                        </div>
+
                                     </div>
                                 </div>
 
