@@ -135,7 +135,7 @@ class Account extends React.Component {
                         </div>
 
                         <div className="col-md-6">
-                            <h4 className="card-header primary-color-dark white-text text-center">Mes demande de
+                            <h4 className="card-header primary-color-dark white-text text-center">Mes demandes de
                                 réservation</h4>
                             <div className="">
                                 <div className="mb-3 mt-3">

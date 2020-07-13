@@ -287,7 +287,7 @@ class Community extends React.Component {
                                 <div className="card mt-4">
                                     <div className="card-body">
 
-                                        <h4 className="card-title">Crééer votre annonce instantanée</h4>
+                                        <h4 className="card-title">Crééer votre annonce de manière instantanée</h4>
                                         <div className="card-text">
                                             <form onSubmit={this.submitAnnounceInstant}>
                                                 <div className="form-group">
@@ -315,7 +315,7 @@ class Community extends React.Component {
                                                     Votre numéro de téléphone est invalide
                                                 </p>
                                                 <div className="form-group">
-                                                    <label htmlFor="exampleInputPassword1">Announce</label>
+                                                    <label htmlFor="exampleInputPassword1">Annonce</label>
                                                     <textarea className="form-control" value={this.state.announceMsg}
                                                               required
                                                               id="exampleInputPassword1" onChange={(ev) => {

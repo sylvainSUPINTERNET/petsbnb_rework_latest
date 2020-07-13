@@ -17,6 +17,7 @@ import StoreCheckout from "../Stripe/StoreCheckout";
 import * as axios from "axios";
 import Menu from "../Menu/Menu";
 import moment from "moment";
+import image_annonce from "../../images/announce/default-image-announce_1.png"
 
 
 class AnnouncesProfile extends React.Component {
@@ -460,11 +461,11 @@ class AnnouncesProfile extends React.Component {
                                     <div className="col-md-6">
                                         <div className="">
                                             <span data-title="Tarif par heure" className="badge badge-info"><i
-                                                className="fas fa-clock"></i> {this.state.announce.farePerHour} €</span>
+                                                className="fas fa-clock"></i> {this.state.announce.farePerHour}{displayCurrency(this.state.announce.currency)}</span>
                                             <span data-title="Tarif journalier" className="badge badge-info ml-2"><i
-                                                className="fas fa-calendar-day"></i> {this.state.announce.farePerDay} €</span>
+                                                className="fas fa-calendar-day"></i> {this.state.announce.farePerDay}{displayCurrency(this.state.announce.currency)}</span>
                                             <span data-title="Tarif mensuel" className="badge badge-info ml-2"><i
-                                                className="fa fa-calendar-alt"></i> {this.state.announce.farePerMonth} €</span>
+                                                className="fa fa-calendar-alt"></i> {this.state.announce.farePerMonth}{displayCurrency(this.state.announce.currency)}</span>
                                         </div>
                                         <p className="mt-4">{this.state.announce.description}</p>
 
@@ -702,7 +703,7 @@ class AnnouncesProfile extends React.Component {
                                             <img src={this.displayBase64(this.state.announce.picture)}
                                                  className={this.state.announce.picture !== null && this.state.picturePreview === null ? 'card-img-top' : 'd-none'}/>
                                             <img
-                                                src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png"
+                                                src={image_annonce}
                                                 alt="image annonce"
                                                 className={this.state.announce.picture === null && this.state.picturePreview === null ? 'card-img-top' : 'd-none'}/>
                                             <a>

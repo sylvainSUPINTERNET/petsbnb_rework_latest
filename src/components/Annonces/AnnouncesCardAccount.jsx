@@ -5,6 +5,7 @@ import Truncate from 'react-truncate';
 import Api from '../../api/index';
 
 import {Redirect, withRouter} from "react-router-dom";
+import image_annonce from "../../images/announce/default-image-announce_1.png"
 
 
 
@@ -150,7 +151,7 @@ class AnnouncesCardAccount extends React.Component {
                     <div className="view view-cascade overlay">
                         <img src={this.displayBase64(this.props.announce.picture)}
                              className={this.props.announce.picture !== null ? 'card-img-top' : 'd-none'}/>
-                        <img src="https://www.mba-lyon.fr/sites/mba/files/medias/images/2019-07/default-image_0.png"
+                        <img src={image_annonce}
                              alt="image annonce"
                              className={this.props.announce.picture === null ? 'card-img-top' : 'd-none'}/>
 
@@ -164,11 +165,11 @@ class AnnouncesCardAccount extends React.Component {
 
                         <div className="text-center mt-2">
                             <span data-title="Tarif par heure" className="badge badge-pill badge-info ml-2"><i
-                                className="fas fa-clock"></i> {this.props.announce.farePerHour} €</span>
+                                className="fas fa-clock"></i> {this.props.announce.farePerHour}{displayCurrency(this.props.announce.currency)}</span>
                             <span  data-title="Tarif journalier" className="badge badge-pill badge-info ml-2"><i
-                                className="fas fa-calendar-day"></i> {this.props.announce.farePerDay} €</span>
+                                className="fas fa-calendar-day"></i> {this.props.announce.farePerDay}{displayCurrency(this.props.announce.currency)}</span>
                             <span data-title="Tarif mensuel" className="badge badge-pill badge-info ml-2"><i
-                                className="fa fa-calendar-alt"></i> {this.props.announce.farePerMonth} €</span>
+                                className="fa fa-calendar-alt"></i> {this.props.announce.farePerMonth}{displayCurrency(this.props.announce.currency)}</span>
                         </div>
                     </div>
                     <div className="card-body card-body-cascade text-center">

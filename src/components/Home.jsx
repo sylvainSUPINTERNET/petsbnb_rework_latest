@@ -199,14 +199,14 @@ class Home extends React.Component {
                     <div className="container-fluid card" id="content">
                         <div className="row d-flex h-100 justify-content-center align-items-center wow fadeIn">
                             <div className="col-md-6 mb-4 white-text text-center text-md-left">
-                                <h1 id="title_home" className="display-4 font-weight-bold mt-4">Vous ne savez comment faire
+                                <h1 id="title_home" className="display-4 font-weight-bold mt-4">Vous ne savez pas comment faire
                                     garder vos compagnons ? PetsBNB !</h1>
                                 <hr class="hr-title-home"></hr>
                                 <p>
-                                    <strong className="text-dark">PetsBNB à votre service !</strong>
+                                    <strong className="text-dark">PetsBNB est à votre service !</strong>
                                 </p>
                                 <p class="mb-4 d-none d-md-block">
-                                    <strong className="text-dark">Trouvez le petsitter qui vous correspond, selon vos
+                                    <strong className="text-dark">Ici, trouvez le petsitter qui vous correspond, selon vos
                                         propres critères <i class="far fa-smile-wink"></i>
                                     </strong>
                                 </p>
@@ -237,7 +237,7 @@ class Home extends React.Component {
                                     className="fa fa-search blue-text"></i> Rechercher une annonce</p>
                             </div>
                             <div className="card-body">
-                                <p className="justify-content-center text-center m-1 mb-4 p-2 font-weight-lighter">Trouvez votre petsitter selon vos critères !</p>
+                                <p className="justify-content-center text-center m-1 mb-4 p-2 font-weight-lighter">Trouvez votre petsitter, selon vos critères !</p>
                                 <div className="text-center mt-4">
                                     <a href="#works">Comment ça marche ?</a>
                                 </div>
@@ -414,8 +414,8 @@ class Home extends React.Component {
                                    style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>Comment ça marche ?</p>
 
                                 <p className=" container text-dark text-justify">PetsBNB assure la relation entre les petsitters et
-                                    les personnes à la recherche de petsitters. Nous nous engageons à placer le bien
-                                    être animal en première position, et souhaitons ainsi laisser les petsitter choisir
+                                    les personnes à la recherche de petsitters. Nous nous engageons à placer le bien-être animal
+                                     en première position et souhaitons ainsi laisser les petsitters choisir
                                     leurs tarifs, sans aucune commission de notre part !</p>
                             </div>
                         </div>
@@ -479,7 +479,7 @@ class Home extends React.Component {
                                 <p className="text-center mt-4" style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>
                                     <img src="https://image.flaticon.com/icons/svg/2041/2041020.svg" style={{width: '50px'}} className="img-fluid"></img>
                                     Besoin d'un boost ?</p>
-                                <p className="text-dark text-center mt-3">Même si nos services restent gratuit, nous vous proposons un boost de notoriété grâce à notre tier payant !</p>
+                                <p className="text-dark text-center mt-3">Même si nos services restent gratuit, nous vous proposons un boost de notoriété grâce à notre tiers payant !</p>
 
                                 <section className="pricing py-5">
                                     <div className="container">
@@ -548,7 +548,7 @@ class Home extends React.Component {
                                 <p className="text-center mt-4" style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>
                                     <img src="https://image.flaticon.com/icons/svg/2372/2372804.svg" style={{width: '50px'}} className="img-fluid mr-2"></img>
                                     Le meilleur pour vos compagnons</p>
-                                <p className="text-dark text-center mt-3">PetsBNB met à votre disposition <a href="/store">une sélection d'équipement</a> qui sera ravir au mieux vos compagnons à quatre pattes</p>
+                                <p className="text-dark text-center mt-3">PetsBNB met à votre disposition <a href="/store">une sélection d'équipement</a> qui sera ravir au mieux vos animaux de compagnie</p>
 
                                 <div className="row mt-4 mb-4">
                                     <div className="col-md-6 col-sm-6 mt-4 text-center">
@@ -556,7 +556,7 @@ class Home extends React.Component {
                                     </div>
                                     <div className="col-md-6 col-sm-6 mt-4 text-center">
                                         <p className="text-dark" style={{fontSize: '45px'}}>
-                                            Tester
+                                            Testé
                                             <img src="https://image.flaticon.com/icons/svg/3004/3004112.svg" style={{width: '100px'}} className="img-fluid ml-4"/>
                                         </p>
                                         <p className="text-dark" style={{fontSize: '45px'}}>

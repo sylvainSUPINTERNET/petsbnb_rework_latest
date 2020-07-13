@@ -407,7 +407,7 @@ class AnnoncesCreate extends React.Component {
                                         }
                                     </ul>
 
-                                <p className="type">Type d'animaux que vous acceuillez </p>
+                                <p className="type">Type d'animaux que vous accueillez </p>
                                     <ul className="list-group">                                     
                                         {
                                             this.state.animalsType.map((at) => {

@@ -116,7 +116,7 @@ class LoginForm extends React.Component {
                             <form onSubmit={this.onSubmit}>
                                 <div className="ml-5 mr-5 p5 mt-4">
                                     <label htmlFor="validationDefault05" className="label_login">Email*</label>
-                                    <input type="text" className={this.state.emailIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder="Nom d'utilisateur"
+                                    <input type="text" className={this.state.emailIsValid === true ? 'form-control' : 'form-control is-invalid'} id="" placeholder="Email"
                                            required disabled={this.state.disableInputs}
                                            onChange={(ev) => {
                                                this.setState({
