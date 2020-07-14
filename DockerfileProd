@@ -4,6 +4,6 @@ WORKDIR /app
 #Copying package.json to Docker Image
 COPY package.json /app
 #Installing all dependencies.
-RUN npm install
+RUN npm install && npm run build
 # Running the dev server.
-CMD ["npm", "start"]
+CMD ["serve", "-s", "build"]
