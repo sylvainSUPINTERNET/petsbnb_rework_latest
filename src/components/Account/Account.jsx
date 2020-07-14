@@ -267,7 +267,7 @@ class Account extends React.Component {
                                     </div>
                                 </div>
                                 <div className="col-md-6">
-                                    <div className="view overlay">
+                                    <div className="view overlay mb-4 mt-5">
                                         <img src={this.state.picturePreview} className="card-img-top img-fluid"
                                              style={{width:'250px', display: 'block',
                                                  'margin-left': 'auto',

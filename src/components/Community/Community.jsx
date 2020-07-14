@@ -38,7 +38,9 @@ class Community extends React.Component {
             leafletDefaultZoom: 16,
             userDetails: {
                 userId: null,
-                username: null
+                username: null,
+                usernameEntity: null,
+                picture: ""
             },
 
 
@@ -78,6 +80,10 @@ class Community extends React.Component {
 
     componentDidMount() {
         this.connect(); // connection to WS and set into the state the WS connection + perm for position
+    }
+
+    displayBase64(pictureBytesArray) {
+        return `data:image/png;base64, ${pictureBytesArray}`
     }
 
     submitAnnounceInstant(ev) {
@@ -130,10 +136,14 @@ class Community extends React.Component {
         try {
             const {status, data} = await Api.User.getMe();
             if (status === 200 || status === 204) {
+                const rp = await Api.User.getById(data.userId);
+
                 this.setState({
                     userDetails: {
                         userId: data.userId,
-                        username: data.username
+                        username: data.username,
+                        usernameEntity: rp.data.data.usernameEntity,
+                        picture: rp.data.data.picture
                     }
                 });
 
@@ -334,7 +344,7 @@ class Community extends React.Component {
                                 })
                             });
                         }}>
-                            <i className="fa fa-map-marker"></i> Rafraîchir ma position
+                            <i className="fa fa-sync"></i> Rafraîchir ma position
                             <div
                                 className={this.state.isLoadingRefreshPos === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
                                 role="status">
@@ -409,24 +419,38 @@ class Community extends React.Component {
                                                 */}
                                                 <button type="submit" className="btn btn-success"
                                                         disabled={this.state.isDisableBtnAnnounceInstant}>
-                                                    Mettre à jour mon annonce
+                                                    Ajouter mon annonce
                                                     <div
                                                         className={this.state.isLoading === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
                                                         role="status">
                                                         <span className="sr-only">Loading...</span>
                                                     </div>
                                                 </button>
+
                                             </form>
-                                            <button disabled={this.state.isDisableBtnAnnounceInstantRemove}
-                                                    className={this.state.testMapData.filter(d => d.userId === this.state.userDetails.userId && d.announce !== "" && d.announce !== null).length !== 0 ? 'btn btn-danger' : 'd-none'}
-                                                    onClick={this.removeAnnounce}>
-                                                Supprimer mon annonce
-                                                <div
-                                                    className={this.state.isLoadingRemove === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
-                                                    role="status">
-                                                    <span className="sr-only">Loading...</span>
+                                            <hr></hr>
+                                            <div className="text-center">
+                                                <div className="row alert alert-warning">
+                                                    <div className="col-md-12">
+                                                        <p className="text-dark">Si vous supprimez votre annonce, vous n'apparaîtrez plus sur la map
+                                                        </p>
+                                                    </div>
+                                                    <div className="col-md-12">
+                                                        <button disabled={this.state.isDisableBtnAnnounceInstantRemove}
+                                                                className={this.state.testMapData.filter(d => d.userId === this.state.userDetails.userId && d.announce !== "" && d.announce !== null).length !== 0 ? 'btn btn-danger' : 'd-none'}
+                                                                onClick={this.removeAnnounce}>
+                                                            Supprimer mon annonce
+                                                            <div
+                                                                className={this.state.isLoadingRemove === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
+                                                                role="status">
+                                                                <span className="sr-only">Loading...</span>
+                                                            </div>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </button>
+
+                                            </div>
+
                                         </div>
 
                                     </div>
@@ -459,6 +483,11 @@ class Community extends React.Component {
 
                                                 <div className={e.announce === "" ? 'd-none' : ''}>
                                                     <div className="container">
+                                                        <p className="text-dark text-center">{this.state.userDetails.usernameEntity}</p>
+                                                        <img src={this.state.userDetails.picture === null || this.state.userDetails.picture === "" ? 'https://image.flaticon.com/icons/svg/892/892781.svg' : this.displayBase64(this.state.userDetails.picture)}
+                                                            className="img-fluid" style={{width: '100px',display: 'block',
+                                                            'margin-left': 'auto',
+                                                            'margin-right': 'auto' }}/>
                                                         {/*
                                                         <div className="row">
                                                             <div className="col-md-12">
