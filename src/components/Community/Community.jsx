@@ -61,6 +61,8 @@ class Community extends React.Component {
             isLoading: false,
             isLoadingRemove: false,
             isDisableBtnAnnounceInstantRemove: false,
+            isLoadingRefreshPos: false,
+            disableRefreshPos: false,
 
             announceMsg: "",
             phoneNumber: "",
@@ -305,6 +307,40 @@ class Community extends React.Component {
                                     className="fa fa-circle animated pulse"></i></a>
                             </li>
                         </ul>
+                        <button className="btn btn-primary btn-sm rounded mb-3 mt-3"  disabled={this.state.disableRefreshPos} onClick={ () => {
+                            this.setState({
+                                isLoadingRefreshPos: true,
+                                disableRefreshPos: true,
+                                isDisableAnnounceInstantField: true,
+                                isDisableBtnAnnounceInstant: true,
+                                isDisablePhoneNumber: true,
+                                isDisableBtnAnnounceInstantRemove: true,
+                            });
+
+
+                            navigator.geolocation.getCurrentPosition((success) => {
+                                console.log(success.coords.latitude)
+                                this.setState({
+                                    position: {
+                                        lat: success.coords.latitude,
+                                        lon: success.coords.longitude
+                                    },
+                                    isLoadingRefreshPos: false,
+                                    disableRefreshPos: false,
+                                    isDisableAnnounceInstantField: false,
+                                    isDisableBtnAnnounceInstant: false,
+                                    isDisablePhoneNumber: false,
+                                    isDisableBtnAnnounceInstantRemove: false,
+                                })
+                            });
+                        }}>
+                            <i className="fa fa-map-marker"></i> Rafraîchir ma position
+                            <div
+                                className={this.state.isLoadingRefreshPos === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
+                                role="status">
+                                <span className="sr-only">Loading...</span>
+                            </div>
+                        </button>
                         <div className="tab-content" id="myTabContent">
                             <div className="tab-pane fade show active" id="home" role="tabpanel"
                                  aria-labelledby="home-tab">
