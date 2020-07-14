@@ -13,6 +13,7 @@ import {
 import {preventDefault} from "leaflet/src/dom/DomEvent";
 import {testProp} from "leaflet/src/dom/DomUtil";
 import Menu from "../Menu/Menu";
+import axios from 'axios';
 
 
 class Community extends React.Component {
@@ -147,6 +148,19 @@ class Community extends React.Component {
                     }
                 });
 
+                const t = await axios.get('https://ipinfo.io/json?token=c71ee5e25090be');
+                this.setState({
+                    position: {
+                        lon: t.data.loc.split(',')[0],
+                        lat: t.data.loc.split(',')[1],
+                    },
+                    isDisableAnnounceInstantField: false,
+                    isDisableBtnAnnounceInstant: false,
+                    isDisablePhoneNumber: false
+                });
+
+                /*
+                TODO: not work in prod, required domain + cert ...
                 if ("geolocation" in navigator) {
                     navigator.geolocation.watchPosition((position) => {
 
@@ -166,6 +180,8 @@ class Community extends React.Component {
                 } else {
                     alert("Your browser does not support geolocation.")
                 }
+
+                 */
 
                 let ws = new WebSocket(`${wsConfig.URL}`);
                 let that = this; // cache the this
