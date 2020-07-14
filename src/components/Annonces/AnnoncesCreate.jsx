@@ -26,9 +26,24 @@ class AnnoncesCreate extends React.Component {
                 farePerHour: 0,
                 servicesIds: [],
                 animalsTypeIds: [],
-                equipmentsIds: []
+                equipmentsIds: [],
             },
+            disableInput:false,
+            isValidTitle: true,
+            isValidDescription: true,
+            isValidAddr: true,
+            isValidCity: true,
+            isValidDept: true,
+            isValidDayFare: true,
+            isValidMensuelFare: true,
+            isValidYearFare: true,
+            isValidHoursFare: true,
+            isValidEquipment: true,
+            isValidService: true,
+            isValidAnimalsType: true,
 
+            submitDisable: false,
+            isLoadingSubmit: false,
             // data for list
             services: [],
             equipments: [],
@@ -184,22 +199,130 @@ class AnnoncesCreate extends React.Component {
     onSubmit = async (ev) => {
         ev.preventDefault();
 
-        let body = this.state.body;
-        body["equipmentsIds"] = this.state.selectedEquipments;
-        body["servicesIds"] = this.state.selectedServices;
-        body["animalsTypeIds"] = this.state.selectedAnimalsTypes;
+        let flagError = false;
 
         this.setState({
-            body: body
+            submitDisable: true,
+            isLoadingSubmit: true,
+            disableInput:true,
+            isValidTitle: true,
+            isValidDescription: true,
+            isValidAddr: true,
+            isValidCity: true,
+            isValidDept: true,
+            isValidDayFare: true,
+            isValidMensuelFare: true,
+            isValidYearFare: true,
+            isValidHoursFare: true,
+            isValidEquipment: true,
+            isValidService: true,
+            isValidAnimalsType: true,
         });
 
-        const {data, status} = await Api.Announces.post(this.state.body);
-        if(status === 200) {
-            this.props.history.push(`/annonce/${data.uuid}`);
-        } else {
-            // TODO
-            // error
-        }
+        setTimeout( async () => {
+            if(this.state.body.title.trim().length === 0) {
+                flagError = true;
+                this.setState({
+                    isValidTitle: false
+                })
+            }
+
+            if(this.state.body.description.trim().length === 0) {
+                flagError = true;
+                this.setState({
+                    isValidDescription: false
+                })
+            }
+
+            if(this.state.body.dept.trim().length === 0) {
+                flagError = true;
+                this.setState({
+                    isValidDept: false
+                })
+            }
+
+            if(this.state.body.streetAddress.trim().length === 0) {
+                flagError = true;
+                this.setState({
+                    isValidAddr: false
+                })
+            }
+            if(this.state.body.city.trim().length === 0) {
+                flagError = true;
+                this.setState({
+                    isValidCity: false
+                })
+            }
+            if(this.state.body.farePerDay <= 0) {
+                flagError = true;
+                this.setState({
+                    isValidDayFare: false
+                })
+            }
+
+            if(this.state.body.farePerMonth <= 0) {
+                flagError = true;
+                this.setState({
+                    isValidMensuelFare: false
+                })
+            }
+
+            if(this.state.body.farePerHour <= 0) {
+                flagError = true;
+                this.setState({
+                    isValidHoursFare: false
+                })
+            }
+
+            if (this.state.selectedAnimalsTypes.length === 0) {
+                flagError = true;
+                this.setState({
+                    isValidAnimalsType: false
+                })
+            }
+
+            if (this.state.selectedServices.length === 0) {
+                flagError = true;
+                this.setState({
+                    isValidService: false
+                })
+            }
+
+            if (this.state.selectedEquipments.length === 0) {
+                flagError = true;
+                this.setState({
+                    isValidEquipment:false
+                })
+            }
+            
+            if(flagError === false) {
+                let body = this.state.body;
+                body["equipmentsIds"] = this.state.selectedEquipments;
+                body["servicesIds"] = this.state.selectedServices;
+                body["animalsTypeIds"] = this.state.selectedAnimalsTypes;
+
+                this.setState({
+                    body: body
+                });
+
+                const {data, status} = await Api.Announces.post(this.state.body);
+                if(status === 200) {
+                    this.props.history.push(`/annonce/${data.uuid}`);
+                } else {
+                    // TODO
+                    // error
+                }
+            } else {
+                this.setState({
+                    isLoadingSubmit: false,
+                    disableInput: false,
+                    submitDisable: false
+                })
+            }
+
+        }, 2000)
+
+
     };
 
     render() {
@@ -211,32 +334,36 @@ class AnnoncesCreate extends React.Component {
                                  <div className="text-center mt-2 p-1 white-text"><h3>Déposer votre annonce</h3></div>
                         </div>
 
-                        <div class="card">
-                            <div class="card-body">
+                        <div className="card">
+                            <div className="card-body">
 
                             <form className="text-center" onSubmit={this.onSubmit}>
 
                             <div className="form-group row">
                                 <div className="col-sm-6">
                                 <label htmlFor="title" className="label_annonce">Titre de l'annonce*</label>
-                                <input type="text" id="title" className="form-control" placeholder="Ex. Garder un chien" onChange={this.onChange}/>
+                                <input type="text" id="title" className={this.state.isValidTitle === true ? 'form-control' : 'form-control is-invalid'} placeholder="Ex. Garder un chien" onChange={this.onChange} disabled={this.state.disableInput}/>
+                                <div className="invalid-feedback">titre ne peut pas être vide</div>
                                 </div>
                                 <div className="col-sm-6">
                                 <label htmlFor="description" className="label_annonce">Description de l'annonce*</label>
-                                <textarea id="description" rows="1" cols="59" className="form-control" placeholder="Ex. Je peux garder un chien pendant quelques jours"
-                                              onChange={this.onChange}/>              
+                                <textarea id="description" rows="1" cols="59"  className={this.state.isValidDescription === true ? 'form-control' : 'form-control is-invalid'} disabled={this.state.disableInput} placeholder="Ex. Je peux garder un chien pendant quelques jours"
+                                              onChange={this.onChange}/>
+                                    <div className="invalid-feedback">description ne peut pas être vide</div>
                                 </div>
                             </div>
 
                             <div className="form-group row">
                                 <div className="col-sm-6">
                                 <label htmlFor="streetAddress" className="label_annonce">Adresse complète*</label>
-                                <input type="text" id="streetAddress" className="form-control" placeholder="Ex. 14 rue de la paix"
+                                <input type="text" id="streetAddress" className={this.state.isValidAddr === true ? 'form-control' : 'form-control is-invalid'} disabled={this.state.disableInput} placeholder="Ex. 14 rue de la paix"
                                            onChange={this.onChange}/>
+                                    <div className="invalid-feedback">adresse ne peut pas être vide</div>
                                 </div>
                                 <div className="col-sm-6">
                                 <label htmlFor="city" className="label_annonce">Ville*</label>
-                                <input type="text" id="city" className="form-control" placeholder="Ex. Paris" onChange={this.onChange}/>
+                                <input type="text" id="city"  className={this.state.isValidCity === true ? 'form-control' : 'form-control is-invalid'} placeholder="Ex. Paris" disabled={this.state.disableInput} onChange={this.onChange}/>
+                                    <div className="invalid-feedback">ville ne peut être vide</div>
                                 </div>
                             </div>      
 
@@ -244,9 +371,10 @@ class AnnoncesCreate extends React.Component {
                                 <div className="col-sm-6">
                                     <label htmlFor="departement" className="label_annonce">Département*</label>
                                     <select
+                                        disabled={this.state.disableInput}
                                         onChange={this.onChange}
-                                        defaultValue={"default_dept"} className="custom-select"
-                                        id="dept">
+                                        defaultValue={"default_dept"} className={this.state.isValidDept === true ? 'custom-select' : 'custom-select is-invalid'}
+                                        id="dept" required>
                                         <option value="default_dept">Département</option>
                                         <option value="01">01 - Ain</option>
                                         <option value="02">02 - Aisne</option>
@@ -351,30 +479,34 @@ class AnnoncesCreate extends React.Component {
                                         <option value="975">975 - Saint Pierre et Miquelon</option>
                                         <option value="976">976 - Mayotte</option>
                                     </select>
+                                    <div className="invalid-feedback">choisissez un département</div>
                                 </div>
                                 <div className="col-sm-6">
                                 <label htmlFor="farePerDay" className="label_annonce">Tarif journalier*</label>
-                                <input type="number" id="farePerDay" className="form-control" placeholder="Ex. 25"
+                                <input disabled={this.state.disableInput} type="number" id="farePerDay" className={this.state.isValidDayFare === true ? 'custom-select' : 'custom-select is-invalid'} placeholder="Ex. 25"
                                            onChange={this.onChange} min="1" step="any"/>
+                                    <div className="invalid-feedback">tarif n'est pas valide</div>
                                 </div>
                             </div>
 
                             <div className="form-group row">
                                 <div className="col-sm-6">
                                 <label htmlFor="farePerMonth" className="label_annonce">Tarif mensuel*</label>
-                                <input type="number" id="farePerMonth" className="form-control" placeholder="Ex. 150"
+                                <input disabled={this.state.disableInput} type="number" id="farePerMonth" className={this.state.isValidMensuelFare === true ? 'custom-select' : 'custom-select is-invalid'} placeholder="Ex. 150"
                                            onChange={this.onChange} min="1" step="any"/>
+                                    <div className="invalid-feedback">tarif n'est pas valide</div>
                                 </div>
                                 <div className="col-sm-6">
                                 <label htmlFor="farePerHour" className="label_annonce">Tarif par heure*</label>
-                                <input type="number" id="farePerHour" className="form-control" placeholder="Ex. 6"
+                                <input disabled={this.state.disableInput} type="number" id="farePerHour" className={this.state.isValidHoursFare === true ? 'custom-select' : 'custom-select is-invalid'} placeholder="Ex. 6"
                                            onChange={this.onChange} min="1" step="any"/>
+                                    <div className="invalid-feedback">tarif n'est pas valide</div>
                                 </div>
                             </div>                           
 
                             <div className="container mt-4">
                                 <p className="service">Vos services* </p>
-                                <div class="wrapper">
+                                <div className="wrapper">
                                     <ul>              
                                         {
                                             this.state.services.map((service) => {
@@ -387,11 +519,12 @@ class AnnoncesCreate extends React.Component {
                                                 )
                                             })
                                         }
+                                        <p className={this.state.isValidService === true ? "d-none": "text-center text-danger mt-4"}>Choisissez au moins un service</p>
                                     </ul>
                                 </div>
 
                                 <p className="equipment">Équipements que vous disposez* </p>
-                                <div class="wrapper">
+                                <div className="wrapper">
                                     <ul>                                
                                         {
                                             this.state.equipments.map((equipments) => {
@@ -403,11 +536,12 @@ class AnnoncesCreate extends React.Component {
                                                 )
                                             })
                                         }
+                                        <p className={this.state.isValidEquipment === true ? "d-none": "text-center text-danger mt-4"}>Choisissez au moins un équipement</p>
                                     </ul>
                                 </div>
 
                                 <p className="type">Type d'animaux que vous accueillez* </p>
-                                <div class="wrapper">
+                                <div className="wrapper">
                                     <ul>                                     
                                         {
                                             this.state.animalsType.map((at) => {
@@ -419,14 +553,21 @@ class AnnoncesCreate extends React.Component {
                                                 )
                                             })
                                         }
+                                        <p className={this.state.isValidAnimalsType === true ? "d-none": "text-center text-danger mt-4"}>Choisissez au moins une catégorie d'animaux</p>
                                     </ul>
                                 </div>
                             </div>
 
                                 <button
+                                    disabled={this.state.submitDisable}
                                     id="button_annonce"
                                     className="mt-3 btn btn-primary btn-lg btn-block"
                                     type="submit">Ajouter
+                                    <div
+                                        className={this.state.isLoadingSubmit === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
+                                        role="status">
+                                        <span className="sr-only">Loading...</span>
+                                    </div>
                                 </button>
 
                             </form>

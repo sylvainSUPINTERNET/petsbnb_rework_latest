@@ -25,7 +25,8 @@ class RegisterForm extends React.Component {
             passwordConfirmedIsValid: true,
             emailIsValid: true,
 
-            showDeleteModal: false
+            showDeleteModal: false,
+
         };
 
         this.submitRegister = this.submitRegister.bind(this)
