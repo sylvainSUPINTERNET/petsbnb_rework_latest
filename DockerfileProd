@@ -8,4 +8,4 @@ RUN npm install
 RUN npm i serve -g
 # RUN npm run build can't build on AWS -> run out of memory
 # Running the dev server.
-CMD ["serve", "-s", "build"]
+CMD ["serve", "-s", "build", "-l", "3000"]
