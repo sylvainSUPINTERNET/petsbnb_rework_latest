@@ -356,7 +356,7 @@ class Community extends React.Component {
                                 })
                             });
                         }}>
-                            <i className="fa fa-sync"></i> Rafraîchir ma position
+                            <i className="fa fa-sync"></i> Je me localise
                             <div
                                 className={this.state.isLoadingRefreshPos === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
                                 role="status">
