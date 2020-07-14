@@ -203,8 +203,6 @@ class Community extends React.Component {
                             isDisableBtnAnnounceInstantRemove: false
                         })
                     } else {
-                        console.log("we enter here");
-                        console.log(json);
                         this.setState({
                             testMapData: json,
                             isDisableAnnounceInstantField: false,
@@ -282,7 +280,6 @@ class Community extends React.Component {
         });
 
         setTimeout(() => {
-            console.log(payload);
             ws.send(JSON.stringify(payload));
         }, 2000);
 
@@ -329,7 +326,6 @@ class Community extends React.Component {
 
 
                             navigator.geolocation.getCurrentPosition((success) => {
-                                console.log(success.coords.latitude)
                                 this.setState({
                                     position: {
                                         lat: success.coords.latitude,
@@ -429,7 +425,7 @@ class Community extends React.Component {
 
                                             </form>
                                             <hr></hr>
-                                            <div className="text-center">
+                                            <div className={this.state.testMapData.filter(d => d.userId === this.state.userDetails.userId && d.announce !== "" && d.announce !== null).length !== 0 ? 'text-center' : 'd-none'}>
                                                 <div className="row alert alert-warning">
                                                     <div className="col-md-12">
                                                         <p className="text-dark">Si vous supprimez votre annonce, vous n'apparaîtrez plus sur la map
