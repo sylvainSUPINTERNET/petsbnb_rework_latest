@@ -12,7 +12,7 @@
 /coverage
 
 # production
-/build
+# /build cannot build on AWS ...
 
 # misc
 .DS_Store

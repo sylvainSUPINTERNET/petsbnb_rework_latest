@@ -1,0 +1,268 @@
+@media (min-width: 768px) {
+    #arrival {
+        width: 100px;
+    }
+    #departure {
+        width: 100px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .list-group{
+      width: 200px;
+      display: -webkit-box !important;
+    }   
+}
+
+.label_annonce {
+    float: left;
+    color: black;
+    font-weight: bold;
+}
+  
+.service {
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+}
+  
+.equipment {
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+}
+  
+.type {
+    color: black;
+    font-weight: bold;
+    margin-top: 15px;
+}
+  
+.title_form {
+    margin-top: 20px;
+    text-align: center;
+    color: #1565c0;
+    font-family: Open Sans,sans-serif;
+    font-size: 3rem;
+    font-weight: bold !important;
+}
+  
+.hr_title {
+    background-color:  #1565c0; 
+    height: 1px;
+    margin-right: 100px;
+    margin-left: 100px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+  
+#form_annonce {
+    border-radius: 6px;
+    box-shadow: 0 0.5em 1em -0.125em rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.02);
+}
+  
+#button_annonce {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.label_login {
+    float: left;
+    color: black;
+    font-weight: bold;
+}
+
+.label_register {
+    float: left;
+    color: black;
+    font-weight: bold;
+}
+
+.title_store {
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+[data-title]:hover:after {
+    opacity: 1;
+    transition: all 0.1s ease 0.1s;
+    visibility: visible;
+    overflow: visible !important;
+}
+
+[data-title]:after {
+    content: attr(data-title);
+    background-color: #f5f4ed;
+    color: #111;
+    font-size: 12px;
+    font-family: Segoe UI;
+    position: absolute;
+    padding: 5px 10px;
+    bottom: 26px;
+    right: 0;
+    white-space: nowrap;
+    box-shadow: 3px 3px 10px rgba(0,0,0,.2);
+    opacity: 0;
+    border: 1px solid #111111;
+    border-radius: 3px;
+    z-index: 99999;
+    visibility: hidden;
+}
+
+[data-title] {
+    position: relative;
+}
+
+#alert_annonce {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.title_equipement {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#community {
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+#annoncesList {
+    margin-bottom: 20px;
+}
+
+.team {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.title_article {
+    font-weight: bold;
+}
+
+#cgu {
+    text-align: justify;
+    margin: 10px;
+}
+
+.contact-faq {
+    margin-top: 30px;
+}
+
+.title_PetsBNB {
+    font-weight: bold;
+}
+
+#petsBNB {
+    text-align: justify;
+    margin: 10px;
+}
+
+.hr_home {
+    background-color: #1565c0;
+    height: 1px;
+    margin-right: 200px;
+    margin-left: 200px;
+    margin-bottom: 40px;
+}
+
+.hr-title-home {
+    background-color: #1565c0;
+    height: 1px;
+}   
+
+#last_announce {
+    font-weight: bold;
+    color: #43485c;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+#search_announce {
+    font-weight: bold;
+    color: #43485c;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+#title_home {
+    font-weight: bold;
+    color: rgba(23, 106, 196, 0.95);
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+.description {
+    color: #020305;
+}
+
+.hook {
+    color: #020305;
+}
+
+#button_site {
+    background-color: rgba(55,122,195,.95);
+    border-color: transparent;
+    color: #fff;
+}
+
+#button_team {
+    background-color: rgba(55,122,195,.95);
+    border-color: transparent;
+    color: #fff;
+}
+
+.view {
+    overflow: visible!important;
+}
+
+.label_store {
+    color: black;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.image_dog {
+    width: 250px;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+.Cat_Photography {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+
+
+
+@media (min-width: 1200px) {
+    .wrapper { 
+        text-align: center; 
+    }
+    .wrapper ul { 
+        display:inline-table; 
+    }
+    .wrapper li { 
+        display:inline; 
+    }
+}
+
+@media (min-width: 1200px) {
+    .list-group{
+      width: 200px;
+      display: -webkit-box !important;
+    }   
+}
+
+
+.list-group-item{
+    border-top-width: 1px !important;
+}
