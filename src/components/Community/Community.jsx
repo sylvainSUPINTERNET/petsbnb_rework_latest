@@ -17,6 +17,7 @@ import Menu from "../Menu/Menu";
 
 class Community extends React.Component {
     timeout = 250; // Initial timeout duration as a class variable for WS
+    CONSTANT_REMOVE = "REMOVE"; // this is used redis side to remove an announce
 
     constructor(props) {
         super(props);
@@ -58,12 +59,16 @@ class Community extends React.Component {
             error: false,
             errorPhone: false,
             isLoading: false,
+            isLoadingRemove: false,
+            isDisableBtnAnnounceInstantRemove: false,
 
             announceMsg: "",
             phoneNumber: "",
             // Contains all map data
             testMapData: []
         };
+
+        this.removeAnnounce = this.removeAnnounce.bind(this);
     }
 
 
@@ -181,18 +186,21 @@ class Community extends React.Component {
                         this.setState({
                             isDisableBtnAnnounceInstant: false,
                             isDisablePhoneNumber: false,
-                            isLoading: false
+                            isLoading: false,
+                            isLoadingRemove: false,
+                            isDisableBtnAnnounceInstantRemove: false
                         })
                     } else {
+                        console.log("we enter here");
+                        console.log(json);
                         this.setState({
                             testMapData: json,
                             isDisableAnnounceInstantField: false,
                             isDisableBtnAnnounceInstant: false,
-                            isDisablePhoneNumber: false
+                            isDisablePhoneNumber: false,
+                            isDisableBtnAnnounceInstantRemove: false
                         })
                     }
-
-
                 };
 
                 // websocket onclose event listener
@@ -236,6 +244,39 @@ class Community extends React.Component {
         }
     };
 
+    removeAnnounce() {
+        this.setState({
+            isLoadingRemove: true,
+            isDisableBtnAnnounceInstantRemove: true,
+            isDisableAnnounceInstantField: true,
+            error: false,
+            errorPhone: false,
+            isDisableBtnAnnounceInstant: true,
+            isDisablePhoneNumber: true
+        });
+
+
+        const {ws} = this.state;
+        const payload = this.state.wsPayload;
+        payload.source = "community";
+        payload.userId = this.state.userDetails.userId;
+        payload.username = this.state.userDetails.username;
+        payload.data = this.state.position;
+        payload.announce = this.CONSTANT_REMOVE;
+        payload.phoneNumber = this.CONSTANT_REMOVE;
+
+        this.setState({
+            announceMsg: ""
+        });
+
+        setTimeout(() => {
+            console.log(payload);
+            ws.send(JSON.stringify(payload));
+        }, 2000);
+
+
+    }
+
     /**
      * utilited by the @function connect to check if the connection is close, if so attempts to reconnect
      */
@@ -270,7 +311,10 @@ class Community extends React.Component {
                                 <div className="card mt-4">
                                     <div className="card-body">
 
-                                        <h4 className="card-title">Créer votre annonce de manière instantanée</h4>
+                                        <h4 className="card-title text-dark text-center mb-5">Créer votre annonce
+                                            spontanée !</h4>
+                                        <p className="text-dark mt-2 mb-4 text-center">Ajouter une annonce est soyez
+                                            visible en temps réel par l'ensemble de la communauté PetsBNB</p>
                                         <div className="card-text">
                                             <form onSubmit={this.submitAnnounceInstant}>
                                                 <div className="form-group">
@@ -292,7 +336,7 @@ class Community extends React.Component {
                                                            disabled={this.state.isDisablePhoneNumber}
                                                            className="form-control"
                                                            id="phonenumber"
-                                                           aria-describedby="phonenumber" />
+                                                           aria-describedby="phonenumber"/>
                                                 </div>
                                                 <p className={this.state.errorPhone ? 'text-danger' : 'd-none'}>
                                                     Votre numéro de téléphone est invalide
@@ -306,8 +350,8 @@ class Community extends React.Component {
                                                             announceMsg: ev.target.value
                                                         })
                                                     }
-                                                    } 
-                                                        disabled={this.state.isDisableAnnounceInstantField}/>
+                                                    }
+                                                              disabled={this.state.isDisableAnnounceInstantField}/>
                                                 </div>
                                                 <p className={this.state.error ? 'text-danger' : 'd-none'}>
                                                     Votre message est vide
@@ -329,7 +373,7 @@ class Community extends React.Component {
                                                 */}
                                                 <button type="submit" className="btn btn-success"
                                                         disabled={this.state.isDisableBtnAnnounceInstant}>
-                                                    Mettre à jour
+                                                    Mettre à jour mon annonce
                                                     <div
                                                         className={this.state.isLoading === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
                                                         role="status">
@@ -337,6 +381,16 @@ class Community extends React.Component {
                                                     </div>
                                                 </button>
                                             </form>
+                                            <button disabled={this.state.isDisableBtnAnnounceInstantRemove}
+                                                    className={this.state.testMapData.filter(d => d.userId === this.state.userDetails.userId && d.announce !== "" && d.announce !== null).length !== 0 ? 'btn btn-danger' : 'd-none'}
+                                                    onClick={this.removeAnnounce}>
+                                                Supprimer mon annonce
+                                                <div
+                                                    className={this.state.isLoadingRemove === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
+                                                    role="status">
+                                                    <span className="sr-only">Loading...</span>
+                                                </div>
+                                            </button>
                                         </div>
 
                                     </div>
@@ -347,8 +401,8 @@ class Community extends React.Component {
                                  aria-labelledby="profile-tab">
                                 <p className="mt-4">
                                     {this.state.testMapData.length > 1 ?
-                                        <p>{this.state.testMapData.length} utilisateurs en ligne</p> :
-                                        <p>1 utilisateur en ligne</p>}
+                                        <p>{this.state.testMapData.length} utilisateurs en ligne ce mois</p> :
+                                        <p>1 utilisateur en ligne ce mois</p>}
                                 </p>
                             </div>
                         </div>
@@ -381,7 +435,8 @@ class Community extends React.Component {
                                                         <hr></hr>
                                                         <p><i className="fa fa-envelope text-primary"></i> {e.username}
                                                         </p>
-                                                        <p><i className="fa fa-phone text-primary"></i> {e.phoneNumber}</p>
+                                                        <p><i className="fa fa-phone text-primary"></i> {e.phoneNumber}
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </Popup>
@@ -394,10 +449,10 @@ class Community extends React.Component {
                     </div>
 
                 </div>
-                
+
             </div>
 
-        <Footer></Footer>
+            <Footer></Footer>
 
         </div>;
     }
