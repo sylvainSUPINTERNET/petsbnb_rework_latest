@@ -31,7 +31,7 @@ class BookingCalendar extends React.Component {
                 announceId:"",
                 serviceId: "",
                 animalsTypeId:""
-            }
+            },
         };
 
         this.onConfirmBookingDate = this.onConfirmBookingDate.bind(this);
@@ -249,10 +249,12 @@ class BookingCalendar extends React.Component {
     }
 
     handleChangeArrivalTime(e) {
+
         this.setState({
             arrivalTime: e.target.value
         })
     }
+
 
     render() {
         let serviceChoice = this.props.service;
@@ -328,7 +330,7 @@ class BookingCalendar extends React.Component {
                     </div>
 
                     <div className="text-center mb-3">
-                        <button type="button" className="btn btn-success m-4" data-dismiss="modal" disabled={this.state.departureTime !== "" && this.state.arrivalTime !== ""? false : true}
+                        <button type="button" className="btn btn-success m-4" data-dismiss="modal" disabled={this.state.departureTime !== "" && this.state.arrivalTime !== "" ? false : true}
                                 onClick={this.onConfirmBookingDate}>Confirmé
                         </button>
 

@@ -199,7 +199,7 @@ class LoginForm extends React.Component {
                     })}>
                     <Modal.Header closeButton>
                         <Modal.Title><i
-                            className="fa fa-exclamation-triangle text-danger"></i> Une erreur est survenue</Modal.Title>
+                            className="fa fa-exclamation-triangle text-danger"></i> Identifiants invalides, veuillez réessayer</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>Veuillez réessayer plus tard</Modal.Body>

@@ -277,9 +277,11 @@ class Account extends React.Component {
                                     <form>
                                         <p className="text-dark text-center mt-2">Changer votre image de profil</p>
                                         <div className="form-group">
-                                            <div className="custom-file mt-2">
+                                            <div className="custom-file mt-2" style={{
+                                                '$custom-file-text': '(en: "Browse",es: "Elegir", fr: "Choisir")'
+                                            }}>
                                                 <input type="file" className="custom-file-input"
-                                                       id="validatedCustomFile" required
+                                                       id="validatedCustomFile" required lang="fr"
                                                        onChange={(ev) => this.displayUploadLabel(ev)}/>
                                                 <label className="custom-file-label"
                                                        htmlFor="validatedCustomFile">

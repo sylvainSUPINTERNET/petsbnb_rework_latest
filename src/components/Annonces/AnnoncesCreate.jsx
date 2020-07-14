@@ -220,14 +220,14 @@ class AnnoncesCreate extends React.Component {
         });
 
         setTimeout( async () => {
-            if(this.state.body.title.trim().length === 0) {
+            if(this.state.body.title.trim().length === 0 || this.state.body.title.trim().length > 35) {
                 flagError = true;
                 this.setState({
                     isValidTitle: false
                 })
             }
 
-            if(this.state.body.description.trim().length === 0) {
+            if(this.state.body.description.trim().length === 0 || this.state.body.description.trim().length > 300) {
                 flagError = true;
                 this.setState({
                     isValidDescription: false
@@ -343,13 +343,13 @@ class AnnoncesCreate extends React.Component {
                                 <div className="col-sm-6">
                                 <label htmlFor="title" className="label_annonce">Titre de l'annonce*</label>
                                 <input type="text" id="title" className={this.state.isValidTitle === true ? 'form-control' : 'form-control is-invalid'} placeholder="Ex. Garder un chien" onChange={this.onChange} disabled={this.state.disableInput}/>
-                                <div className="invalid-feedback">titre ne peut pas être vide</div>
+                                <div className="invalid-feedback">titre ne peut pas être vide et ne doit pas dépasser 35 caractères</div>
                                 </div>
                                 <div className="col-sm-6">
                                 <label htmlFor="description" className="label_annonce">Description de l'annonce*</label>
                                 <textarea id="description" rows="1" cols="59"  className={this.state.isValidDescription === true ? 'form-control' : 'form-control is-invalid'} disabled={this.state.disableInput} placeholder="Ex. Je peux garder un chien pendant quelques jours"
                                               onChange={this.onChange}/>
-                                    <div className="invalid-feedback">description ne peut pas être vide</div>
+                                    <div className="invalid-feedback">description ne peut pas être vide et ne doit pas dépasser 300 caractères</div>
                                 </div>
                             </div>
 

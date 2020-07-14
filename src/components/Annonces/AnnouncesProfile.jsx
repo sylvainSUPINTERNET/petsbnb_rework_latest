@@ -14,16 +14,22 @@ import {apiEndpoints, stripeConfig} from "../../api/config";
 
 import {StripeProvider, CardCVCElement} from "react-stripe-elements";
 import StoreCheckout from "../Stripe/StoreCheckout";
-import * as axios from "axios";
+import axios from "axios";
 import Menu from "../Menu/Menu";
 import moment from "moment";
 import image_annonce from "../../images/announce/default-image-announce_1.png"
+import {mapStyle, mapStyleAnnounceProfil} from "../../style/map.style";
+import {Map, Marker, Popup, TileLayer, CircleMarker} from "react-leaflet";
 
 
 class AnnouncesProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            position: {
+             lon: '',
+             lat:''
+            },
             isLoading: true,
             delay: 10,
             isAlreadyDemande: false,
@@ -110,13 +116,14 @@ class AnnouncesProfile extends React.Component {
 
 
         // call APIs
-        setTimeout(() => {
+        setTimeout(async () => {
             this.getAnnounce(uuid);
             this.getServices();
             this.getAnimalsType();
             this.getUserBookingForTheAnnounceByUuid(uuid)
         }, this.state.delay)
     }
+
 
     displayBase64(pictureBytesArray) {
         return `data:image/png;base64, ${pictureBytesArray}`
@@ -320,7 +327,7 @@ class AnnouncesProfile extends React.Component {
 
             }
         } catch (e) {
-            alert(e)
+            //alert(e)
         }
     }
 
@@ -407,6 +414,21 @@ class AnnouncesProfile extends React.Component {
                 });
                 const rp = await Api.User.getById(this.state.announce.user.id);
 
+                const cityParam = encodeURIComponent(this.state.announce.city);
+                const streetAddressParam = encodeURIComponent(this.state.announce.streetAddress);
+                const deptParam = encodeURIComponent(this.state.announce.dept);
+                const formatOSM = "json";
+
+                const pos = await axios.get(`https://nominatim.openstreetmap.org/search?city=${cityParam}&street=${streetAddressParam}&postalcode=${deptParam}&format=${formatOSM}`);
+
+                this.setState({
+                    position: {
+                        lon: pos.data[0].lon,
+                        lat: pos.data[0].lat
+                    }
+                });
+
+                //const pos = await axios.get('');
                 this.setState({
                     announceOwnerData: {
                         usernameEntity: rp.data.data.usernameEntity,
@@ -444,13 +466,13 @@ class AnnouncesProfile extends React.Component {
                     <div className="container-fluid darken-4 rounded-1 p-4 mt-2">
                         <div className="card-header blue darken-4 m-0 p-0">
                             <div className="text-center mt-2 p-1 white-text">
-                                <h3>{this.state.announce.title}</h3>
+                                <h3 className="mb-2 mt-2">{this.state.announce.title}</h3>
                             </div>
                         </div>
                         <div className="card">
                             <div className="card-body">
                                 <h4 className="text-dark"><i
-                                    className="fa fa-map-marker-alt text-primary"></i> {this.state.announce.dept} - {capitalize(this.state.announce.city)}, {this.state.announce.streetAddress}
+                                    className="fa fa-map-marker-alt text-primary"></i> {this.state.announce.dept} - {capitalize(this.state.announce.city)}
                                 </h4>
                                 <div className="row">
                                     <div className="col-md-6">
@@ -465,7 +487,7 @@ class AnnouncesProfile extends React.Component {
                                         <p className="mt-4 text-justify">{this.state.announce.description}</p>
                                         <div className="row text-center">
                                             <hr></hr>
-                                            <img src={this.state.announceOwnerData.picture === null ? 'https://image.flaticon.com/icons/svg/892/892781.svg' : this.displayBase64(this.state.announceOwnerData.picture)} className="img-fluid rounded-top rounded-bottom" style={{width: '70px'}}/>
+                                            <img src={this.state.announceOwnerData.picture === null ? 'https://image.flaticon.com/icons/svg/892/892781.svg' : this.displayBase64(this.state.announceOwnerData.picture)} className="img-fluid rounded-top rounded-bottom mr-2" style={{width: '70px'}}/>
                                             <p className="ml-2 text-black-50"> Posté par {this.state.announceOwnerData.usernameEntity} le {moment(this.state.announce.createdAt).format("DD-MM-YYYY HH:MM")}</p>
                                         </div>
                                         {this.state.announce.equipments.length > 0 &&
@@ -473,7 +495,7 @@ class AnnouncesProfile extends React.Component {
                                             <div>
                                                 <p className="title_equipement">Équipements que vous disposez :</p>
                                                 {this.state.announce.equipments.map(equipment => {
-                                                    return <div className="row mb-5" key={equipment.id}>
+                                                    return <div className="row mb-1" key={equipment.id}>
                                                         <div className="col">
                                                             <i className="fa fa-arrow-right green-text"></i> {equipment.name}
                                                         </div>
@@ -485,6 +507,19 @@ class AnnouncesProfile extends React.Component {
                                         {/*
                                         tthis.state.isAlreadyDemande === true -> hide the reservation and show message
                                         */}
+                                        <div style={mapStyleAnnounceProfil} className="mt-4 mb-1">
+                                            <Map center={this.state.position} zoom="13"
+                                                 style={{height: '300px', borderRadius: '5px', width: '100%'}}>
+                                                <TileLayer
+                                                    attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+                                                <CircleMarker center={this.state.position} color="#d63031" radius={20} >
+                                                    <Popup>Popup in CircleMarker</Popup>
+                                                </CircleMarker>
+                                            </Map>
+                                        </div>
+
+
                                         <div
                                             className={this.state.announce.user.id === this.state.userId ? 'd-none' : ''}>
 
@@ -564,7 +599,7 @@ class AnnouncesProfile extends React.Component {
 
                                                         <div className="row mt-1">
                                                             <div className="col-md-12">
-                                                                <p>Préstation</p>
+                                                                <p className="text-dark mt-3 mb-2" style={{fontSize: '25px'}}>Préstation</p>
                                                                 <ul className="stepper stepper-vertical">
 
                                                                     <li className="completed">
@@ -685,9 +720,11 @@ class AnnouncesProfile extends React.Component {
                                             <form>
                                                 <p className="text-center text-dark mt-2">Changer la photo de l'annonce</p>
                                                 <div className="form-group">
-                                                    <div className="custom-file mt-2">
+                                                    <div className="custom-file mt-2" style={{
+                                                        '$custom-file-text': '(en: "Browse",es: "Elegir", fr: "Choisir")'
+                                                    }}>
                                                         <input type="file" className="custom-file-input"
-                                                               id="validatedCustomFile" required
+                                                               id="validatedCustomFile" required lang="fr"
                                                                onChange={(ev) => this.displayUploadLabel(ev)}/>
                                                         <label className="custom-file-label"
                                                                htmlFor="validatedCustomFile">
