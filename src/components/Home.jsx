@@ -385,7 +385,7 @@ class Home extends React.Component {
                                         <div className="row">
                                             {
                                                 this.state.latestAnnounces.map(announce => {
-                                                    return <div className="col mt-2">
+                                                    return <div className="col-md-3">
                                                         <AnnouncesCard announce={announce} modifPictureBtn={false}/>
                                                     </div>
                                                 })
