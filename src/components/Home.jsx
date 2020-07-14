@@ -11,9 +11,23 @@ import Footer from '../components/Partials/Footer';
 import {withRouter} from "react-router-dom";
 import AnnouncesCard from "./Annonces/AnnouncesCard";
 import Menu from "./Menu/Menu";
-import header_dog from "../images/header/dog.png"
 import Sylvain from "../images/team/JOLY_Sylvain.png";
 import Thomas from "../images/team/MALLET_Thomas.png";
+import Header_Cat from "../images/header/header_cat.jpg";
+import Search_Announce from "../images/header/search_announce.svg";
+import Reserve_Announce from "../images/header/reserve_announce.svg";
+import Payment_Announce from "../images/header/payment_announce.png";
+import Deposit_Announce from "../images/header/deposit_announce.svg";
+import Select_Request from "../images/header/select_request.svg";
+import No_Commission from "../images/header/no_commission.svg";
+import Communuty from "../images/header/community.svg";
+import Boost from "../images/header/boost.svg";
+import Compagnons from "../images/header/compagnons.svg";
+import Test from "../images/header/test.svg";
+import Approve from "../images/header/approve.svg";
+import Secure from "../images/header/secure.svg";
+import Partner from "../images/header/partner.png";
+import Header_Dog from "../images/header/header_dog.jpg";
 
 class Home extends React.Component {
     constructor(props) {
@@ -219,8 +233,8 @@ class Home extends React.Component {
                             </div>
                             <div className="col-md-6 col-xl-5 mb-4 mt-4">
                                 <img
-                                    src="https://www.thesprucepets.com/thmb/1HQxXRVRCA2_CHJaZAlTk0Ype3g=/2304x1728/filters:fill(auto,1)/close-up-of-cat-lying-on-floor-at-home-908763830-1d61bee6961b45ee8a55bdfa5da1ebb3.jpg"
-                                    alt="header dog" class="img-fluid"></img>
+                                    src={Header_Cat}
+                                    alt="header cat" class="img-fluid"></img>
                             </div>
                         </div>
                     </div>
@@ -421,17 +435,17 @@ class Home extends React.Component {
                                     <div className="row ml-1">
                                         <div className="col-md-3 m-4">
                                             <img className="rounded float-left img-fluid" style={{width: '120px'}}
-                                                 src="https://image.flaticon.com/icons/svg/3043/3043946.svg"/>
+                                                 src={Search_Announce}/>
                                             <p> Chercher votre annonce </p>
                                         </div>
                                         <div className="col-md-3 m-4">
                                             <img className="rounded float-left img-fluid" style={{width: '120px'}}
-                                                 src="https://image.flaticon.com/icons/svg/3078/3078971.svg"/>
+                                                 src={Reserve_Announce}/>
                                             <p>Réserver votre créneaux</p>
                                         </div>
                                         <div className="col-md-3 m-4">
                                             <img className="rounded float-left img-fluid" style={{width: '170px'}}
-                                                 src="https://imageog.flaticon.com/icons/png/512/1019/1019607.png?size=1200x630f&pad=10,10,10,10&ext=png"/>
+                                                 src={Payment_Announce}/>
                                             <p>Payer</p>
                                         </div>
                                     </div>
@@ -442,17 +456,17 @@ class Home extends React.Component {
                                     <div className="row ml-1">
                                         <div className="col-md-3 m-4">
                                             <img className="rounded float-left img-fluid" style={{width: '120px'}}
-                                                 src="https://image.flaticon.com/icons/svg/3089/3089692.svg"/>
+                                                 src={Deposit_Announce}/>
                                             <p> Déposer votre annonce </p>
                                         </div>
                                         <div className="col-md-3 m-4">
                                             <img className="rounded float-left img-fluid" style={{width: '120px'}}
-                                                 src="https://image.flaticon.com/icons/svg/2720/2720601.svg"/>
+                                                 src={Select_Request}/>
                                             <p>Je sélectionne mes demandes</p>
                                         </div>
                                         <div className="col-md-3 m-4">
                                             <img className="rounded float-left img-fluid" style={{width: '120px'}}
-                                                 src="https://image.flaticon.com/icons/svg/2132/2132246.svg"/>
+                                                 src={No_Commission}/>
                                             <p>Aucune commission</p>
                                         </div>
                                     </div>
@@ -462,8 +476,8 @@ class Home extends React.Component {
                                 <div className="container">
                                     <p style={{fontSize: '25px'}} className="m-5 text-center">Espace communautaire<br/> 100% gratuit</p>
                                     <img
-                                        src="https://image.flaticon.com/icons/svg/2472/2472017.svg"
-                                        alt="header dog" className="img-fluid"></img>
+                                        src={Communuty}
+                                        alt="community" className="img-fluid"></img>
                                     <p className="mt-3 text-dark text-justify">Crée votre compte, consultez, proposer des annonces en temps réel !</p>
                                 </div>
                             </div>
@@ -472,7 +486,7 @@ class Home extends React.Component {
                         <hr></hr>
                             <div className="mb-4">
                                 <p className="text-center mt-4" style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>
-                                    <img src="https://image.flaticon.com/icons/svg/2041/2041020.svg" style={{width: '50px'}} className="img-fluid"></img>
+                                    <img src={Boost} style={{width: '50px'}} className="img-fluid"></img>
                                     Besoin d'un boost ?</p>
                                 <p className="text-dark text-center mt-3">Même si nos services restent gratuit, nous vous proposons un boost de notoriété grâce à notre tiers payant !</p>
 
@@ -541,30 +555,30 @@ class Home extends React.Component {
                                 <hr></hr>
 
                                 <p className="text-center mt-4" style={{fontSize: '32px', color: 'rgba(23, 106, 196, 0.95)'}}>
-                                    <img src="https://image.flaticon.com/icons/svg/2372/2372804.svg" style={{width: '50px'}} className="img-fluid mr-2"></img>
+                                    <img src={Compagnons} style={{width: '50px'}} className="img-fluid mr-2"></img>
                                     Le meilleur pour vos compagnons</p>
                                 <p className="text-dark text-center mt-3">PetsBNB met à votre disposition <a href="/store">une sélection d'équipement</a> qui sera ravir au mieux vos animaux de compagnie</p>
 
                                 <div className="row mt-4 mb-4">
                                     <div className="col-md-6 col-sm-6 mt-4 text-center">
-                                        <img src="https://cdn.allwallpaper.in/wallpapers/1920x1200/4770/animals-dogs-glasses-pets-sunglasses-1920x1200-wallpaper.jpg" style={{width: '800px'}}  className="mr-2 rounded-top rounded-bottom img-fluid"></img>
+                                        <img src={Header_Dog} style={{width: '800px'}}  className="mr-2 rounded-top rounded-bottom img-fluid"></img>
                                     </div>
                                     <div className="col-md-6 col-sm-6 mt-4 text-center">
                                         <p className="text-dark" style={{fontSize: '45px'}}>
                                             Testé
-                                            <img src="https://image.flaticon.com/icons/svg/3004/3004112.svg" style={{width: '100px'}} className="img-fluid ml-4"/>
+                                            <img src={Test} style={{width: '100px'}} className="img-fluid ml-4"/>
                                         </p>
                                         <p className="text-dark" style={{fontSize: '45px'}}>
                                             Approuvé
-                                            <img src="https://image.flaticon.com/icons/svg/3062/3062354.svg" style={{width: '100px'}} className="img-fluid ml-4"/>
+                                            <img src={Approve} style={{width: '100px'}} className="img-fluid ml-4"/>
                                         </p>
                                         <p className="text-dark mt-2" style={{fontSize: '45px'}}>
                                             Sécurisé
-                                            <img src="https://image.flaticon.com/icons/svg/3182/3182157.svg" style={{width: '100px'}} className="img-fluid ml-4"/>
+                                            <img src={Secure} style={{width: '100px'}} className="img-fluid ml-4"/>
                                         </p>
                                         <p className="text-dark mt-2" style={{fontSize: '45px'}}>
                                             Partenaire
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1600px-Amazon_logo.svg.png  " style={{width: '100px'}} className="img-fluid ml-4"/>
+                                            <img src={Partner} style={{width: '100px'}} className="img-fluid ml-4"/>
                                         </p>
                                     </div>
                                 </div>
