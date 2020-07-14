@@ -140,10 +140,10 @@ class MyDemande extends React.Component {
     render() {
         return (
             <div>
-            <div className="container-fluid card py-3">
+            <div className="container-fluid card mb-5 mt-5 py-3">
                 <Menu/>
                 <div className="row m-2">
-                    <div className="col-md-6 mb-4">
+                    <div className="col-md-6 mt-5 mb-4">
                             <h4 className="card-header primary-color-dark white-text text-center">Nouvelles demandes</h4>
                         <div className="card">
                             <div className="card-body">
@@ -298,7 +298,7 @@ class MyDemande extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 mt-5">
                             <h4 className="card-header primary-color-dark white-text text-center">Historique des demandes</h4>
                         <div className="card">
                             <div className="card-body">
