@@ -51,7 +51,11 @@ class StoreCard extends React.Component {
                              src="//ws-eu.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=FR&ASIN=B00KE1LUAY&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL110_&tag=sylvainneung-21"
                              alt="article"/>
                         */}
-                        <img className="card-img-top"
+                        <img className="card-img-top mt-4"
+                             style={{width: '165px',
+                                  display: 'block',
+                                 'margin-left': 'auto',
+                                 'margin-right': 'auto'}}
                              src={this.props.announce.affiliate_picture}
                              alt="article"/>
                     </div>

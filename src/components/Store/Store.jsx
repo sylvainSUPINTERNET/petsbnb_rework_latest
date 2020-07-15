@@ -225,7 +225,7 @@ class Store extends React.Component {
                             </div>
                             <div className="row m-2">
                                 <div className="col-md-12">
-                                    <p className="text-center">Ici vous trouverez une sélection de produits de la communauté, testés et approuvés !</p>
+                                    <p className="text-center">Ici vous trouverez une sélection de produits de la communauté, testés et approuvés en partenariat avec Amazon !</p>
                                    <div className={this.state.isAdmin === true ? '': 'd-none'}>
                                        <form onSubmit={this.onSubmitCreationItem}>
                                            <div className="">
