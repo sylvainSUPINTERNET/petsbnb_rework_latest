@@ -355,7 +355,7 @@ class AnnoncesCreate extends React.Component {
 
                             <div className="form-group row">
                                 <div className="col-sm-6">
-                                <label htmlFor="streetAddress" className="label_annonce">Adresse complète*</label>
+                                <label htmlFor="streetAddress" className="label_annonce">Addresse de la rue*</label>
                                 <input type="text" id="streetAddress" className={this.state.isValidAddr === true ? 'form-control' : 'form-control is-invalid'} disabled={this.state.disableInput} placeholder="Ex. 14 rue de la paix"
                                            onChange={this.onChange}/>
                                     <div className="invalid-feedback">adresse ne peut pas être vide</div>
