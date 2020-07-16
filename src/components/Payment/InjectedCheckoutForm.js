@@ -135,7 +135,7 @@ class CheckoutForm extends React.Component {
                                     <CardSection/>
                                     <div className="text-center">
                                         <button className="btn btn-primary btn-lg mt-5 mb-3"
-                                                disabled={this.state.payBtnDisabled}>Payer
+                                                disabled={this.state.payBtnDisabled}>Payer 2.99€
                                             <div
                                                 className={this.state.payBtnLoading === true ? "spinner-border spinner-border-sm ml-3" : "d-none"}
                                                 role="status">
